@@ -1,0 +1,2164 @@
+```html
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Qari Hosiery Store | نیو قاری ہوزری سٹور</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Inter & Noto Sans Arabic for Urdu typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans Arabic', 'sans-serif'],
+            urdu: ['Noto Sans Arabic', 'Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+              900: '#064e3b',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    body {
+      font-family: 'Noto Sans Arabic', 'Inter', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .urdu-font {
+      font-family: 'Noto Sans Arabic', sans-serif;
+    }
+    /* Scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+      .print-only {
+        display: block !important;
+      }
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col selection:bg-emerald-500 selection:text-white">
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="no-print sticky top-0 z-30 bg-slate-900 text-white shadow-lg border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        
+        <!-- Logo & Title -->
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center text-white shadow-md shadow-emerald-900/40">
+            <i data-lucide="layers" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h1 class="text-base sm:text-xl font-bold tracking-tight text-white flex items-center gap-1.5">
+                <span>نیو قاری ہوزری سٹور</span>
+                <span class="text-xs bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-1.5 py-0.5 rounded font-mono hidden sm:inline-block">ERP</span>
+              </h1>
+            </div>
+            <p class="text-xs text-slate-400 hidden xs:block">New Qari Hosiery Store • فیصل آباد ہول سیل نیٹ ورک</p>
+          </div>
+        </div>
+
+        <!-- Controls: Firebase Cloud Status + Language -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          
+          <!-- Cloud Status Indicator (Connected to branches-c2b6c) -->
+          <button onclick="openModal('firebaseModal')" id="cloudStatusBadge" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-medium bg-slate-800 hover:bg-slate-700 text-emerald-400 border border-slate-700 transition cursor-pointer" title="کلاؤڈ کنکشن تفصیلات">
+            <span id="cloudStatusDot" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span id="cloudStatusText" class="hidden sm:inline">Firebase (branches-c2b6c) منسلک ہے</span>
+            <i data-lucide="cloud-check" class="w-3.5 h-3.5 opacity-80"></i>
+          </button>
+
+          <!-- Language Switcher -->
+          <button id="langToggleBtn" onclick="toggleLanguage()" class="flex items-center gap-1.5 px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-semibold border border-slate-700 transition">
+            <i data-lucide="languages" class="w-4 h-4 text-emerald-400"></i>
+            <span id="langLabel">English</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Branch Selector Chips -->
+      <div class="py-2.5 border-t border-slate-800/80 flex items-center justify-between text-xs overflow-x-auto no-scrollbar gap-2">
+        <div class="flex items-center gap-1.5 text-slate-400 shrink-0">
+          <i data-lucide="map-pin" class="w-3.5 h-3.5 text-emerald-400"></i>
+          <span data-i18n="branches_title">برانچز:</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-slate-800 text-emerald-300 border border-emerald-500/30">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <strong>برانچ 1:</strong> قائد اعظم مارکیٹ (مین ہب)
+          </span>
+          <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-slate-800 text-teal-300 border border-teal-500/30">
+            <span class="w-1.5 h-1.5 rounded-full bg-teal-400"></span>
+            <strong>برانچ 2:</strong> مومن آباد چوک، نزد اکبری مسجد
+          </span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== NAVIGATION TABS ==================== -->
+  <nav class="no-print bg-white border-b border-slate-200 sticky top-16 sm:top-20 z-20 shadow-sm">
+    <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+      <div class="flex justify-around sm:justify-start gap-1 sm:gap-4 overflow-x-auto py-2">
+        
+        <button onclick="switchTab('dashboard')" id="tabBtn-dashboard" class="tab-btn active-tab flex items-center gap-2 px-3 py-2 text-xs sm:text-sm font-semibold rounded-lg transition text-emerald-700 bg-emerald-50 border border-emerald-200 shadow-sm">
+          <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+          <span data-i18n="tab_dashboard">ڈیش بورڈ (Dashboard)</span>
+        </button>
+
+        <button onclick="switchTab('stockTransfer')" id="tabBtn-stockTransfer" class="tab-btn flex items-center gap-2 px-3 py-2 text-xs sm:text-sm font-semibold rounded-lg transition text-slate-600 hover:bg-slate-100 border border-transparent">
+          <i data-lucide="truck" class="w-4 h-4 text-emerald-600"></i>
+          <span data-i18n="tab_stock">مال کی منتقلی (Stock)</span>
+        </button>
+
+        <button onclick="switchTab('cashTransfer')" id="tabBtn-cashTransfer" class="tab-btn flex items-center gap-2 px-3 py-2 text-xs sm:text-sm font-semibold rounded-lg transition text-slate-600 hover:bg-slate-100 border border-transparent">
+          <i data-lucide="banknote" class="w-4 h-4 text-teal-600"></i>
+          <span data-i18n="tab_cash">کیش کا حساب (Cash)</span>
+        </button>
+
+        <button onclick="switchTab('expenses')" id="tabBtn-expenses" class="tab-btn flex items-center gap-2 px-3 py-2 text-xs sm:text-sm font-semibold rounded-lg transition text-slate-600 hover:bg-slate-100 border border-transparent">
+          <i data-lucide="receipt" class="w-4 h-4 text-amber-600"></i>
+          <span data-i18n="tab_expenses">ادائیگیاں و اخراجات (Expenses)</span>
+        </button>
+
+        <button onclick="switchTab('ledger')" id="tabBtn-ledger" class="tab-btn flex items-center gap-2 px-3 py-2 text-xs sm:text-sm font-semibold rounded-lg transition text-slate-600 hover:bg-slate-100 border border-transparent">
+          <i data-lucide="file-spreadsheet" class="w-4 h-4 text-indigo-600"></i>
+          <span data-i18n="tab_ledger">لیجر و رپورٹس (Ledger)</span>
+        </button>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="flex-grow max-w-7xl mx-auto w-full px-3 sm:px-6 lg:px-8 py-4 sm:py-6">
+
+    <!-- ==================== VIEW 1: DASHBOARD ==================== -->
+    <section id="view-dashboard" class="space-y-6">
+      
+      <!-- Welcome Banner -->
+      <div class="bg-gradient-to-r from-emerald-800 to-teal-900 rounded-2xl p-4 sm:p-6 text-white shadow-md relative overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 opacity-10 pointer-events-none">
+          <i data-lucide="package-search" class="w-64 h-64"></i>
+        </div>
+        <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div class="flex items-center gap-2 mb-2 flex-wrap">
+              <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/30 text-emerald-200 border border-emerald-400/30">
+                مرکزی ہول سیل اکاؤنٹنگ و انوینٹری کنٹرول
+              </span>
+              <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-400/20 text-emerald-200 border border-emerald-400/30">
+                <i data-lucide="cloud" class="w-3 h-3"></i>
+                کلاؤڈ پروجیکٹ: branches-c2b6c
+              </span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-bold" data-i18n="welcome_title">خوش آمدید - نیو قاری ہوزری فیصل آباد</h2>
+            <p class="text-emerald-100/80 text-xs sm:text-sm mt-1 max-w-xl">
+              دونوں برانچوں کے درمیان کاؤنٹر کیش (گلا)، مال کی فوری ترسیل، اور سپلائر ادائیگیوں کی ہمہ وقت کلاؤڈ مانیٹرنگ۔
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button onclick="openModal('quickStockModal')" class="px-3 py-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-1.5 shadow-sm transition active:scale-95">
+              <i data-lucide="arrow-left-right" class="w-4 h-4"></i>
+              <span data-i18n="btn_quick_stock">فوری مال بھیجیں</span>
+            </button>
+            <button onclick="openModal('quickExpenseModal')" class="px-3 py-2 bg-slate-800/80 hover:bg-slate-800 text-emerald-200 border border-emerald-500/40 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-1.5 transition active:scale-95">
+              <i data-lucide="plus-circle" class="w-4 h-4"></i>
+              <span data-i18n="btn_quick_expense">خرچ / سپلائر ادائیگی</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- KPI Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        
+        <!-- Branch 1 Cash Card -->
+        <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm relative overflow-hidden group hover:border-emerald-400 transition">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-slate-500 flex items-center gap-1">
+              <i data-lucide="store" class="w-3.5 h-3.5 text-emerald-600"></i>
+              قائد اعظم مارکیٹ (برانچ 1)
+            </span>
+            <span class="p-1.5 bg-emerald-50 text-emerald-600 rounded-lg">
+              <i data-lucide="wallet" class="w-4 h-4"></i>
+            </span>
+          </div>
+          <div class="text-2xl font-black text-slate-800 font-mono tracking-tight" id="kpi-b1-cash">PKR 0</div>
+          <div class="mt-2 flex items-center justify-between text-xs text-slate-500 border-t border-slate-100 pt-2">
+            <span>موجودہ کاؤنٹر کیش (گلا)</span>
+            <span class="text-emerald-600 font-bold" id="kpi-b1-stock-qty">0 آئٹمز سٹاک</span>
+          </div>
+        </div>
+
+        <!-- Branch 2 Cash Card -->
+        <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm relative overflow-hidden group hover:border-teal-400 transition">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-slate-500 flex items-center gap-1">
+              <i data-lucide="store" class="w-3.5 h-3.5 text-teal-600"></i>
+              مومن آباد چوک (برانچ 2)
+            </span>
+            <span class="p-1.5 bg-teal-50 text-teal-600 rounded-lg">
+              <i data-lucide="wallet-cards" class="w-4 h-4"></i>
+            </span>
+          </div>
+          <div class="text-2xl font-black text-slate-800 font-mono tracking-tight" id="kpi-b2-cash">PKR 0</div>
+          <div class="mt-2 flex items-center justify-between text-xs text-slate-500 border-t border-slate-100 pt-2">
+            <span>موجودہ کاؤنٹر کیش (گلا)</span>
+            <span class="text-teal-600 font-bold" id="kpi-b2-stock-qty">0 آئٹمز سٹاک</span>
+          </div>
+        </div>
+
+        <!-- Today's Total Cash In / Out -->
+        <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm relative overflow-hidden">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-slate-500 flex items-center gap-1">
+              <i data-lucide="clock" class="w-3.5 h-3.5 text-amber-500"></i>
+              آج کی نقد آمد و خرچ
+            </span>
+            <span class="p-1.5 bg-amber-50 text-amber-600 rounded-lg">
+              <i data-lucide="arrow-down-up" class="w-4 h-4"></i>
+            </span>
+          </div>
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="text-[10px] uppercase font-bold text-emerald-600 block">نقد آمد (Cash In)</span>
+              <span class="text-lg font-bold text-slate-800 font-mono" id="kpi-today-cashin">PKR 0</span>
+            </div>
+            <div class="text-left rtl:text-right">
+              <span class="text-[10px] uppercase font-bold text-rose-600 block">نقد خرچ (Cash Out)</span>
+              <span class="text-lg font-bold text-slate-800 font-mono" id="kpi-today-cashout">PKR 0</span>
+            </div>
+          </div>
+          <div class="mt-2 text-xs text-slate-500 border-t border-slate-100 pt-2 flex justify-between">
+            <span>سپلائر ادائیگیاں / اخراجات:</span>
+            <span class="font-bold text-rose-600" id="kpi-today-expenses">PKR 0</span>
+          </div>
+        </div>
+
+        <!-- Today's Stock Movements -->
+        <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm relative overflow-hidden">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-slate-500 flex items-center gap-1">
+              <i data-lucide="boxes" class="w-3.5 h-3.5 text-indigo-500"></i>
+              برانچ مال کی ترسیل
+            </span>
+            <span class="p-1.5 bg-indigo-50 text-indigo-600 rounded-lg">
+              <i data-lucide="repeat" class="w-4 h-4"></i>
+            </span>
+          </div>
+          <div class="text-2xl font-black text-slate-800 font-mono tracking-tight" id="kpi-transfers-count">0 منتقلی</div>
+          <div class="mt-2 text-xs text-slate-500 border-t border-slate-100 pt-2 flex justify-between">
+            <span>کل منتقل شدہ یونٹس:</span>
+            <span class="font-bold text-indigo-600" id="kpi-transfers-units">0 یونٹ</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Live Multi-Branch Stock Overview (2 cols) -->
+        <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-5">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 pb-3 border-b border-slate-100">
+            <div>
+              <h3 class="font-bold text-base text-slate-800 flex items-center gap-2">
+                <i data-lucide="clipboard-list" class="w-4 h-4 text-emerald-600"></i>
+                <span data-i18n="stock_overview_title">دونوں برانچز کا ہول سیل لائیو سٹاک</span>
+              </h3>
+              <p class="text-xs text-slate-500">انوینٹری بیلنس: قائد اعظم مارکیٹ بمقابلہ مومن آباد چوک</p>
+            </div>
+            <div class="relative">
+              <input type="text" id="stockSearchInput" oninput="renderStockTable()" placeholder="آئٹم تلاش کریں (Search Item)..." class="text-xs w-full sm:w-60 bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
+              <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute right-2.5 top-2.5 pointer-events-none"></i>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-xs text-right rtl:text-right ltr:text-left">
+              <thead class="bg-slate-50 text-slate-600 font-bold border-b border-slate-200 uppercase">
+                <tr>
+                  <th class="p-2.5 rounded-r-lg">آئٹم کا نام / کوڈ</th>
+                  <th class="p-2.5">قسم / کیٹیگری</th>
+                  <th class="p-2.5 text-center">یونٹ</th>
+                  <th class="p-2.5 text-center bg-emerald-50/70 text-emerald-800">برانچ 1 (مین ہب)</th>
+                  <th class="p-2.5 text-center bg-teal-50/70 text-teal-800">برانچ 2 (نیو برانچ)</th>
+                  <th class="p-2.5 rounded-l-lg text-center">ایکشن</th>
+                </tr>
+              </thead>
+              <tbody id="stockTableBody" class="divide-y divide-slate-100">
+                <!-- Dynamically populated via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Quick Branch Cash Shift & Activity Feed (1 col) -->
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
+              <h3 class="font-bold text-base text-slate-800 flex items-center gap-2">
+                <i data-lucide="history" class="w-4 h-4 text-teal-600"></i>
+                <span data-i18n="recent_activity_title">حالیہ اہم ٹرانزیکشنز</span>
+              </h3>
+              <span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full font-semibold">تازہ ترین 5</span>
+            </div>
+            <div id="quickActivityList" class="space-y-3">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-100 bg-slate-50 -mx-4 -mb-4 p-4 rounded-b-2xl">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-700 mb-2">
+              <span>کل مشترکہ کاؤنٹر کیش (Total Combined Cash):</span>
+              <span class="text-emerald-700 font-mono font-bold text-sm" id="combinedCashTotal">PKR 0</span>
+            </div>
+            <p class="text-[11px] text-slate-500">
+              * نوٹ: انٹر برانچ کیش منتقلی سے کل سرمائے میں فرق نہیں پڑتا بلکہ دونوں برانچوں کا گلا آپس میں ایڈجسٹ ہوتا ہے۔
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ==================== VIEW 2: STOCK TRANSFER ==================== -->
+    <section id="view-stockTransfer" class="hidden space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Transfer Form Card -->
+        <div class="lg:col-span-1 bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6">
+          <div class="flex items-center gap-2 pb-3 mb-4 border-b border-slate-100">
+            <div class="p-2 bg-emerald-100 text-emerald-800 rounded-xl">
+              <i data-lucide="arrow-left-right" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-base text-slate-800">مال کی منتقلی کا فارم</h3>
+              <p class="text-xs text-slate-500">برانچ 1 اور برانچ 2 کے درمیان سٹاک شفٹ کریں</p>
+            </div>
+          </div>
+
+          <form id="stockTransferForm" onsubmit="handleStockTransferSubmit(event)" class="space-y-4">
+            
+            <!-- From Branch -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">کہاں سے بھیج رہے ہیں؟ (بھیجنے والی برانچ)</label>
+              <select id="transferFromBranch" onchange="validateBranchSelect('transferFromBranch', 'transferToBranch')" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none" required>
+                <option value="b1" selected>برانچ 1: قائد اعظم مارکیٹ (مین ہب)</option>
+                <option value="b2">برانچ 2: مومن آباد چوک (نزد اکبری مسجد)</option>
+              </select>
+            </div>
+
+            <!-- To Branch -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">کس برانچ کو موصول ہوگا؟ (منزل برانچ)</label>
+              <select id="transferToBranch" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none" required>
+                <option value="b2" selected>برانچ 2: مومن آباد چوک (نزد اکبری مسجد)</option>
+                <option value="b1">برانچ 1: قائد اعظم مارکیٹ (مین ہب)</option>
+              </select>
+            </div>
+
+            <!-- Item Selection -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">ہوزری آئٹم کا انتخاب کریں</label>
+              <select id="transferItemId" onchange="updateTransferItemStockDisplay()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none" required>
+                <!-- Populated via JS -->
+              </select>
+              <div class="mt-1 text-[11px] text-slate-500 flex justify-between items-center" id="itemAvailableStockNotice">
+                <span>موجودہ دستیاب سٹاک:</span>
+                <span class="font-bold text-emerald-700" id="availableStockDisplay">--</span>
+              </div>
+            </div>
+
+            <!-- Quantity & Unit -->
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">تعداد (مقدار)</label>
+                <input type="number" min="1" step="1" id="transferQty" placeholder="مثلاً: 12" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none" required>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">پیمائش کا یونٹ</label>
+                <select id="transferUnit" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+                  <option value="درجن (Dozens)" selected>درجن (Dozens)</option>
+                  <option value="پیکٹ (Packets)">پیکٹ (Packets)</option>
+                  <option value="تھان / پیس (Pieces)">تھان / پیس (Pieces)</option>
+                  <option value="کارتن (Carton)">کارتن (Carton)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Note / Transport Bilty / Rider -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">حوالہ / رکشہ والا / رسید نمبر (اختیاری)</label>
+              <input type="text" id="transferNote" placeholder="مثلاً: بائی چنگچی رکشہ، بلٹی 402 یا نام" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+            </div>
+
+            <!-- Transfer Button -->
+            <button type="submit" class="w-full py-2.5 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-sm transition active:scale-[0.98]">
+              <i data-lucide="send" class="w-4 h-4"></i>
+              <span>مال منتقل کریں اور بیلنس اپ ڈیٹ کریں</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Transfer History Table -->
+        <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6 flex flex-col">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 mb-4 border-b border-slate-100 gap-2">
+            <div>
+              <h3 class="font-bold text-base text-slate-800 flex items-center gap-2">
+                <i data-lucide="history" class="w-4 h-4 text-emerald-600"></i>
+                <span>انٹر برانچ مال ٹرانسفر لاگ (Transfer Log)</span>
+              </h3>
+              <p class="text-xs text-slate-500">تاریخ، آئٹم، مقدار، ماخذ اور وصول کنندہ برانچ کی تصدیق</p>
+            </div>
+            <!-- Filter by branch -->
+            <div class="flex items-center gap-2">
+              <select id="transferFilterBranch" onchange="renderStockTransfersTable()" class="bg-slate-50 border border-slate-300 text-xs rounded-xl px-2.5 py-1.5 focus:outline-none">
+                <option value="all">تمام برانچز لاگ</option>
+                <option value="b1_to_b2">صرف برانچ 1 سے 2</option>
+                <option value="b2_to_b1">صرف برانچ 2 سے 1</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto flex-grow">
+            <table class="w-full text-xs text-right rtl:text-right ltr:text-left">
+              <thead class="bg-slate-50 text-slate-600 font-bold border-b border-slate-200 uppercase">
+                <tr>
+                  <th class="p-2.5">تاریخ / وقت</th>
+                  <th class="p-2.5">آئٹم تفصیل</th>
+                  <th class="p-2.5 text-center">تعداد / یونٹ</th>
+                  <th class="p-2.5">ماخذ (From)</th>
+                  <th class="p-2.5">منزل (To)</th>
+                  <th class="p-2.5">نوٹ / حوالہ</th>
+                  <th class="p-2.5 text-center">حالت (Status)</th>
+                </tr>
+              </thead>
+              <tbody id="stockTransfersTableBody" class="divide-y divide-slate-100">
+                <!-- Populated via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 3: CASH MANAGEMENT ==================== -->
+    <section id="view-cashTransfer" class="hidden space-y-6">
+      
+      <!-- Real-Time Counter Cash Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-gradient-to-br from-emerald-700 to-teal-800 rounded-2xl p-5 text-white shadow-md">
+          <div class="flex justify-between items-start">
+            <div>
+              <span class="text-xs text-emerald-200 font-semibold">برانچ 1 (مین شاپ) کاؤنٹر کیش / گلا</span>
+              <h3 class="text-2xl sm:text-3xl font-black font-mono mt-1" id="cash-b1-balance">PKR 0</h3>
+              <p class="text-xs text-emerald-100 mt-1">قائد اعظم مارکیٹ، فیصل آباد</p>
+            </div>
+            <div class="p-3 bg-white/10 rounded-xl backdrop-blur-sm">
+              <i data-lucide="landmark" class="w-6 h-6 text-emerald-300"></i>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-white/20 flex gap-2">
+            <button onclick="presetCashAction('b1', 'in')" class="flex-1 py-1.5 bg-white/20 hover:bg-white/30 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1">
+              <i data-lucide="arrow-down-left" class="w-3.5 h-3.5 text-emerald-300"></i>
+              کیش ان (Petty In)
+            </button>
+            <button onclick="presetCashAction('b1', 'out')" class="flex-1 py-1.5 bg-rose-500/40 hover:bg-rose-500/50 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1">
+              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-rose-200"></i>
+              کیش آؤٹ (Petty Out)
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal-800 to-cyan-900 rounded-2xl p-5 text-white shadow-md">
+          <div class="flex justify-between items-start">
+            <div>
+              <span class="text-xs text-teal-200 font-semibold">برانچ 2 (نیو شاپ) کاؤنٹر کیش / گلا</span>
+              <h3 class="text-2xl sm:text-3xl font-black font-mono mt-1" id="cash-b2-balance">PKR 0</h3>
+              <p class="text-xs text-teal-100 mt-1">نزد اکبری مسجد مومن آباد چوک، فیصل آباد</p>
+            </div>
+            <div class="p-3 bg-white/10 rounded-xl backdrop-blur-sm">
+              <i data-lucide="store" class="w-6 h-6 text-teal-300"></i>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-white/20 flex gap-2">
+            <button onclick="presetCashAction('b2', 'in')" class="flex-1 py-1.5 bg-white/20 hover:bg-white/30 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1">
+              <i data-lucide="arrow-down-left" class="w-3.5 h-3.5 text-teal-300"></i>
+              کیش ان (Petty In)
+            </button>
+            <button onclick="presetCashAction('b2', 'out')" class="flex-1 py-1.5 bg-rose-500/40 hover:bg-rose-500/50 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1">
+              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-rose-200"></i>
+              کیش آؤٹ (Petty Out)
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Inter-Branch Cash Movement Form & Daily Log -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Inter-Branch Cash Transfer Form -->
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6">
+          <div class="flex items-center gap-2 pb-3 mb-4 border-b border-slate-100">
+            <div class="p-2 bg-teal-100 text-teal-800 rounded-xl">
+              <i data-lucide="repeat" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-base text-slate-800">برانچ کیش منتقلی (Inter-Branch Cash)</h3>
+              <p class="text-xs text-slate-500">ایک برانچ کے گلے سے دوسری برانچ رقوم کی ترسیل</p>
+            </div>
+          </div>
+
+          <form id="cashTransferForm" onsubmit="handleCashTransferSubmit(event)" class="space-y-4">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">کیش دینے والی برانچ (Deduct From)</label>
+              <select id="cashFromBranch" onchange="validateBranchSelect('cashFromBranch', 'cashToBranch')" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-teal-500 focus:outline-none" required>
+                <option value="b2" selected>برانچ 2: مومن آباد چوک</option>
+                <option value="b1">برانچ 1: قائد اعظم مارکیٹ</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">کیش وصول کرنے والی برانچ (Deposit To)</label>
+              <select id="cashToBranch" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-teal-500 focus:outline-none" required>
+                <option value="b1" selected>برانچ 1: قائد اعظم مارکیٹ</option>
+                <option value="b2">برانچ 2: مومن آباد چوک</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">رقم بمطابق روپیہ (PKR Amount)</label>
+              <input type="number" min="1" id="cashTransferAmount" placeholder="مثلاً: 50000" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs font-mono font-bold focus:ring-2 focus:ring-teal-500 focus:outline-none" required>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">حوالہ / لے جانے والے کا نام (Receiver/Courier)</label>
+              <input type="text" id="cashTransferNote" placeholder="مثلاً: احمد (سیلز بوائے) کے ہاتھ بھجوائے" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-teal-500 focus:outline-none" required>
+            </div>
+
+            <button type="submit" class="w-full py-2.5 px-4 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-sm transition active:scale-[0.98]">
+              <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+              <span>کیش ٹرانسفر کا اندراج کریں</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Petty Cash Log & Filterable Table -->
+        <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6 flex flex-col">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 mb-4 border-b border-slate-100 gap-2">
+            <div>
+              <h3 class="font-bold text-base text-slate-800 flex items-center gap-2">
+                <i data-lucide="file-text" class="w-4 h-4 text-teal-600"></i>
+                <span>کیش ٹرانسفر و پیٹی کیش ہسٹری</span>
+              </h3>
+              <p class="text-xs text-slate-500">روزانہ کاؤنٹر کیش ان اور آؤٹ ریکارڈ</p>
+            </div>
+            <div>
+              <select id="cashHistoryFilter" onchange="renderCashTransfersTable()" class="bg-slate-50 border border-slate-300 text-xs rounded-xl px-2.5 py-1.5 focus:outline-none">
+                <option value="all">تمام کیش ٹرانزیکشنز</option>
+                <option value="inter_branch">صرف برانچ ٹرانسفرز</option>
+                <option value="petty_in">صرف کیش ان (آمد)</option>
+                <option value="petty_out">صرف کیش آؤٹ (واپسی)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto flex-grow">
+            <table class="w-full text-xs text-right rtl:text-right ltr:text-left">
+              <thead class="bg-slate-50 text-slate-600 font-bold border-b border-slate-200 uppercase">
+                <tr>
+                  <th class="p-2.5">تاریخ / وقت</th>
+                  <th class="p-2.5">قسم (Type)</th>
+                  <th class="p-2.5">برانچ / ماخذ</th>
+                  <th class="p-2.5">رقم (PKR)</th>
+                  <th class="p-2.5">حوالہ و تفصیل</th>
+                  <th class="p-2.5 text-center">رسید</th>
+                </tr>
+              </thead>
+              <tbody id="cashTransfersTableBody" class="divide-y divide-slate-100">
+                <!-- Populated via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ==================== VIEW 4: EXPENSES & SUPPLIERS ==================== -->
+    <section id="view-expenses" class="hidden space-y-6">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Expense & Supplier Payment Form -->
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6">
+          <div class="flex items-center gap-2 pb-3 mb-4 border-b border-slate-100">
+            <div class="p-2 bg-amber-100 text-amber-800 rounded-xl">
+              <i data-lucide="credit-card" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-base text-slate-800">ادائیگی یا خرچ درج کریں</h3>
+              <p class="text-xs text-slate-500">سپلائر کو نقد ادائیگی یا دکان کا روزمرہ خرچ</p>
+            </div>
+          </div>
+
+          <form id="expenseForm" onsubmit="handleExpenseSubmit(event)" class="space-y-4">
+            
+            <!-- Paying Branch -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">کس برانچ کے گلے سے ادائیگی ہوگی؟</label>
+              <select id="expenseBranch" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none" required>
+                <option value="b1" selected>برانچ 1: قائد اعظم مارکیٹ (مین ہب)</option>
+                <option value="b2">برانچ 2: مومن آباد چوک</option>
+              </select>
+            </div>
+
+            <!-- Category -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">خرچ / ادائیگی کی نوعیت (Category)</label>
+              <select id="expenseCategory" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none" required>
+                <option value="Supplier" selected>سپلائر کو مال کی ادائیگی (Raw Material / Goods)</option>
+                <option value="Freight">کرایہ و بلٹی اخراجات (Freight / Transport)</option>
+                <option value="Labor">مزدوری و پلے داری (Labor / Loading)</option>
+                <option value="Utility">دکان بجلی بل و یوٹیلٹی (Electricity / Utilities)</option>
+                <option value="Tea_Refreshment">چائے پانی و مہمان نوازی (Tea / Mess)</option>
+                <option value="Maintenance">مرمت و دکان کی سجاوٹ (Maintenance)</option>
+                <option value="Salary">ملازمین ایڈوانس / تنخواہ (Staff Salary/Advance)</option>
+                <option value="Other">دیگر متفرق اخراجات (Misc Expenses)</option>
+              </select>
+            </div>
+
+            <!-- Payee Name with Quick Suggester -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">وصول کنندہ کا نام (Payee / Supplier Name)</label>
+              <input type="text" id="expensePayee" list="supplierSuggestions" placeholder="مثلاً: گلزار یارن / شاہین پیکجنگ / چوہدری ٹرانسپورٹ" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none" required>
+              <datalist id="supplierSuggestions">
+                <option value="گلزار یارن و دھاگہ ملز"></option>
+                <option value="شاہین ہوزری باکسز و پیکجنگ"></option>
+                <option value="نذیر بٹن و الاسٹک سٹور"></option>
+                <option value="فیصل آباد گڈز ٹرانسپورٹ اڈہ"></option>
+                <option value="فیسکو کمرشل بجلی بل"></option>
+                <option value="پلے دار یونین مزدوری"></option>
+              </datalist>
+            </div>
+
+            <!-- Amount -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">ادا شدہ رقم (Amount in PKR)</label>
+              <input type="number" min="1" id="expenseAmount" placeholder="مثلاً: 25000" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs font-mono font-bold focus:ring-2 focus:ring-amber-500 focus:outline-none" required>
+            </div>
+
+            <!-- Bill Ref / Invoice No -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">انوائس نمبر / بلٹی یا بل حوالہ</label>
+              <input type="text" id="expenseInvoiceRef" placeholder="مثلاً: Bill # 882 / Challan 12" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none">
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="w-full py-2.5 px-4 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-sm transition active:scale-[0.98]">
+              <i data-lucide="check" class="w-4 h-4"></i>
+              <span>ادائیگی درج کریں اور کیش وضع کریں</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Expenses Ledger & Breakdown -->
+        <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6 flex flex-col">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 mb-4 border-b border-slate-100 gap-2">
+            <div>
+              <h3 class="font-bold text-base text-slate-800 flex items-center gap-2">
+                <i data-lucide="receipt" class="w-4 h-4 text-amber-600"></i>
+                <span>اخراجات و سپلائر واؤچرز لاگ</span>
+              </h3>
+              <p class="text-xs text-slate-500">حالیہ ادائیگیاں اور متعلقہ برانچ کا نقد ریکارڈ</p>
+            </div>
+            <div>
+              <select id="expenseFilterBranch" onchange="renderExpensesTable()" class="bg-slate-50 border border-slate-300 text-xs rounded-xl px-2.5 py-1.5 focus:outline-none">
+                <option value="all">تمام برانچز کے اخراجات</option>
+                <option value="b1">صرف برانچ 1 (قائد اعظم مارکیٹ)</option>
+                <option value="b2">صرف برانچ 2 (مومن آباد چوک)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto flex-grow">
+            <table class="w-full text-xs text-right rtl:text-right ltr:text-left">
+              <thead class="bg-slate-50 text-slate-600 font-bold border-b border-slate-200 uppercase">
+                <tr>
+                  <th class="p-2.5">تاریخ</th>
+                  <th class="p-2.5">برانچ</th>
+                  <th class="p-2.5">وصول کنندہ / تفصیل</th>
+                  <th class="p-2.5">کیٹیگری</th>
+                  <th class="p-2.5">بل حوالہ</th>
+                  <th class="p-2.5 text-rose-600 font-bold">رقم (روپے)</th>
+                  <th class="p-2.5 text-center">پرنٹ</th>
+                </tr>
+              </thead>
+              <tbody id="expensesTableBody" class="divide-y divide-slate-100">
+                <!-- Populated via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ==================== VIEW 5: GENERAL LEDGER & REPORTS ==================== -->
+    <section id="view-ledger" class="hidden space-y-6">
+      
+      <!-- Filter Bar -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-5">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div>
+            <h3 class="font-bold text-base text-slate-800 flex items-center gap-2">
+              <i data-lucide="book-open" class="w-5 h-5 text-indigo-600"></i>
+              <span>مشترکہ جنرل لیجر و ٹرانزیکشن ریکارڈ</span>
+            </h3>
+            <p class="text-xs text-slate-500">تمام کیش، سٹاک منتقلی اور اخراجات کا جامع آڈٹ ٹریل</p>
+          </div>
+          
+          <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
+            <button onclick="exportToCSV()" class="px-3 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition">
+              <i data-lucide="download" class="w-4 h-4"></i>
+              <span>ایکسل / CSV ڈاؤنلوڈ</span>
+            </button>
+            <button onclick="window.print()" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition">
+              <i data-lucide="printer" class="w-4 h-4"></i>
+              <span>رپورٹ پرنٹ کریں</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="mt-4 pt-4 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 mb-1">فلٹر بمطابق ٹرانزیکشن قسم</label>
+            <select id="ledgerTypeFilter" onchange="renderConsolidatedLedger()" class="w-full bg-slate-50 border border-slate-300 text-xs rounded-xl px-3 py-2 focus:outline-none">
+              <option value="all">تمام اندراجات (All Types)</option>
+              <option value="stock">صرف مال منتقلی (Stock)</option>
+              <option value="cash">صرف کیش منتقلی / پیٹی کیش</option>
+              <option value="expense">صرف اخراجات و سپلائر</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 mb-1">فلٹر بمطابق برانچ</label>
+            <select id="ledgerBranchFilter" onchange="renderConsolidatedLedger()" class="w-full bg-slate-50 border border-slate-300 text-xs rounded-xl px-3 py-2 focus:outline-none">
+              <option value="all">دونوں برانچز (Both Branches)</option>
+              <option value="b1">برانچ 1 (قائد اعظم مارکیٹ)</option>
+              <option value="b2">برانچ 2 (مومن آباد چوک)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 mb-1">تلاش (Search)</label>
+            <input type="text" id="ledgerSearchInput" oninput="renderConsolidatedLedger()" placeholder="کوئی بھی نام، آئٹم یا حوالہ لکھیں..." class="w-full bg-slate-50 border border-slate-300 text-xs rounded-xl px-3 py-2 focus:outline-none">
+          </div>
+        </div>
+      </div>
+
+      <!-- Ledger Full Table -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs text-right rtl:text-right ltr:text-left">
+            <thead class="bg-slate-100 text-slate-700 font-bold border-b border-slate-200 uppercase">
+              <tr>
+                <th class="p-3">ٹرانزیکشن ID</th>
+                <th class="p-3">تاریخ / وقت</th>
+                <th class="p-3">کیٹیگری</th>
+                <th class="p-3">تفصیلات و حوالہ</th>
+                <th class="p-3">برانچ اثر (Branch Flow)</th>
+                <th class="p-3 text-center">مال / کیش اثر</th>
+                <th class="p-3 text-center no-print">ایکشن</th>
+              </tr>
+            </thead>
+            <tbody id="consolidatedLedgerBody" class="divide-y divide-slate-100">
+              <!-- Populated via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- Firebase Cloud Config Modal -->
+  <div id="firebaseModal" class="no-print fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-100 text-right">
+      <div class="flex justify-between items-center pb-3 border-b border-slate-100 mb-4">
+        <h3 class="font-bold text-base text-slate-800 flex items-center gap-2">
+          <i data-lucide="cloud" class="w-5 h-5 text-emerald-600"></i>
+          <span>فائیر بیس کلاؤڈ لائیو کنکشن (Firebase Cloud)</span>
+        </h3>
+        <button onclick="closeModal('firebaseModal')" class="p-1 rounded-lg text-slate-400 hover:text-slate-600">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="space-y-4 text-xs text-slate-600">
+        <!-- Live Connection Status Alert -->
+        <div class="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span class="font-bold text-emerald-900">منسلک شدہ پراجیکٹ:</span>
+          </div>
+          <span class="font-mono font-bold text-emerald-700 bg-white px-2 py-0.5 rounded border border-emerald-300">branches-c2b6c</span>
+        </div>
+
+        <p class="leading-relaxed text-slate-700">
+          آپ کا ڈیٹا بیس <strong>branches-c2b6c.firebaseapp.com</strong> پر کامیابی سے منسلک ہے۔ دونوں برانچوں (قائد اعظم مارکیٹ اور مومن آباد) پر کوئی بھی انٹری خودکار طور پر لائیو سنک ہوگی۔
+        </p>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">موجودہ فعال Firebase Credentials (JSON):</label>
+          <textarea id="firebaseConfigInput" rows="7" dir="ltr" class="w-full font-mono text-[11px] p-3 rounded-xl border border-slate-300 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500" readonly></textarea>
+        </div>
+
+        <div class="flex items-center gap-2 pt-2">
+          <button onclick="triggerCloudSyncNow()" class="flex-1 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold flex items-center justify-center gap-1.5 shadow-sm transition">
+            <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+            <span>ابھی فوراً کلاؤڈ سنک کریں</span>
+          </button>
+          <button onclick="closeModal('firebaseModal')" class="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-bold transition">
+            بند کریں
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Print Voucher Slip Overlay -->
+  <div id="printSlipArea" class="hidden print-only p-8 max-w-lg mx-auto bg-white text-black font-sans">
+    <div class="text-center border-b pb-4 mb-4">
+      <h2 class="text-2xl font-bold">نیو قاری ہوزری سٹور</h2>
+      <p class="text-sm">فیصل آباد ہول سیل نیٹ ورک (قائد اعظم مارکیٹ / مومن آباد چوک)</p>
+      <h3 class="text-lg font-semibold mt-2 border border-black inline-block px-3 py-0.5 rounded" id="slipTitle">آفیشل ٹرانزیکشن واؤچر</h3>
+    </div>
+    <div class="text-xs space-y-2 mb-6" id="slipContent">
+      <!-- Injected dynamically -->
+    </div>
+    <div class="border-t pt-6 flex justify-between text-xs mt-8">
+      <div>
+        <p>دستخط بھیجنے والا: ____________</p>
+      </div>
+      <div>
+        <p>دستخط وصول کنندہ / منیجر: ____________</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirmation Modal -->
+  <div id="confirmModal" class="no-print fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-100 text-right transform transition-all">
+      <div class="w-12 h-12 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center mb-4 mx-auto">
+        <i data-lucide="alert-triangle" class="w-6 h-6"></i>
+      </div>
+      <h3 class="text-lg font-bold text-slate-800 text-center" id="confirmModalTitle">کیا آپ کو یقین ہے؟</h3>
+      <p class="text-xs text-slate-600 text-center mt-2 leading-relaxed" id="confirmModalMessage">
+        یہ عمل دونوں برانچوں کے سٹاک یا کاؤنٹر کیش کے بیلنس میں فوری تبدیلی کرے گا۔
+      </p>
+      <div class="flex items-center gap-3 mt-6">
+        <button id="confirmCancelBtn" onclick="closeConfirmModal(false)" class="flex-1 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition">
+          منسوخ کریں (Cancel)
+        </button>
+        <button id="confirmProceedBtn" class="flex-1 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition">
+          ہاں، تصدیق کریں (Confirm)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Stock Modal -->
+  <div id="quickStockModal" class="no-print fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-100 text-right">
+      <div class="flex justify-between items-center pb-3 border-b border-slate-100 mb-4">
+        <h3 class="font-bold text-base text-slate-800 flex items-center gap-1.5">
+          <i data-lucide="truck" class="w-5 h-5 text-emerald-600"></i>
+          <span>فوری مال ترسیل وزرڈ</span>
+        </h3>
+        <button onclick="closeModal('quickStockModal')" class="p-1 rounded-lg text-slate-400 hover:text-slate-600">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <p class="text-xs text-slate-500 mb-4">یہاں سے آپ بغیر صفحہ بدلے مال منتقل کر سکتے ہیں۔</p>
+      <button onclick="closeModal('quickStockModal'); switchTab('stockTransfer');" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition">
+        منتقلی سکرین پر جائیں
+      </button>
+    </div>
+  </div>
+
+  <!-- Quick Expense Modal -->
+  <div id="quickExpenseModal" class="no-print fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-100 text-right">
+      <div class="flex justify-between items-center pb-3 border-b border-slate-100 mb-4">
+        <h3 class="font-bold text-base text-slate-800 flex items-center gap-1.5">
+          <i data-lucide="receipt" class="w-5 h-5 text-amber-600"></i>
+          <span>فوری خرچ / سپلائر ادائیگی</span>
+        </h3>
+        <button onclick="closeModal('quickExpenseModal')" class="p-1 rounded-lg text-slate-400 hover:text-slate-600">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <p class="text-xs text-slate-500 mb-4">دکان کے گلے سے خرچ یا سپلائر کو ادائیگی درج کرنے کے لیے آگے بڑھیں۔</p>
+      <button onclick="closeModal('quickExpenseModal'); switchTab('expenses');" class="w-full py-2.5 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-bold transition">
+        ادائیگی سکرین پر جائیں
+      </button>
+    </div>
+  </div>
+
+  <!-- Petty In/Out Modal -->
+  <div id="pettyCashModal" class="no-print fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-100 text-right">
+      <div class="flex justify-between items-center pb-3 border-b border-slate-100 mb-4">
+        <h3 class="font-bold text-base text-slate-800" id="pettyModalTitle">کاؤنٹر کیش اندراج</h3>
+        <button onclick="closeModal('pettyCashModal')" class="p-1 rounded-lg text-slate-400 hover:text-slate-600">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <form id="pettyCashForm" onsubmit="handlePettyCashSubmit(event)" class="space-y-4">
+        <input type="hidden" id="pettyBranchTarget">
+        <input type="hidden" id="pettyActionType">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">رقم (PKR)</label>
+          <input type="number" min="1" id="pettyAmount" placeholder="مثلاً: 10000" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs font-mono font-bold" required>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">تفصیل / ذریعہ (Note / Reason)</label>
+          <input type="text" id="pettyNote" placeholder="مثلاً: کسٹمر نقد ریکوری / بینک سے ڈرا" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs" required>
+        </div>
+        <button type="submit" class="w-full py-2.5 bg-slate-800 hover:bg-slate-900 text-white rounded-xl text-xs font-bold transition">
+          اندراج محفوظ کریں
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-4 z-50 flex flex-col gap-2 max-w-sm pointer-events-none"></div>
+
+  <!-- ==================== FIREBASE V11 MODULAR SCRIPT ==================== -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { 
+      getFirestore, 
+      doc, 
+      setDoc, 
+      onSnapshot 
+    } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    // User's Exact Firebase Config directly built-in
+    const FIREBASE_CONFIG = {
+      apiKey: "AIzaSyAXAbSw01Ms5BUARJ2pyLjeBT1z6iRm5DI",
+      authDomain: "branches-c2b6c.firebaseapp.com",
+      projectId: "branches-c2b6c",
+      storageBucket: "branches-c2b6c.firebasestorage.app",
+      messagingSenderId: "282226822082",
+      appId: "1:282226822082:web:9d37daff82e9228a52a45b"
+    };
+
+    window.db = null;
+    window.auth = null;
+    window.isCloudActive = false;
+    window.appId = typeof __app_id !== 'undefined' ? __app_id : 'new-qari-hosiery-branches';
+
+    // Populate modal textarea with config
+    const configBox = document.getElementById('firebaseConfigInput');
+    if (configBox) {
+      configBox.value = JSON.stringify(FIREBASE_CONFIG, null, 2);
+    }
+
+    // Initialize Firebase Cloud with branches-c2b6c
+    window.initFirebaseCloud = async function() {
+      const statusBadge = document.getElementById('cloudStatusBadge');
+      const statusDot = document.getElementById('cloudStatusDot');
+      const statusText = document.getElementById('cloudStatusText');
+
+      try {
+        const app = initializeApp(FIREBASE_CONFIG);
+        window.auth = getAuth(app);
+        window.db = getFirestore(app);
+
+        // Sign in anonymously to authenticate with Firestore
+        await signInAnonymously(window.auth);
+
+        window.isCloudActive = true;
+        statusBadge.className = "flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-medium bg-slate-800 hover:bg-slate-700 text-emerald-400 border border-slate-700 transition cursor-pointer";
+        statusDot.className = "w-2 h-2 rounded-full bg-emerald-400 animate-pulse";
+        statusText.innerText = "Firebase لائیو (branches-c2b6c)";
+
+        // Realtime Firestore synchronization listener
+        const stateDocRef = doc(window.db, 'artifacts', window.appId, 'public', 'data', 'store_state');
+        
+        onSnapshot(stateDocRef, (snap) => {
+          if (snap.exists()) {
+            const remoteData = snap.data();
+            if (remoteData && remoteData.items) {
+              window.storeState.items = remoteData.items;
+              window.storeState.branch1Cash = remoteData.branch1Cash;
+              window.storeState.branch2Cash = remoteData.branch2Cash;
+              window.storeState.stockTransfers = remoteData.stockTransfers || [];
+              window.storeState.cashTransfers = remoteData.cashTransfers || [];
+              window.storeState.expenses = remoteData.expenses || [];
+              window.saveStateToLocalStorage();
+              window.refreshAllUI();
+            }
+          } else {
+            // First time sync: push local data to Firestore
+            window.syncToCloud();
+          }
+        }, (err) => {
+          console.warn("Firestore Snapshot notice:", err);
+        });
+
+      } catch (err) {
+        console.warn("Firebase Cloud notice (running with localStorage fallback):", err);
+        window.isCloudActive = false;
+        statusBadge.className = "flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-medium bg-slate-800 hover:bg-slate-700 text-amber-400 border border-slate-700 transition cursor-pointer";
+        statusDot.className = "w-2 h-2 rounded-full bg-amber-400";
+        statusText.innerText = "مقامی موڈ (آف لائن تیار)";
+      }
+    };
+
+    // Push local state to Firestore
+    window.syncToCloud = async function() {
+      window.saveStateToLocalStorage();
+      if (!window.isCloudActive || !window.db) return;
+      try {
+        const stateDocRef = doc(window.db, 'artifacts', window.appId, 'public', 'data', 'store_state');
+        await setDoc(stateDocRef, {
+          items: window.storeState.items,
+          branch1Cash: window.storeState.branch1Cash,
+          branch2Cash: window.storeState.branch2Cash,
+          stockTransfers: window.storeState.stockTransfers,
+          cashTransfers: window.storeState.cashTransfers,
+          expenses: window.storeState.expenses,
+          lastUpdated: new Date().toISOString()
+        });
+      } catch (e) {
+        console.error("Cloud push failed:", e);
+      }
+    };
+
+    window.triggerCloudSyncNow = async function() {
+      await window.syncToCloud();
+      showToast('ڈیٹا branches-c2b6c پر لائیو سنک کر دیا گیا ہے', 'success');
+      closeModal('firebaseModal');
+    };
+
+    // Auto-init on load
+    window.addEventListener('load', () => {
+      window.initFirebaseCloud();
+    });
+  </script>
+
+  <!-- ==================== CORE APPLICATION LOGIC ==================== -->
+  <script>
+    // Business Branches Configuration
+    const BRANCHES = {
+      b1: {
+        id: 'b1',
+        nameUr: 'برانچ 1: قائد اعظم مارکیٹ (مین ہب)',
+        nameEn: 'Branch 1: Quaid-e-Azam Market (Main Hub)',
+        shortUr: 'قائد اعظم مارکیٹ',
+        shortEn: 'Quaid-e-Azam Mkt'
+      },
+      b2: {
+        id: 'b2',
+        nameUr: 'برانچ 2: مومن آباد چوک، نزد اکبری مسجد',
+        nameEn: 'Branch 2: Mominabad Chowk (Near Akbari Masjid)',
+        shortUr: 'مومن آباد چوک',
+        shortEn: 'Mominabad'
+      }
+    };
+
+    // Default Seed Data
+    const DEFAULT_STORE_DATA = {
+      branch1Cash: 245000,
+      branch2Cash: 85000,
+      currentLang: 'ur',
+      items: [
+        {
+          id: 'ITEM-101',
+          code: 'QH-01',
+          nameUr: 'کاٹن جرابیں مردانہ (Men Cotton Socks)',
+          categoryUr: 'جرابیں (Socks)',
+          defaultUnit: 'درجن (Dozens)',
+          b1Stock: 450,
+          b2Stock: 120,
+          unitCost: 650
+        },
+        {
+          id: 'ITEM-102',
+          code: 'QH-02',
+          nameUr: 'بنیان سپریم کوالٹی سائز 38-42 (Vest Cotton)',
+          categoryUr: 'انڈر گارمنٹس (Undergarments)',
+          defaultUnit: 'پیکٹ (Packets)',
+          b1Stock: 280,
+          b2Stock: 75,
+          unitCost: 1200
+        },
+        {
+          id: 'ITEM-103',
+          code: 'QH-03',
+          nameUr: 'تھرمل ونٹر انر سوٹ (Winter Thermal Inner)',
+          categoryUr: 'تھرمل سوٹ (Thermals)',
+          defaultUnit: 'پیس (Pieces)',
+          b1Stock: 190,
+          b2Stock: 40,
+          unitCost: 950
+        },
+        {
+          id: 'ITEM-104',
+          code: 'QH-04',
+          nameUr: 'بچوں کے ہوزری رومپرز (Baby Rompers)',
+          categoryUr: 'بے بی ہوزری (Baby Wear)',
+          defaultUnit: 'درجن (Dozens)',
+          b1Stock: 110,
+          b2Stock: 35,
+          unitCost: 1400
+        },
+        {
+          id: 'ITEM-105',
+          code: 'QH-05',
+          nameUr: 'مردانہ باکسر شارٹس اسٹریچ (Boxer Briefs)',
+          categoryUr: 'انڈر گارمنٹس (Undergarments)',
+          defaultUnit: 'پیکٹ (Packets)',
+          b1Stock: 320,
+          b2Stock: 90,
+          unitCost: 850
+        },
+        {
+          id: 'ITEM-106',
+          code: 'QH-06',
+          nameUr: 'ہوزری سپورٹس ٹی شرٹ (Sports Gym Shirts)',
+          categoryUr: 'ٹی شرٹس (T-Shirts)',
+          defaultUnit: 'تھان / پیس (Pieces)',
+          b1Stock: 160,
+          b2Stock: 50,
+          unitCost: 550
+        }
+      ],
+      stockTransfers: [
+        {
+          id: 'ST-901',
+          timestamp: new Date(Date.now() - 3600000 * 5).toISOString(),
+          itemId: 'ITEM-101',
+          itemName: 'کاٹن جرابیں مردانہ (Men Cotton Socks)',
+          qty: 25,
+          unit: 'درجن (Dozens)',
+          fromBranch: 'b1',
+          toBranch: 'b2',
+          note: 'بلٹی چنگچی رکشہ، ڈرائیور اقبال',
+          status: 'موصول شدہ (Received)'
+        },
+        {
+          id: 'ST-902',
+          timestamp: new Date(Date.now() - 3600000 * 22).toISOString(),
+          itemId: 'ITEM-103',
+          itemName: 'تھرمل ونٹر انر سوٹ (Winter Thermal Inner)',
+          qty: 15,
+          unit: 'پیس (Pieces)',
+          fromBranch: 'b1',
+          toBranch: 'b2',
+          note: 'دکان نمائش و ارجنٹ ڈیمانڈ',
+          status: 'موصول شدہ (Received)'
+        }
+      ],
+      cashTransfers: [
+        {
+          id: 'CSH-401',
+          timestamp: new Date(Date.now() - 3600000 * 2).toISOString(),
+          type: 'inter_branch',
+          fromBranch: 'b2',
+          toBranch: 'b1',
+          amount: 40000,
+          note: 'برانچ 2 سے مین ہب رقم منتقلی (بذریعہ عثمان سیلز مین)',
+          status: 'کامیاب (Completed)'
+        },
+        {
+          id: 'CSH-402',
+          timestamp: new Date(Date.now() - 3600000 * 18).toISOString(),
+          type: 'petty_in',
+          branch: 'b1',
+          amount: 50000,
+          note: 'مارکیٹ نقد ریکوری بقایا جات',
+          status: 'کامیاب (Completed)'
+        }
+      ],
+      expenses: [
+        {
+          id: 'EXP-701',
+          timestamp: new Date(Date.now() - 3600000 * 4).toISOString(),
+          branch: 'b1',
+          category: 'Supplier',
+          categoryLabel: 'سپلائر ادائیگی (Supplier)',
+          payee: 'گلزار یارن و دھاگہ ملز فیصل آباد',
+          amount: 35000,
+          invoiceRef: 'INV-4410',
+          note: 'دھاگہ لاٹ ادائیگی'
+        },
+        {
+          id: 'EXP-702',
+          timestamp: new Date(Date.now() - 3600000 * 8).toISOString(),
+          branch: 'b2',
+          category: 'Freight',
+          categoryLabel: 'کرایہ و بلٹی (Freight)',
+          payee: 'فیصل آباد گڈز چنگچی ٹرانسپورٹ',
+          amount: 1500,
+          invoiceRef: 'Bilty-09',
+          note: 'برانچ 2 مال اتروائی کرایہ'
+        },
+        {
+          id: 'EXP-703',
+          timestamp: new Date(Date.now() - 3600000 * 26).toISOString(),
+          branch: 'b1',
+          category: 'Utility',
+          categoryLabel: 'بجلی بل (Utility)',
+          payee: 'فیسکو کمرشل میٹر',
+          amount: 12400,
+          invoiceRef: 'FESCO-892',
+          note: 'دکان بل قائد اعظم مارکیٹ'
+        }
+      ]
+    };
+
+    // Load state from localStorage or fallback to defaults
+    function loadInitialState() {
+      const saved = localStorage.getItem('qari_store_state');
+      if (saved) {
+        try {
+          return JSON.parse(saved);
+        } catch (e) {
+          console.warn("Local state parse error, using defaults");
+        }
+      }
+      return JSON.parse(JSON.stringify(DEFAULT_STORE_DATA));
+    }
+
+    window.storeState = loadInitialState();
+
+    window.saveStateToLocalStorage = function() {
+      localStorage.setItem('qari_store_state', JSON.stringify(window.storeState));
+    };
+
+    let pendingConfirmAction = null;
+
+    // Tab Navigation
+    function switchTab(tabName) {
+      const tabs = ['dashboard', 'stockTransfer', 'cashTransfer', 'expenses', 'ledger'];
+      tabs.forEach(t => {
+        const viewEl = document.getElementById(`view-${t}`);
+        const btnEl = document.getElementById(`tabBtn-${t}`);
+        if (t === tabName) {
+          viewEl.classList.remove('hidden');
+          btnEl.classList.add('text-emerald-700', 'bg-emerald-50', 'border-emerald-200', 'shadow-sm');
+          btnEl.classList.remove('text-slate-600', 'hover:bg-slate-100', 'border-transparent');
+        } else {
+          viewEl.classList.add('hidden');
+          btnEl.classList.remove('text-emerald-700', 'bg-emerald-50', 'border-emerald-200', 'shadow-sm');
+          btnEl.classList.add('text-slate-600', 'hover:bg-slate-100', 'border-transparent');
+        }
+      });
+      lucide.createIcons();
+    }
+
+    function formatPKR(num) {
+      return 'PKR ' + Number(num || 0).toLocaleString('en-US');
+    }
+
+    function formatDate(isoStr) {
+      const d = new Date(isoStr);
+      return d.toLocaleDateString('ur-PK', {
+        day: 'numeric',
+        month: 'short',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+    }
+
+    function renderKPIs() {
+      document.getElementById('kpi-b1-cash').innerText = formatPKR(storeState.branch1Cash);
+      document.getElementById('kpi-b2-cash').innerText = formatPKR(storeState.branch2Cash);
+      document.getElementById('cash-b1-balance').innerText = formatPKR(storeState.branch1Cash);
+      document.getElementById('cash-b2-balance').innerText = formatPKR(storeState.branch2Cash);
+
+      const b1TotalStock = storeState.items.reduce((acc, curr) => acc + Number(curr.b1Stock || 0), 0);
+      const b2TotalStock = storeState.items.reduce((acc, curr) => acc + Number(curr.b2Stock || 0), 0);
+      document.getElementById('kpi-b1-stock-qty').innerText = `${b1TotalStock} کل یونٹس`;
+      document.getElementById('kpi-b2-stock-qty').innerText = `${b2TotalStock} کل یونٹس`;
+
+      const totalCash = storeState.branch1Cash + storeState.branch2Cash;
+      document.getElementById('combinedCashTotal').innerText = formatPKR(totalCash);
+
+      const today = new Date().toDateString();
+      let todayIn = 0;
+      let todayOut = 0;
+
+      storeState.cashTransfers.forEach(ct => {
+        const itemDate = new Date(ct.timestamp).toDateString();
+        if (itemDate === today) {
+          if (ct.type === 'petty_in') todayIn += Number(ct.amount);
+          if (ct.type === 'petty_out') todayOut += Number(ct.amount);
+        }
+      });
+
+      let todayExpensesTotal = 0;
+      storeState.expenses.forEach(ex => {
+        const itemDate = new Date(ex.timestamp).toDateString();
+        if (itemDate === today) {
+          todayExpensesTotal += Number(ex.amount);
+          todayOut += Number(ex.amount);
+        }
+      });
+
+      document.getElementById('kpi-today-cashin').innerText = formatPKR(todayIn);
+      document.getElementById('kpi-today-cashout').innerText = formatPKR(todayOut);
+      document.getElementById('kpi-today-expenses').innerText = formatPKR(todayExpensesTotal);
+
+      document.getElementById('kpi-transfers-count').innerText = `${storeState.stockTransfers.length} منتقلی`;
+      const transferredUnits = storeState.stockTransfers.reduce((acc, curr) => acc + Number(curr.qty || 0), 0);
+      document.getElementById('kpi-transfers-units').innerText = `${transferredUnits} یونٹ`;
+    }
+
+    function renderStockTable() {
+      const search = (document.getElementById('stockSearchInput').value || '').trim().toLowerCase();
+      const tbody = document.getElementById('stockTableBody');
+      tbody.innerHTML = '';
+
+      const filtered = storeState.items.filter(item => {
+        return item.nameUr.toLowerCase().includes(search) || 
+               item.code.toLowerCase().includes(search) || 
+               item.categoryUr.toLowerCase().includes(search);
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" class="text-center py-6 text-slate-400 text-xs">کوئی آئٹم نہیں ملا</td></tr>`;
+        return;
+      }
+
+      filtered.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50 transition border-b border-slate-100';
+        tr.innerHTML = `
+          <td class="p-2.5 font-bold text-slate-800">
+            <div>${item.nameUr}</div>
+            <span class="text-[10px] text-slate-400 font-mono">${item.code}</span>
+          </td>
+          <td class="p-2.5 text-slate-600">${item.categoryUr}</td>
+          <td class="p-2.5 text-center text-slate-500 font-semibold">${item.defaultUnit}</td>
+          <td class="p-2.5 text-center font-mono font-bold text-emerald-700 bg-emerald-50/50">
+            ${item.b1Stock}
+          </td>
+          <td class="p-2.5 text-center font-mono font-bold text-teal-700 bg-teal-50/50">
+            ${item.b2Stock}
+          </td>
+          <td class="p-2.5 text-center">
+            <button onclick="quickSelectTransferItem('${item.id}')" class="px-2 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-[11px] font-bold transition flex items-center justify-center gap-1 mx-auto">
+              <i data-lucide="send" class="w-3 h-3"></i>
+              <span>بھیجیں</span>
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+      lucide.createIcons();
+    }
+
+    function renderQuickActivity() {
+      const container = document.getElementById('quickActivityList');
+      container.innerHTML = '';
+
+      const feed = [
+        ...storeState.stockTransfers.map(st => ({
+          type: 'stock',
+          title: `مال منتقلی: ${st.itemName} (${st.qty} ${st.unit})`,
+          sub: `${BRANCHES[st.fromBranch].shortUr} ➔ ${BRANCHES[st.toBranch].shortUr}`,
+          time: st.timestamp,
+          color: 'emerald',
+          icon: 'truck'
+        })),
+        ...storeState.cashTransfers.map(ct => ({
+          type: 'cash',
+          title: ct.type === 'inter_branch' ? `کیش منتقلی: ${formatPKR(ct.amount)}` : `پیٹی کیش: ${formatPKR(ct.amount)}`,
+          sub: ct.note,
+          time: ct.timestamp,
+          color: 'teal',
+          icon: 'banknote'
+        })),
+        ...storeState.expenses.map(ex => ({
+          type: 'expense',
+          title: `ادائیگی: ${ex.payee} (${formatPKR(ex.amount)})`,
+          sub: `${BRANCHES[ex.branch].shortUr} • ${ex.categoryLabel}`,
+          time: ex.timestamp,
+          color: 'amber',
+          icon: 'receipt'
+        }))
+      ];
+
+      feed.sort((a, b) => new Date(b.time) - new Date(a.time));
+      const top5 = feed.slice(0, 5);
+
+      if (top5.length === 0) {
+        container.innerHTML = `<p class="text-xs text-slate-400 text-center py-4">کوئی حالیہ سرگرمی ریکارڈ میں نہیں ہے</p>`;
+        return;
+      }
+
+      top5.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'flex items-start gap-2.5 p-2 rounded-xl bg-slate-50 border border-slate-100 text-xs';
+        div.innerHTML = `
+          <div class="p-1.5 rounded-lg bg-${item.color}-100 text-${item.color}-700 mt-0.5">
+            <i data-lucide="${item.icon}" class="w-3.5 h-3.5"></i>
+          </div>
+          <div class="flex-grow overflow-hidden">
+            <div class="font-bold text-slate-800 truncate">${item.title}</div>
+            <div class="text-[11px] text-slate-500 truncate">${item.sub}</div>
+          </div>
+          <span class="text-[10px] text-slate-400 shrink-0 font-mono">${formatDate(item.time)}</span>
+        `;
+        container.appendChild(div);
+      });
+      lucide.createIcons();
+    }
+
+    function populateItemDropdown() {
+      const select = document.getElementById('transferItemId');
+      select.innerHTML = '';
+      storeState.items.forEach(item => {
+        const opt = document.createElement('option');
+        opt.value = item.id;
+        opt.innerText = `${item.nameUr} (${item.code})`;
+        select.appendChild(opt);
+      });
+      updateTransferItemStockDisplay();
+    }
+
+    function updateTransferItemStockDisplay() {
+      const itemId = document.getElementById('transferItemId').value;
+      const fromBranch = document.getElementById('transferFromBranch').value;
+      const item = storeState.items.find(i => i.id === itemId);
+      if (!item) return;
+
+      const avail = fromBranch === 'b1' ? item.b1Stock : item.b2Stock;
+      document.getElementById('availableStockDisplay').innerText = `${avail} ${item.defaultUnit}`;
+    }
+
+    function validateBranchSelect(sourceId, destId) {
+      const source = document.getElementById(sourceId);
+      const dest = document.getElementById(destId);
+      if (source.value === dest.value) {
+        dest.value = source.value === 'b1' ? 'b2' : 'b1';
+      }
+      if (sourceId === 'transferFromBranch') {
+        updateTransferItemStockDisplay();
+      }
+    }
+
+    function quickSelectTransferItem(itemId) {
+      switchTab('stockTransfer');
+      document.getElementById('transferItemId').value = itemId;
+      updateTransferItemStockDisplay();
+    }
+
+    function handleStockTransferSubmit(e) {
+      e.preventDefault();
+      const fromBranch = document.getElementById('transferFromBranch').value;
+      const toBranch = document.getElementById('transferToBranch').value;
+      const itemId = document.getElementById('transferItemId').value;
+      const qty = parseInt(document.getElementById('transferQty').value, 10);
+      const unit = document.getElementById('transferUnit').value;
+      const note = document.getElementById('transferNote').value.trim() || 'براہ راست برانچ ترسیل';
+
+      if (fromBranch === toBranch) {
+        showToast('بھیجنے اور وصول کرنے والی برانچ مختلف ہونی چاہئیں', 'error');
+        return;
+      }
+
+      const item = storeState.items.find(i => i.id === itemId);
+      if (!item) return;
+
+      const currentStock = fromBranch === 'b1' ? item.b1Stock : item.b2Stock;
+      if (qty > currentStock) {
+        showToast(`ناکافی سٹاک! دستیاب مقدار صرف ${currentStock} ہے`, 'error');
+        return;
+      }
+
+      const fromName = BRANCHES[fromBranch].shortUr;
+      const toName = BRANCHES[toBranch].shortUr;
+
+      showConfirmModal(
+        'مال منتقلی کی تصدیق',
+        `کیا آپ واقعی ${qty} ${unit} "${item.nameUr}" کو ${fromName} سے ${toName} منتقل کرنا چاہتے ہیں؟`,
+        () => {
+          if (fromBranch === 'b1') {
+            item.b1Stock -= qty;
+            item.b2Stock += qty;
+          } else {
+            item.b2Stock -= qty;
+            item.b1Stock += qty;
+          }
+
+          const newTransfer = {
+            id: 'ST-' + Math.floor(1000 + Math.random() * 9000),
+            timestamp: new Date().toISOString(),
+            itemId: item.id,
+            itemName: item.nameUr,
+            qty: qty,
+            unit: unit,
+            fromBranch: fromBranch,
+            toBranch: toBranch,
+            note: note,
+            status: 'موصول شدہ (Received)'
+          };
+
+          storeState.stockTransfers.unshift(newTransfer);
+          
+          if (window.syncToCloud) window.syncToCloud();
+
+          refreshAllUI();
+          document.getElementById('stockTransferForm').reset();
+          updateTransferItemStockDisplay();
+          showToast('مال کی منتقلی کامیابی سے درج ہو گئی اور سٹاک اپ ڈیٹ ہو گیا', 'success');
+        }
+      );
+    }
+
+    function renderStockTransfersTable() {
+      const filter = document.getElementById('transferFilterBranch').value;
+      const tbody = document.getElementById('stockTransfersTableBody');
+      tbody.innerHTML = '';
+
+      let list = storeState.stockTransfers;
+      if (filter === 'b1_to_b2') list = list.filter(t => t.fromBranch === 'b1' && t.toBranch === 'b2');
+      if (filter === 'b2_to_b1') list = list.filter(t => t.fromBranch === 'b2' && t.toBranch === 'b1');
+
+      if (list.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" class="text-center py-6 text-slate-400 text-xs">کوئی منتقلی ریکارڈ موجود نہیں ہے</td></tr>`;
+        return;
+      }
+
+      list.forEach(t => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50 transition border-b border-slate-100';
+        tr.innerHTML = `
+          <td class="p-2.5 font-mono text-[11px] text-slate-500">${formatDate(t.timestamp)}</td>
+          <td class="p-2.5 font-bold text-slate-800">${t.itemName}</td>
+          <td class="p-2.5 text-center font-bold font-mono text-emerald-700">${t.qty} ${t.unit}</td>
+          <td class="p-2.5 text-slate-600 font-semibold">${BRANCHES[t.fromBranch].shortUr}</td>
+          <td class="p-2.5 text-slate-600 font-semibold">${BRANCHES[t.toBranch].shortUr}</td>
+          <td class="p-2.5 text-slate-500 text-[11px]">${t.note || '-'}</td>
+          <td class="p-2.5 text-center">
+            <span class="inline-block px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
+              ${t.status}
+            </span>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function handleCashTransferSubmit(e) {
+      e.preventDefault();
+      const fromBranch = document.getElementById('cashFromBranch').value;
+      const toBranch = document.getElementById('cashToBranch').value;
+      const amount = parseFloat(document.getElementById('cashTransferAmount').value);
+      const note = document.getElementById('cashTransferNote').value.trim();
+
+      if (fromBranch === toBranch) {
+        showToast('بھیجنے اور وصول کرنے والی برانچ مختلف ہونی چاہئیں', 'error');
+        return;
+      }
+
+      const availableCash = fromBranch === 'b1' ? storeState.branch1Cash : storeState.branch2Cash;
+      if (amount > availableCash) {
+        showToast(`ناکافی کاؤنٹر کیش! برانچ میں صرف ${formatPKR(availableCash)} موجود ہے`, 'error');
+        return;
+      }
+
+      const fromName = BRANCHES[fromBranch].shortUr;
+      const toName = BRANCHES[toBranch].shortUr;
+
+      showConfirmModal(
+        'برانچ کیش ٹرانسفر کی تصدیق',
+        `کیا آپ واقعی ${formatPKR(amount)} ${fromName} کے گلے سے نکال کر ${toName} کے گلے میں منتقل کرنا چاہتے ہیں؟`,
+        () => {
+          if (fromBranch === 'b1') {
+            storeState.branch1Cash -= amount;
+            storeState.branch2Cash += amount;
+          } else {
+            storeState.branch2Cash -= amount;
+            storeState.branch1Cash += amount;
+          }
+
+          const newCashTx = {
+            id: 'CSH-' + Math.floor(1000 + Math.random() * 9000),
+            timestamp: new Date().toISOString(),
+            type: 'inter_branch',
+            fromBranch: fromBranch,
+            toBranch: toBranch,
+            amount: amount,
+            note: note,
+            status: 'کامیاب (Completed)'
+          };
+
+          storeState.cashTransfers.unshift(newCashTx);
+          if (window.syncToCloud) window.syncToCloud();
+
+          refreshAllUI();
+          document.getElementById('cashTransferForm').reset();
+          showToast('برانچ کیش کامیابی سے منتقل ہو گیا', 'success');
+        }
+      );
+    }
+
+    function presetCashAction(branch, action) {
+      document.getElementById('pettyBranchTarget').value = branch;
+      document.getElementById('pettyActionType').value = action;
+      const branchName = BRANCHES[branch].shortUr;
+      const title = action === 'in' ? `${branchName} - کیش ان (آمد)` : `${branchName} - کیش آؤٹ (اخراج)`;
+      document.getElementById('pettyModalTitle').innerText = title;
+      openModal('pettyCashModal');
+    }
+
+    function handlePettyCashSubmit(e) {
+      e.preventDefault();
+      const branch = document.getElementById('pettyBranchTarget').value;
+      const action = document.getElementById('pettyActionType').value;
+      const amount = parseFloat(document.getElementById('pettyAmount').value);
+      const note = document.getElementById('pettyNote').value.trim();
+
+      if (action === 'out') {
+        const currentBal = branch === 'b1' ? storeState.branch1Cash : storeState.branch2Cash;
+        if (amount > currentBal) {
+          showToast('ناکافی کیش! گلے میں مطلوبہ رقم نہیں ہے', 'error');
+          return;
+        }
+      }
+
+      if (action === 'in') {
+        if (branch === 'b1') storeState.branch1Cash += amount;
+        else storeState.branch2Cash += amount;
+      } else {
+        if (branch === 'b1') storeState.branch1Cash -= amount;
+        else storeState.branch2Cash -= amount;
+      }
+
+      const tx = {
+        id: 'PTY-' + Math.floor(1000 + Math.random() * 9000),
+        timestamp: new Date().toISOString(),
+        type: action === 'in' ? 'petty_in' : 'petty_out',
+        branch: branch,
+        amount: amount,
+        note: note,
+        status: 'کامیاب (Completed)'
+      };
+
+      storeState.cashTransfers.unshift(tx);
+      if (window.syncToCloud) window.syncToCloud();
+
+      closeModal('pettyCashModal');
+      document.getElementById('pettyCashForm').reset();
+      refreshAllUI();
+      showToast('پیٹی کیش اندراج کامیابی سے محفوظ ہوا', 'success');
+    }
+
+    function renderCashTransfersTable() {
+      const filter = document.getElementById('cashHistoryFilter').value;
+      const tbody = document.getElementById('cashTransfersTableBody');
+      tbody.innerHTML = '';
+
+      let list = storeState.cashTransfers;
+      if (filter === 'inter_branch') list = list.filter(c => c.type === 'inter_branch');
+      if (filter === 'petty_in') list = list.filter(c => c.type === 'petty_in');
+      if (filter === 'petty_out') list = list.filter(c => c.type === 'petty_out');
+
+      if (list.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" class="text-center py-6 text-slate-400 text-xs">کوئی کیش ٹرانزیکشن موجود نہیں ہے</td></tr>`;
+        return;
+      }
+
+      list.forEach(c => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50 transition border-b border-slate-100';
+
+        let typeBadge = '';
+        let flowText = '';
+
+        if (c.type === 'inter_branch') {
+          typeBadge = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-teal-100 text-teal-800">برانچ منتقلی</span>';
+          flowText = `${BRANCHES[c.fromBranch].shortUr} ➔ ${BRANCHES[c.toBranch].shortUr}`;
+        } else if (c.type === 'petty_in') {
+          typeBadge = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">کاؤنٹر کیش ان</span>';
+          flowText = BRANCHES[c.branch].shortUr;
+        } else {
+          typeBadge = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-100 text-rose-800">کاؤنٹر کیش آؤٹ</span>';
+          flowText = BRANCHES[c.branch].shortUr;
+        }
+
+        tr.innerHTML = `
+          <td class="p-2.5 font-mono text-[11px] text-slate-500">${formatDate(c.timestamp)}</td>
+          <td class="p-2.5">${typeBadge}</td>
+          <td class="p-2.5 font-semibold text-slate-700">${flowText}</td>
+          <td class="p-2.5 font-mono font-bold text-slate-800">${formatPKR(c.amount)}</td>
+          <td class="p-2.5 text-slate-500 text-[11px]">${c.note}</td>
+          <td class="p-2.5 text-center">
+            <button onclick="printVoucher('cash', '${c.id}')" class="p-1 hover:bg-slate-200 rounded text-slate-600 transition" title="پرنٹ سلپ">
+              <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+      lucide.createIcons();
+    }
+
+    function handleExpenseSubmit(e) {
+      e.preventDefault();
+      const branch = document.getElementById('expenseBranch').value;
+      const category = document.getElementById('expenseCategory').value;
+      const payee = document.getElementById('expensePayee').value.trim();
+      const amount = parseFloat(document.getElementById('expenseAmount').value);
+      const invoiceRef = document.getElementById('expenseInvoiceRef').value.trim() || 'بغیر رسید';
+
+      const branchCash = branch === 'b1' ? storeState.branch1Cash : storeState.branch2Cash;
+      if (amount > branchCash) {
+        showToast(`ناکافی گلا! منتخب برانچ میں صرف ${formatPKR(branchCash)} کیش موجود ہے`, 'error');
+        return;
+      }
+
+      const branchName = BRANCHES[branch].shortUr;
+
+      showConfirmModal(
+        'ادائیگی کی تصدیق',
+        `کیا آپ واقعی ${formatPKR(amount)} کی رقم "${payee}" کو ${branchName} کے گلے سے ادا کرنا چاہتے ہیں؟`,
+        () => {
+          if (branch === 'b1') {
+            storeState.branch1Cash -= amount;
+          } else {
+            storeState.branch2Cash -= amount;
+          }
+
+          const catSelect = document.getElementById('expenseCategory');
+          const catLabel = catSelect.options[catSelect.selectedIndex].text;
+
+          const newExpense = {
+            id: 'EXP-' + Math.floor(1000 + Math.random() * 9000),
+            timestamp: new Date().toISOString(),
+            branch: branch,
+            category: category,
+            categoryLabel: catLabel,
+            payee: payee,
+            amount: amount,
+            invoiceRef: invoiceRef,
+            note: 'نقد واؤچر جاری ہوا'
+          };
+
+          storeState.expenses.unshift(newExpense);
+          if (window.syncToCloud) window.syncToCloud();
+
+          refreshAllUI();
+          document.getElementById('expenseForm').reset();
+          showToast('ادائیگی درج ہو گئی اور برانچ کاؤنٹر کیش سے منہا کر دی گئی', 'success');
+        }
+      );
+    }
+
+    function renderExpensesTable() {
+      const filter = document.getElementById('expenseFilterBranch').value;
+      const tbody = document.getElementById('expensesTableBody');
+      tbody.innerHTML = '';
+
+      let list = storeState.expenses;
+      if (filter !== 'all') {
+        list = list.filter(e => e.branch === filter);
+      }
+
+      if (list.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" class="text-center py-6 text-slate-400 text-xs">کوئی خرچ یا ادائیگی ریکارڈ میں نہیں ہے</td></tr>`;
+        return;
+      }
+
+      list.forEach(ex => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50 transition border-b border-slate-100';
+        tr.innerHTML = `
+          <td class="p-2.5 font-mono text-[11px] text-slate-500">${formatDate(ex.timestamp)}</td>
+          <td class="p-2.5 font-semibold text-slate-700">${BRANCHES[ex.branch].shortUr}</td>
+          <td class="p-2.5 font-bold text-slate-800">${ex.payee}</td>
+          <td class="p-2.5 text-slate-600 text-[11px]">${ex.categoryLabel}</td>
+          <td class="p-2.5 font-mono text-[11px] text-slate-500">${ex.invoiceRef}</td>
+          <td class="p-2.5 font-mono font-bold text-rose-600">${formatPKR(ex.amount)}</td>
+          <td class="p-2.5 text-center">
+            <button onclick="printVoucher('expense', '${ex.id}')" class="p-1 hover:bg-slate-200 rounded text-slate-600 transition" title="پرنٹ واؤچر">
+              <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+      lucide.createIcons();
+    }
+
+    function renderConsolidatedLedger() {
+      const typeFilter = document.getElementById('ledgerTypeFilter').value;
+      const branchFilter = document.getElementById('ledgerBranchFilter').value;
+      const search = (document.getElementById('ledgerSearchInput').value || '').trim().toLowerCase();
+      const tbody = document.getElementById('consolidatedLedgerBody');
+      tbody.innerHTML = '';
+
+      let unified = [];
+
+      storeState.stockTransfers.forEach(st => {
+        unified.push({
+          id: st.id,
+          date: st.timestamp,
+          category: 'مال منتقلی (Stock)',
+          type: 'stock',
+          detail: `${st.itemName} (${st.qty} ${st.unit})`,
+          flow: `${BRANCHES[st.fromBranch].shortUr} ➔ ${BRANCHES[st.toBranch].shortUr}`,
+          impact: `${st.qty} ${st.unit}`,
+          impactType: 'stock',
+          branchA: st.fromBranch,
+          branchB: st.toBranch,
+          ref: st.note
+        });
+      });
+
+      storeState.cashTransfers.forEach(ct => {
+        const isInter = ct.type === 'inter_branch';
+        unified.push({
+          id: ct.id,
+          date: ct.timestamp,
+          category: isInter ? 'کیش منتقلی (Inter Cash)' : (ct.type === 'petty_in' ? 'پیٹی کیش ان' : 'پیٹی کیش آؤٹ'),
+          type: 'cash',
+          detail: ct.note,
+          flow: isInter ? `${BRANCHES[ct.fromBranch].shortUr} ➔ ${BRANCHES[ct.toBranch].shortUr}` : BRANCHES[ct.branch].shortUr,
+          impact: formatPKR(ct.amount),
+          impactType: 'cash',
+          branchA: isInter ? ct.fromBranch : ct.branch,
+          branchB: isInter ? ct.toBranch : null,
+          ref: ct.id
+        });
+      });
+
+      storeState.expenses.forEach(ex => {
+        unified.push({
+          id: ex.id,
+          date: ex.timestamp,
+          category: `ادائیگی: ${ex.categoryLabel}`,
+          type: 'expense',
+          detail: `${ex.payee} (${ex.invoiceRef})`,
+          flow: `${BRANCHES[ex.branch].shortUr} (گلا وضع)`,
+          impact: `- ${formatPKR(ex.amount)}`,
+          impactType: 'expense',
+          branchA: ex.branch,
+          branchB: null,
+          ref: ex.invoiceRef
+        });
+      });
+
+      let list = unified.filter(item => {
+        if (typeFilter !== 'all' && item.type !== typeFilter) return false;
+        if (branchFilter !== 'all') {
+          if (item.branchA !== branchFilter && item.branchB !== branchFilter) return false;
+        }
+        if (search) {
+          const combined = `${item.id} ${item.detail} ${item.flow} ${item.category}`.toLowerCase();
+          if (!combined.includes(search)) return false;
+        }
+        return true;
+      });
+
+      list.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+      if (list.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" class="text-center py-8 text-slate-400 text-xs">کوئی مماثل ٹرانزیکشن نہیں ملی</td></tr>`;
+        return;
+      }
+
+      list.forEach(row => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50 transition border-b border-slate-100';
+
+        let badgeColor = 'slate';
+        if (row.type === 'stock') badgeColor = 'emerald';
+        if (row.type === 'cash') badgeColor = 'teal';
+        if (row.type === 'expense') badgeColor = 'amber';
+
+        let impactColor = 'text-slate-800';
+        if (row.impactType === 'expense') impactColor = 'text-rose-600 font-bold';
+        if (row.impactType === 'cash') impactColor = 'text-teal-700 font-bold';
+        if (row.impactType === 'stock') impactColor = 'text-emerald-700 font-bold';
+
+        tr.innerHTML = `
+          <td class="p-3 font-mono font-bold text-slate-600 text-[11px]">${row.id}</td>
+          <td class="p-3 font-mono text-[11px] text-slate-500">${formatDate(row.date)}</td>
+          <td class="p-3">
+            <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-${badgeColor}-100 text-${badgeColor}-800">
+              ${row.category}
+            </span>
+          </td>
+          <td class="p-3 font-semibold text-slate-800">${row.detail}</td>
+          <td class="p-3 text-slate-600 text-xs">${row.flow}</td>
+          <td class="p-3 text-center font-mono ${impactColor}">${row.impact}</td>
+          <td class="p-3 text-center no-print">
+            <button onclick="printVoucher('${row.type}', '${row.id}')" class="p-1 hover:bg-slate-200 rounded text-slate-600 transition" title="پرنٹ">
+              <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+      lucide.createIcons();
+    }
+
+    function printVoucher(type, id) {
+      const slipTitle = document.getElementById('slipTitle');
+      const slipContent = document.getElementById('slipContent');
+      let found = null;
+
+      if (type === 'stock') {
+        found = storeState.stockTransfers.find(s => s.id === id);
+        if (!found) return;
+        slipTitle.innerText = 'مال منتقلی سلپ (Stock Transfer Note)';
+        slipContent.innerHTML = `
+          <div class="flex justify-between border-b pb-1"><span>واؤچر نمبر:</span><strong>${found.id}</strong></div>
+          <div class="flex justify-between border-b pb-1"><span>تاریخ و وقت:</span><strong>${formatDate(found.timestamp)}</strong></div>
+          <div class="flex justify-between border-b pb-1"><span>ماخذ (بھیجنے والی برانچ):</span><strong>${BRANCHES[found.fromBranch].nameUr}</strong></div>
+          <div class="flex justify-between border-b pb-1"><span>منزل (وصول کنندہ برانچ):</span><strong>${BRANCHES[found.toBranch].nameUr}</strong></div>
+          <div class="flex justify-between border-b pb-1"><span>آئٹم تفصیل:</span><strong>${found.itemName}</strong></div>
+          <div class="flex justify-between border-b pb-1"><span>منتقل شدہ مقدار:</span><strong class="text-base">${found.qty} ${found.unit}</strong></div>
+          <div class="flex justify-between border-b pb-1"><span>ڈرائیور / بلٹی حوالہ:</span><strong>${found.note}</strong></div>
+        `;
+      } else if (type === 'cash') {
+        found = storeState.cashTransfers.find(c => c.id === id);
+        if (!found) return;
+        slipTitle.innerText = 'نقد کیش ٹرانسفر رسید (Cash Receipt)';
+        const fromTxt = found.fromBranch ? BRANCHES[found.fromBranch].nameUr : BRANCHES[found.branch].nameUr;
+        const toTxt = found.toBranch ? BRANCHES[found.toBranch].nameUr : 'کاؤنٹر گلا';
+        slipContent.innerHTML = `
+          <div class="flex justify-between border-b pb-1"><span>رسید نمبر:</span><strong>${found.id}</strong></div>
+          <div class="flex justify-between border-b pb-1"><span>تاریخ و وقت:</span><strong>${formatDate(found.timestamp)}</strong></div>
+          <div class="flex justify-between border-b pb-1"><span>ماخذ:</span><strong>${fromTxt}</strong></div>
+          <div class="flex justify-between border-b pb-1"><span>منزل / برانچ:</span><strong>${toTxt}</strong></div>
+          <div class="flex justify-between border-b pb-1"><span>رقم (PKR):</span><strong class="text-base">${formatPKR(found.amount)}</strong></div>
+          <div class="flex justify-between border-b pb-1"><span>حوالہ و تفویض کنندہ:</span><strong>${found.note}</strong></div>
+        `;
+      } else {
+        found = storeState.expenses.find(e => e.id === id);
+        if (!found) return;
+        slipTitle.innerText = 'ادائیگی و خرچ واؤچر (Payment Voucher)';
+        slipContent.innerHTML = `
+          <div class="flex justify-between border-b pb-1"><span>واؤچر نمبر:</span><strong>${found.id}</strong></div>
+          <div class="flex justify-between border-b pb-1"><span>تاریخ و وقت:</span><strong>${formatDate(found.timestamp)}</strong></div>
+          <div class="flex justify-between border-b pb-1"><span>ادائیگی کرنے والی برانچ:</span><strong>${BRANCHES[found.branch].nameUr}</strong></div>
+          <div class="flex justify-between border-b pb-1"><span>وصول کنندہ (Payee):</span><strong class="text-base">${found.payee}</strong></div>
+          <div class="flex justify-between border-b pb-1"><span>کیٹیگری:</span><strong>${found.categoryLabel}</strong></div>
+          <div class="flex justify-between border-b pb-1"><span>انوائس / بل نمبر:</span><strong>${found.invoiceRef}</strong></div>
+          <div class="flex justify-between border-b pb-1"><span>کل ادا شدہ رقم:</span><strong class="text-base">${formatPKR(found.amount)}</strong></div>
+        `;
+      }
+
+      window.print();
+    }
+
+    function exportToCSV() {
+      let rows = [
+        ["Transaction ID", "Date", "Category", "Detail", "Branch Flow", "Amount or Qty"]
+      ];
+
+      storeState.stockTransfers.forEach(st => {
+        rows.push([
+          st.id,
+          st.timestamp,
+          "Stock Transfer",
+          `"${st.itemName}"`,
+          `"${BRANCHES[st.fromBranch].shortUr} -> ${BRANCHES[st.toBranch].shortUr}"`,
+          `"${st.qty} ${st.unit}"`
+        ]);
+      });
+
+      storeState.cashTransfers.forEach(ct => {
+        const flow = ct.fromBranch ? `${BRANCHES[ct.fromBranch].shortUr} -> ${BRANCHES[ct.toBranch].shortUr}` : BRANCHES[ct.branch].shortUr;
+        rows.push([
+          ct.id,
+          ct.timestamp,
+          ct.type,
+          `"${ct.note}"`,
+          `"${flow}"`,
+          ct.amount
+        ]);
+      });
+
+      storeState.expenses.forEach(ex => {
+        rows.push([
+          ex.id,
+          ex.timestamp,
+          `"Expense: ${ex.category}"`,
+          `"${ex.payee} (${ex.invoiceRef})"`,
+          `"${BRANCHES[ex.branch].shortUr}"`,
+          `-${ex.amount}`
+        ]);
+      });
+
+      let csvContent = "data:text/csv;charset=utf-8,\uFEFF" + rows.map(e => e.join(",")).join("\n");
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", `NewQariHosiery_Ledger_${new Date().toISOString().slice(0,10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showToast('CSV لیجر فائل ڈاؤنلوڈ ہو گئی', 'success');
+    }
+
+    function showConfirmModal(title, msg, onProceed) {
+      document.getElementById('confirmModalTitle').innerText = title;
+      document.getElementById('confirmModalMessage').innerText = msg;
+      pendingConfirmAction = onProceed;
+      document.getElementById('confirmModal').classList.remove('hidden');
+      
+      const proceedBtn = document.getElementById('confirmProceedBtn');
+      proceedBtn.onclick = function() {
+        if (typeof pendingConfirmAction === 'function') {
+          pendingConfirmAction();
+        }
+        closeConfirmModal(true);
+      };
+    }
+
+    function closeConfirmModal(proceeded) {
+      document.getElementById('confirmModal').classList.add('hidden');
+      pendingConfirmAction = null;
+    }
+
+    function openModal(id) {
+      document.getElementById(id).classList.remove('hidden');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
+    }
+
+    function showToast(msg, type = 'info') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      
+      let bg = 'bg-slate-900 text-white';
+      let icon = 'info';
+      if (type === 'success') {
+        bg = 'bg-emerald-700 text-white';
+        icon = 'check-circle';
+      }
+      if (type === 'error') {
+        bg = 'bg-rose-700 text-white';
+        icon = 'alert-circle';
+      }
+
+      toast.className = `${bg} px-4 py-3 rounded-xl shadow-xl flex items-center gap-2 text-xs font-semibold pointer-events-auto transform transition-all duration-300 translate-y-2 opacity-0`;
+      toast.innerHTML = `
+        <i data-lucide="${icon}" class="w-4 h-4 shrink-0"></i>
+        <span>${msg}</span>
+      `;
+      container.appendChild(toast);
+      lucide.createIcons();
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      }, 20);
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
+    function toggleLanguage() {
+      const html = document.documentElement;
+      const isUrdu = storeState.currentLang === 'ur';
+
+      if (isUrdu) {
+        storeState.currentLang = 'en';
+        html.setAttribute('lang', 'en');
+        html.setAttribute('dir', 'ltr');
+        document.getElementById('langLabel').innerText = 'اردو';
+      } else {
+        storeState.currentLang = 'ur';
+        html.setAttribute('lang', 'ur');
+        html.setAttribute('dir', 'rtl');
+        document.getElementById('langLabel').innerText = 'English';
+      }
+      refreshAllUI();
+    }
+
+    window.refreshAllUI = function() {
+      renderKPIs();
+      renderStockTable();
+      renderQuickActivity();
+      populateItemDropdown();
+      renderStockTransfersTable();
+      renderCashTransfersTable();
+      renderExpensesTable();
+      renderConsolidatedLedger();
+      lucide.createIcons();
+    };
+
+    window.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      refreshAllUI();
+    });
+  </script>
+</body>
+</html>
+```
