@@ -76,9 +76,16 @@
         </div>
 
         <div class="flex items-center gap-2 sm:gap-3">
-          <button onclick="openModal('firebaseModal')" id="cloudStatusBadge" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-medium bg-slate-800 hover:bg-slate-700 text-emerald-400 border border-slate-700 transition cursor-pointer">
+          <!-- Reset All Data Button -->
+          <button onclick="resetAllDataToZero()" class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-bold bg-rose-600/80 hover:bg-rose-600 text-white transition border border-rose-500/50 shadow-sm" title="پرانا سارا ڈیٹا ختم اور صاف کریں">
+            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            <span class="hidden sm:inline">ڈیٹا صاف کریں</span>
+          </button>
+
+          <!-- Firebase Cloud Status -->
+          <button onclick="openModal('firebaseModal')" id="cloudStatusBadge" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-medium bg-slate-800 hover:bg-slate-700 text-emerald-400 border border-slate-700 transition cursor-pointer" title="کلاؤڈ کنکشن تفصیلات">
             <span id="cloudStatusDot" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span id="cloudStatusText" class="hidden sm:inline">Firebase (branches-c2b6c) منسلک ہے</span>
+            <span id="cloudStatusText" class="hidden md:inline">Firebase (branches-c2b6c) منسلک ہے</span>
             <i data-lucide="cloud-check" class="w-3.5 h-3.5 opacity-80"></i>
           </button>
 
@@ -282,9 +289,7 @@
                   <th class="p-2.5 text-center font-bold text-emerald-800">کل مالیت (PKR)</th>
                 </tr>
               </thead>
-              <tbody id="dashboardBillsTableBody" class="divide-y divide-slate-100">
-                <!-- Dynamically populated via JS -->
-              </tbody>
+              <tbody id="dashboardBillsTableBody" class="divide-y divide-slate-100"></tbody>
             </table>
           </div>
         </div>
@@ -298,9 +303,7 @@
               </h3>
               <span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full font-semibold">تازہ ترین 5</span>
             </div>
-            <div id="quickActivityList" class="space-y-3">
-              <!-- Dynamically populated -->
-            </div>
+            <div id="quickActivityList" class="space-y-3"></div>
           </div>
 
           <div class="mt-6 pt-4 border-t border-slate-100 bg-slate-50 -mx-4 -mb-4 p-4 rounded-b-2xl">
@@ -315,7 +318,7 @@
 
     </section>
 
-    <!-- ==================== VIEW 2: STOCK TRANSFER VIA BILL (UPDATED) ==================== -->
+    <!-- ==================== VIEW 2: STOCK TRANSFER VIA BILL ==================== -->
     <section id="view-stockTransfer" class="hidden space-y-6">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
@@ -333,7 +336,6 @@
 
           <form id="stockTransferForm" onsubmit="handleStockTransferSubmit(event)" class="space-y-4">
             
-            <!-- From Branch -->
             <div>
               <label class="block text-xs font-bold text-slate-700 mb-1">کہاں سے بھیج رہے ہیں؟ (بھیجنے والی برانچ)</label>
               <select id="transferFromBranch" onchange="validateBranchSelect('transferFromBranch', 'transferToBranch')" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none" required>
@@ -342,7 +344,6 @@
               </select>
             </div>
 
-            <!-- To Branch -->
             <div>
               <label class="block text-xs font-bold text-slate-700 mb-1">کس برانچ کو موصول ہوگا؟ (منزل برانچ)</label>
               <select id="transferToBranch" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none" required>
@@ -351,25 +352,21 @@
               </select>
             </div>
 
-            <!-- Bill Number -->
             <div>
               <label class="block text-xs font-bold text-slate-700 mb-1">بل نمبر / چالان نمبر (Bill / Challan No)</label>
               <input type="text" id="transferBillNo" placeholder="مثلاً: Bill-1045 یا چالان نمبر" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs font-mono font-bold focus:ring-2 focus:ring-emerald-500 focus:outline-none" required>
             </div>
 
-            <!-- Total Amount -->
             <div>
               <label class="block text-xs font-bold text-slate-700 mb-1">بل کی کل رقم (Total Bill Amount in PKR)</label>
               <input type="number" min="1" step="any" id="transferTotalAmount" placeholder="مثلاً: 45000" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs font-mono font-bold focus:ring-2 focus:ring-emerald-500 focus:outline-none" required>
             </div>
 
-            <!-- Transport / Delivery Note -->
             <div>
               <label class="block text-xs font-bold text-slate-700 mb-1">حوالہ / رکشہ والا / ڈرائیور نام (اختیاری)</label>
               <input type="text" id="transferNote" placeholder="مثلاً: بائی چنگچی رکشہ، ڈرائیور اکرم یا کارٹن تعداد" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none">
             </div>
 
-            <!-- Submit Button -->
             <button type="submit" class="w-full py-2.5 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-sm transition active:scale-[0.98]">
               <i data-lucide="send" class="w-4 h-4"></i>
               <span>مال چالان درج کریں</span>
@@ -409,9 +406,7 @@
                   <th class="p-2.5 text-center">پرنٹ</th>
                 </tr>
               </thead>
-              <tbody id="stockTransfersTableBody" class="divide-y divide-slate-100">
-                <!-- Populated via JS -->
-              </tbody>
+              <tbody id="stockTransfersTableBody" class="divide-y divide-slate-100"></tbody>
             </table>
           </div>
         </div>
@@ -549,9 +544,7 @@
                   <th class="p-2.5 text-center">رسید</th>
                 </tr>
               </thead>
-              <tbody id="cashTransfersTableBody" class="divide-y divide-slate-100">
-                <!-- Populated via JS -->
-              </tbody>
+              <tbody id="cashTransfersTableBody" class="divide-y divide-slate-100"></tbody>
             </table>
           </div>
         </div>
@@ -659,9 +652,7 @@
                   <th class="p-2.5 text-center">پرنٹ</th>
                 </tr>
               </thead>
-              <tbody id="expensesTableBody" class="divide-y divide-slate-100">
-                <!-- Populated via JS -->
-              </tbody>
+              <tbody id="expensesTableBody" class="divide-y divide-slate-100"></tbody>
             </table>
           </div>
         </div>
@@ -734,9 +725,7 @@
                 <th class="p-3 text-center no-print">ایکشن</th>
               </tr>
             </thead>
-            <tbody id="consolidatedLedgerBody" class="divide-y divide-slate-100">
-              <!-- Populated via JS -->
-            </tbody>
+            <tbody id="consolidatedLedgerBody" class="divide-y divide-slate-100"></tbody>
           </table>
         </div>
       </div>
@@ -896,8 +885,8 @@
           if (snap.exists()) {
             const remoteData = snap.data();
             if (remoteData) {
-              window.storeState.branch1Cash = remoteData.branch1Cash ?? window.storeState.branch1Cash;
-              window.storeState.branch2Cash = remoteData.branch2Cash ?? window.storeState.branch2Cash;
+              window.storeState.branch1Cash = remoteData.branch1Cash ?? 0;
+              window.storeState.branch2Cash = remoteData.branch2Cash ?? 0;
               window.storeState.stockTransfers = remoteData.stockTransfers || [];
               window.storeState.cashTransfers = remoteData.cashTransfers || [];
               window.storeState.expenses = remoteData.expenses || [];
@@ -962,58 +951,14 @@
       }
     };
 
-    // Default Seed Data without Inventory stock constraints
+    // بالکل صاف اور خالی ابتدائی ڈیٹا (کوئی پرانا ریکارڈ نہیں)
     const DEFAULT_STORE_DATA = {
-      branch1Cash: 245000,
-      branch2Cash: 85000,
+      branch1Cash: 0,
+      branch2Cash: 0,
       currentLang: 'ur',
-      stockTransfers: [
-        {
-          id: 'ST-901',
-          timestamp: new Date(Date.now() - 3600000 * 5).toISOString(),
-          billNo: 'CH-401',
-          totalAmount: 48500,
-          fromBranch: 'b1',
-          toBranch: 'b2',
-          note: 'چنگچی رکشہ، ڈرائیور اکرم',
-          status: 'منتقل شدہ'
-        },
-        {
-          id: 'ST-902',
-          timestamp: new Date(Date.now() - 3600000 * 22).toISOString(),
-          billNo: 'CH-402',
-          totalAmount: 32000,
-          fromBranch: 'b1',
-          toBranch: 'b2',
-          note: 'سردی آئٹمز مال چالان',
-          status: 'منتقل شدہ'
-        }
-      ],
-      cashTransfers: [
-        {
-          id: 'CSH-401',
-          timestamp: new Date(Date.now() - 3600000 * 2).toISOString(),
-          type: 'inter_branch',
-          fromBranch: 'b2',
-          toBranch: 'b1',
-          amount: 40000,
-          note: 'برانچ 2 سے مین ہب رقم منتقلی (بذریعہ عثمان)',
-          status: 'کامیاب'
-        }
-      ],
-      expenses: [
-        {
-          id: 'EXP-701',
-          timestamp: new Date(Date.now() - 3600000 * 4).toISOString(),
-          branch: 'b1',
-          category: 'Supplier',
-          categoryLabel: 'سپلائر ادائیگی',
-          payee: 'گلزار یارن و دھاگہ ملز فیصل آباد',
-          amount: 35000,
-          invoiceRef: 'INV-4410',
-          note: 'دھاگہ لاٹ ادائیگی'
-        }
-      ]
+      stockTransfers: [],
+      cashTransfers: [],
+      expenses: []
     };
 
     function loadInitialState() {
@@ -1028,6 +973,32 @@
 
     window.saveStateToLocalStorage = function() {
       localStorage.setItem('qari_store_state', JSON.stringify(window.storeState));
+    };
+
+    // پرانا ڈیٹا براؤزر اور فائر بیس دونوں سے مکمل صاف کرنے کا فنکشن
+    window.resetAllDataToZero = async function() {
+      if (!confirm("کیا آپ واقعی تمام پرانا ریکارڈ، بلز، کیش اور اخراجات ختم کر کے بالکل نیا شروع کرنا چاہتے ہیں؟")) {
+        return;
+      }
+
+      window.storeState = {
+        branch1Cash: 0,
+        branch2Cash: 0,
+        currentLang: 'ur',
+        stockTransfers: [],
+        cashTransfers: [],
+        expenses: []
+      };
+
+      localStorage.removeItem('qari_store_state');
+      window.saveStateToLocalStorage();
+
+      if (window.syncToCloud) {
+        await window.syncToCloud();
+      }
+
+      window.refreshAllUI();
+      showToast('تمام پرانا ڈیٹا مکمل طور پر صاف کر دیا گیا ہے', 'success');
     };
 
     let pendingConfirmAction = null;
@@ -1134,7 +1105,6 @@
           title: `مال بل: ${st.billNo} (${formatPKR(st.totalAmount)})`,
           sub: `${BRANCHES[st.fromBranch].shortUr} ➔ ${BRANCHES[st.toBranch].shortUr}`,
           time: st.timestamp,
-          color: 'emerald',
           icon: 'file-text'
         })),
         ...storeState.cashTransfers.map(ct => ({
@@ -1142,7 +1112,6 @@
           title: ct.type === 'inter_branch' ? `کیش منتقلی: ${formatPKR(ct.amount)}` : `پیٹی کیش: ${formatPKR(ct.amount)}`,
           sub: ct.note,
           time: ct.timestamp,
-          color: 'teal',
           icon: 'banknote'
         })),
         ...storeState.expenses.map(ex => ({
@@ -1150,7 +1119,6 @@
           title: `ادائیگی: ${ex.payee} (${formatPKR(ex.amount)})`,
           sub: `${BRANCHES[ex.branch].shortUr} • ${ex.categoryLabel}`,
           time: ex.timestamp,
-          color: 'amber',
           icon: 'receipt'
         }))
       ];
@@ -1189,7 +1157,6 @@
       }
     }
 
-    // Handle Transfer via Bill Number & Total Amount
     function handleStockTransferSubmit(e) {
       e.preventDefault();
       const fromBranch = document.getElementById('transferFromBranch').value;
@@ -1278,12 +1245,6 @@
         return;
       }
 
-      const availableCash = fromBranch === 'b1' ? storeState.branch1Cash : storeState.branch2Cash;
-      if (amount > availableCash) {
-        showToast(`ناکافی کاؤنٹر کیش! برانچ میں صرف ${formatPKR(availableCash)} موجود ہے`, 'error');
-        return;
-      }
-
       const fromName = BRANCHES[fromBranch].shortUr;
       const toName = BRANCHES[toBranch].shortUr;
 
@@ -1334,14 +1295,6 @@
       const action = document.getElementById('pettyActionType').value;
       const amount = parseFloat(document.getElementById('pettyAmount').value);
       const note = document.getElementById('pettyNote').value.trim();
-
-      if (action === 'out') {
-        const currentBal = branch === 'b1' ? storeState.branch1Cash : storeState.branch2Cash;
-        if (amount > currentBal) {
-          showToast('ناکافی کیش! گلے میں مطلوبہ رقم نہیں ہے', 'error');
-          return;
-        }
-      }
 
       if (action === 'in') {
         if (branch === 'b1') storeState.branch1Cash += amount;
@@ -1427,12 +1380,6 @@
       const payee = document.getElementById('expensePayee').value.trim();
       const amount = parseFloat(document.getElementById('expenseAmount').value);
       const invoiceRef = document.getElementById('expenseInvoiceRef').value.trim() || 'بغیر رسید';
-
-      const branchCash = branch === 'b1' ? storeState.branch1Cash : storeState.branch2Cash;
-      if (amount > branchCash) {
-        showToast(`ناکافی گلا! منتخب برانچ میں صرف ${formatPKR(branchCash)} موجود ہے`, 'error');
-        return;
-      }
 
       const branchName = BRANCHES[branch].shortUr;
 
@@ -1580,7 +1527,7 @@
       list.sort((a, b) => new Date(b.date) - new Date(a.date));
 
       if (list.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="7" class="text-center py-8 text-slate-400 text-xs">کوئی مماثل ٹرانزیکشن نہیں ملی</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="7" class="text-center py-8 text-slate-400 text-xs">کوئی ٹرانزیکشن موجود نہیں ہے</td></tr>`;
         return;
       }
 
