@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New Qari Hosiery Store | نیو قاری ہوزری سٹور</title>
+  <title>نیو قاری ہوزری سٹور | فیصل آباد ERP</title>
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Google Fonts: Inter & Noto Sans Arabic -->
+  <!-- Google Fonts: Noto Sans Arabic & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -22,8 +22,7 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Inter', 'Noto Sans Arabic', 'sans-serif'],
-            urdu: ['Noto Sans Arabic', 'Inter', 'sans-serif'],
+            sans: ['Noto Sans Arabic', 'Inter', 'sans-serif'],
           }
         }
       }
@@ -35,17 +34,10 @@
       font-family: 'Noto Sans Arabic', 'Inter', sans-serif;
       -webkit-tap-highlight-color: transparent;
     }
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #f1f5f9;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #cbd5e1;
-      border-radius: 4px;
-    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
     @media print {
       .no-print { display: none !important; }
       .print-only { display: block !important; }
@@ -77,21 +69,16 @@
 
         <div class="flex items-center gap-2 sm:gap-3">
           <!-- Reset All Data Button -->
-          <button onclick="resetAllDataToZero()" class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-bold bg-rose-600/80 hover:bg-rose-600 text-white transition border border-rose-500/50 shadow-sm" title="پرانا سارا ڈیٹا ختم اور صاف کریں">
+          <button onclick="resetAllDataToZero()" class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-bold bg-rose-600/80 hover:bg-rose-600 text-white transition border border-rose-500/50 shadow-sm" title="تمام پرانا ڈیٹا صاف کریں">
             <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
             <span class="hidden sm:inline">ڈیٹا صاف کریں</span>
           </button>
 
           <!-- Firebase Cloud Status -->
-          <button onclick="openModal('firebaseModal')" id="cloudStatusBadge" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-medium bg-slate-800 hover:bg-slate-700 text-emerald-400 border border-slate-700 transition cursor-pointer" title="کلاؤڈ کنکشن تفصیلات">
+          <button onclick="openModal('firebaseModal')" id="cloudStatusBadge" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-medium bg-slate-800 hover:bg-slate-700 text-emerald-400 border border-slate-700 transition cursor-pointer" title="کلاؤڈ تفصیلات">
             <span id="cloudStatusDot" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
             <span id="cloudStatusText" class="hidden md:inline">Firebase (branches-c2b6c) منسلک ہے</span>
             <i data-lucide="cloud-check" class="w-3.5 h-3.5 opacity-80"></i>
-          </button>
-
-          <button id="langToggleBtn" onclick="toggleLanguage()" class="flex items-center gap-1.5 px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-semibold border border-slate-700 transition">
-            <i data-lucide="languages" class="w-4 h-4 text-emerald-400"></i>
-            <span id="langLabel">English</span>
           </button>
         </div>
       </div>
@@ -169,7 +156,7 @@
             </div>
             <h2 class="text-xl sm:text-2xl font-bold">خوش آمدید - نیو قاری ہوزری فیصل آباد</h2>
             <p class="text-emerald-100/80 text-xs sm:text-sm mt-1 max-w-xl">
-              دونوں برانچوں کے درمیان بل پر مال کی ترسیل، کاؤنٹر کیش اور اخراجات کا خودکار توازن۔
+              دونوں برانچوں کے درمیان بل پر مال کی ترسیل، کاؤنٹر کیش اور اخراجات کا خودکار توازن (تاریخ کے انتخاب اور ایڈٹ/ڈیلیٹ کے ساتھ)۔
             </p>
           </div>
           <div class="flex flex-wrap gap-2">
@@ -282,10 +269,10 @@
             <table class="w-full text-xs text-right rtl:text-right">
               <thead class="bg-slate-50 text-slate-600 font-bold border-b border-slate-200">
                 <tr>
+                  <th class="p-2.5">تاریخ</th>
                   <th class="p-2.5">بل نمبر</th>
                   <th class="p-2.5">بھیجنے والی برانچ</th>
                   <th class="p-2.5">وصول کنندہ برانچ</th>
-                  <th class="p-2.5">تفصیل / بل حوالہ</th>
                   <th class="p-2.5 text-center font-bold text-emerald-800">کل مالیت (PKR)</th>
                 </tr>
               </thead>
@@ -329,13 +316,19 @@
               <i data-lucide="file-text" class="w-5 h-5"></i>
             </div>
             <div>
-              <h3 class="font-bold text-base text-slate-800">مال ترسیل چالان / بل فارم</h3>
+              <h3 class="font-bold text-base text-slate-800" id="stockFormHeading">مال ترسیل چالان / بل فارم</h3>
               <p class="text-xs text-slate-500">بل نمبر اور کل رقم کے ذریعے مال شفٹ کریں</p>
             </div>
           </div>
 
-          <form id="stockTransferForm" onsubmit="handleStockTransferSubmit(event)" class="space-y-4">
-            
+          <form id="stockTransferForm" onsubmit="handleStockTransferSubmit(event)" class="space-y-3">
+            <input type="hidden" id="stockEditId" value="">
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">تاریخ</label>
+              <input type="date" id="transferDate" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none" required>
+            </div>
+
             <div>
               <label class="block text-xs font-bold text-slate-700 mb-1">کہاں سے بھیج رہے ہیں؟ (بھیجنے والی برانچ)</label>
               <select id="transferFromBranch" onchange="validateBranchSelect('transferFromBranch', 'transferToBranch')" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none" required>
@@ -364,13 +357,18 @@
 
             <div>
               <label class="block text-xs font-bold text-slate-700 mb-1">حوالہ / رکشہ والا / ڈرائیور نام (اختیاری)</label>
-              <input type="text" id="transferNote" placeholder="مثلاً: بائی چنگچی رکشہ، ڈرائیور اکرم یا کارٹن تعداد" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+              <input type="text" id="transferNote" placeholder="مثلاً: بائی چنگچی رکشہ، ڈرائیور اکرم" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none">
             </div>
 
-            <button type="submit" class="w-full py-2.5 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-sm transition active:scale-[0.98]">
-              <i data-lucide="send" class="w-4 h-4"></i>
-              <span>مال چالان درج کریں</span>
-            </button>
+            <div class="flex gap-2 pt-1">
+              <button type="submit" id="stockSubmitBtn" class="flex-1 py-2.5 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-sm transition active:scale-[0.98]">
+                <i data-lucide="send" class="w-4 h-4"></i>
+                <span id="stockSubmitText">مال چالان درج کریں</span>
+              </button>
+              <button type="button" id="stockCancelEditBtn" onclick="resetStockForm()" class="hidden py-2.5 px-3 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-xl text-xs font-bold transition">
+                منسوخ کریں
+              </button>
+            </div>
           </form>
         </div>
 
@@ -397,13 +395,13 @@
             <table class="w-full text-xs text-right rtl:text-right">
               <thead class="bg-slate-50 text-slate-600 font-bold border-b border-slate-200">
                 <tr>
-                  <th class="p-2.5">تاریخ / وقت</th>
+                  <th class="p-2.5">تاریخ</th>
                   <th class="p-2.5">بل / چالان نمبر</th>
                   <th class="p-2.5">ماخذ (From)</th>
                   <th class="p-2.5">منزل (To)</th>
                   <th class="p-2.5 text-center">کل رقم (PKR)</th>
                   <th class="p-2.5">نوٹ / ڈرائیور</th>
-                  <th class="p-2.5 text-center">پرنٹ</th>
+                  <th class="p-2.5 text-center">ایکشن</th>
                 </tr>
               </thead>
               <tbody id="stockTransfersTableBody" class="divide-y divide-slate-100"></tbody>
@@ -432,11 +430,11 @@
           <div class="mt-4 pt-3 border-t border-white/20 flex gap-2">
             <button onclick="presetCashAction('b1', 'in')" class="flex-1 py-1.5 bg-white/20 hover:bg-white/30 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1">
               <i data-lucide="arrow-down-left" class="w-3.5 h-3.5 text-emerald-300"></i>
-              کیش ان (Petty In)
+              کیش ان (آمد)
             </button>
             <button onclick="presetCashAction('b1', 'out')" class="flex-1 py-1.5 bg-rose-500/40 hover:bg-rose-500/50 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1">
               <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-rose-200"></i>
-              کیش آؤٹ (Petty Out)
+              کیش آؤٹ (اخراج)
             </button>
           </div>
         </div>
@@ -455,11 +453,11 @@
           <div class="mt-4 pt-3 border-t border-white/20 flex gap-2">
             <button onclick="presetCashAction('b2', 'in')" class="flex-1 py-1.5 bg-white/20 hover:bg-white/30 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1">
               <i data-lucide="arrow-down-left" class="w-3.5 h-3.5 text-teal-300"></i>
-              کیش ان (Petty In)
+              کیش ان (آمد)
             </button>
             <button onclick="presetCashAction('b2', 'out')" class="flex-1 py-1.5 bg-rose-500/40 hover:bg-rose-500/50 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1">
               <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-rose-200"></i>
-              کیش آؤٹ (Petty Out)
+              کیش آؤٹ (اخراج)
             </button>
           </div>
         </div>
@@ -474,12 +472,19 @@
               <i data-lucide="repeat" class="w-5 h-5"></i>
             </div>
             <div>
-              <h3 class="font-bold text-base text-slate-800">برانچ کیش منتقلی (Inter-Branch Cash)</h3>
+              <h3 class="font-bold text-base text-slate-800" id="cashFormHeading">برانچ کیش منتقلی (Inter-Branch Cash)</h3>
               <p class="text-xs text-slate-500">ایک برانچ کے گلے سے دوسری برانچ رقوم کی ترسیل</p>
             </div>
           </div>
 
-          <form id="cashTransferForm" onsubmit="handleCashTransferSubmit(event)" class="space-y-4">
+          <form id="cashTransferForm" onsubmit="handleCashTransferSubmit(event)" class="space-y-3">
+            <input type="hidden" id="cashEditId" value="">
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">تاریخ</label>
+              <input type="date" id="cashDate" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-teal-500 focus:outline-none" required>
+            </div>
+
             <div>
               <label class="block text-xs font-bold text-slate-700 mb-1">کیش دینے والی برانچ (Deduct From)</label>
               <select id="cashFromBranch" onchange="validateBranchSelect('cashFromBranch', 'cashToBranch')" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-teal-500 focus:outline-none" required>
@@ -506,10 +511,15 @@
               <input type="text" id="cashTransferNote" placeholder="مثلاً: احمد (سیلز بوائے) کے ہاتھ بھجوائے" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-teal-500 focus:outline-none" required>
             </div>
 
-            <button type="submit" class="w-full py-2.5 px-4 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-sm transition active:scale-[0.98]">
-              <i data-lucide="check-circle-2" class="w-4 h-4"></i>
-              <span>کیش ٹرانسفر کا اندراج کریں</span>
-            </button>
+            <div class="flex gap-2 pt-1">
+              <button type="submit" id="cashSubmitBtn" class="flex-1 py-2.5 px-4 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-sm transition active:scale-[0.98]">
+                <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                <span id="cashSubmitText">کیش ٹرانسفر کا اندراج کریں</span>
+              </button>
+              <button type="button" id="cashCancelEditBtn" onclick="resetCashForm()" class="hidden py-2.5 px-3 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-xl text-xs font-bold transition">
+                منسوخ کریں
+              </button>
+            </div>
           </form>
         </div>
 
@@ -520,14 +530,14 @@
                 <i data-lucide="file-text" class="w-4 h-4 text-teal-600"></i>
                 <span>کیش ٹرانسفر و پیٹی کیش ہسٹری</span>
               </h3>
-              <p class="text-xs text-slate-500">روزانہ کاؤنٹر کیش ان اور آؤٹ ریکارڈ</p>
+              <p class="text-xs text-slate-500">روزانہ کاؤنٹر کیش ان اور آؤٹ ریکارڈ (ایڈٹ / ڈیلیٹ کے ساتھ)</p>
             </div>
             <div>
               <select id="cashHistoryFilter" onchange="renderCashTransfersTable()" class="bg-slate-50 border border-slate-300 text-xs rounded-xl px-2.5 py-1.5 focus:outline-none">
                 <option value="all">تمام کیش ٹرانزیکشنز</option>
                 <option value="inter_branch">صرف برانچ ٹرانسفرز</option>
                 <option value="petty_in">صرف کیش ان (آمد)</option>
-                <option value="petty_out">صرف کیش آؤٹ (واپسی)</option>
+                <option value="petty_out">صرف کیش آؤٹ (اخراج)</option>
               </select>
             </div>
           </div>
@@ -536,12 +546,12 @@
             <table class="w-full text-xs text-right rtl:text-right">
               <thead class="bg-slate-50 text-slate-600 font-bold border-b border-slate-200">
                 <tr>
-                  <th class="p-2.5">تاریخ / وقت</th>
+                  <th class="p-2.5">تاریخ</th>
                   <th class="p-2.5">قسم (Type)</th>
                   <th class="p-2.5">برانچ / ماخذ</th>
                   <th class="p-2.5">رقم (PKR)</th>
                   <th class="p-2.5">حوالہ و تفصیل</th>
-                  <th class="p-2.5 text-center">رسید</th>
+                  <th class="p-2.5 text-center">ایکشن</th>
                 </tr>
               </thead>
               <tbody id="cashTransfersTableBody" class="divide-y divide-slate-100"></tbody>
@@ -564,13 +574,19 @@
               <i data-lucide="credit-card" class="w-5 h-5"></i>
             </div>
             <div>
-              <h3 class="font-bold text-base text-slate-800">ادائیگی یا خرچ درج کریں</h3>
+              <h3 class="font-bold text-base text-slate-800" id="expenseFormHeading">ادائیگی یا خرچ درج کریں</h3>
               <p class="text-xs text-slate-500">سپلائر کو نقد ادائیگی یا دکان کا روزمرہ خرچ</p>
             </div>
           </div>
 
-          <form id="expenseForm" onsubmit="handleExpenseSubmit(event)" class="space-y-4">
-            
+          <form id="expenseForm" onsubmit="handleExpenseSubmit(event)" class="space-y-3">
+            <input type="hidden" id="expenseEditId" value="">
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">تاریخ</label>
+              <input type="date" id="expenseDate" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none" required>
+            </div>
+
             <div>
               <label class="block text-xs font-bold text-slate-700 mb-1">کس برانچ کے گلے سے ادائیگی ہوگی؟</label>
               <select id="expenseBranch" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none" required>
@@ -614,10 +630,15 @@
               <input type="text" id="expenseInvoiceRef" placeholder="مثلاً: Bill # 882 / Challan 12" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none">
             </div>
 
-            <button type="submit" class="w-full py-2.5 px-4 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-sm transition active:scale-[0.98]">
-              <i data-lucide="check" class="w-4 h-4"></i>
-              <span>ادائیگی درج کریں اور کیش وضع کریں</span>
-            </button>
+            <div class="flex gap-2 pt-1">
+              <button type="submit" id="expenseSubmitBtn" class="flex-1 py-2.5 px-4 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-sm transition active:scale-[0.98]">
+                <i data-lucide="check" class="w-4 h-4"></i>
+                <span id="expenseSubmitText">ادائیگی درج کریں اور کیش وضع کریں</span>
+              </button>
+              <button type="button" id="expenseCancelEditBtn" onclick="resetExpenseForm()" class="hidden py-2.5 px-3 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-xl text-xs font-bold transition">
+                منسوخ کریں
+              </button>
+            </div>
           </form>
         </div>
 
@@ -649,7 +670,7 @@
                   <th class="p-2.5">کیٹیگری</th>
                   <th class="p-2.5">بل حوالہ</th>
                   <th class="p-2.5 text-rose-600 font-bold">رقم (روپے)</th>
-                  <th class="p-2.5 text-center">پرنٹ</th>
+                  <th class="p-2.5 text-center">ایکشن</th>
                 </tr>
               </thead>
               <tbody id="expensesTableBody" class="divide-y divide-slate-100"></tbody>
@@ -717,7 +738,7 @@
             <thead class="bg-slate-100 text-slate-700 font-bold border-b border-slate-200">
               <tr>
                 <th class="p-3">ٹرانزیکشن ID</th>
-                <th class="p-3">تاریخ / وقت</th>
+                <th class="p-3">تاریخ</th>
                 <th class="p-3">کیٹیگری</th>
                 <th class="p-3">تفصیلات و حوالہ</th>
                 <th class="p-3">برانچ فلو (Branch Flow)</th>
@@ -817,17 +838,26 @@
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
-      <form id="pettyCashForm" onsubmit="handlePettyCashSubmit(event)" class="space-y-4">
+      <form id="pettyCashForm" onsubmit="handlePettyCashSubmit(event)" class="space-y-3">
         <input type="hidden" id="pettyBranchTarget">
         <input type="hidden" id="pettyActionType">
+        <input type="hidden" id="pettyEditId" value="">
+        
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">تاریخ</label>
+          <input type="date" id="pettyDate" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-teal-500 focus:outline-none" required>
+        </div>
+
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">رقم (PKR)</label>
           <input type="number" min="1" id="pettyAmount" placeholder="مثلاً: 10000" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs font-mono font-bold" required>
         </div>
+
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">تفصیل / ذریعہ (Note / Reason)</label>
           <input type="text" id="pettyNote" placeholder="مثلاً: کسٹمر نقد ریکوری / بینک سے ڈرا" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs" required>
         </div>
+
         <button type="submit" class="w-full py-2.5 bg-slate-800 hover:bg-slate-900 text-white rounded-xl text-xs font-bold transition">
           اندراج محفوظ کریں
         </button>
@@ -899,7 +929,7 @@
         });
 
       } catch (err) {
-        console.warn("Firebase running in offline fallback mode:", err);
+        console.warn("Firebase offline mode:", err);
         window.isCloudActive = false;
         statusBadge.className = "flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-medium bg-slate-800 hover:bg-slate-700 text-amber-400 border border-slate-700 transition cursor-pointer";
         statusDot.className = "w-2 h-2 rounded-full bg-amber-400";
@@ -921,7 +951,7 @@
           lastUpdated: new Date().toISOString()
         });
       } catch (e) {
-        console.error("Cloud push failed:", e);
+        console.error("Cloud sync error:", e);
       }
     };
 
@@ -951,11 +981,9 @@
       }
     };
 
-    // بالکل صاف اور خالی ابتدائی ڈیٹا (کوئی پرانا ریکارڈ نہیں)
     const DEFAULT_STORE_DATA = {
       branch1Cash: 0,
       branch2Cash: 0,
-      currentLang: 'ur',
       stockTransfers: [],
       cashTransfers: [],
       expenses: []
@@ -975,16 +1003,26 @@
       localStorage.setItem('qari_store_state', JSON.stringify(window.storeState));
     };
 
-    // پرانا ڈیٹا براؤزر اور فائر بیس دونوں سے مکمل صاف کرنے کا فنکشن
+    function getTodayDateStr() {
+      return new Date().toISOString().split('T')[0];
+    }
+
+    function initFormDates() {
+      const today = getTodayDateStr();
+      if (!document.getElementById('transferDate').value) document.getElementById('transferDate').value = today;
+      if (!document.getElementById('cashDate').value) document.getElementById('cashDate').value = today;
+      if (!document.getElementById('expenseDate').value) document.getElementById('expenseDate').value = today;
+      if (!document.getElementById('pettyDate').value) document.getElementById('pettyDate').value = today;
+    }
+
     window.resetAllDataToZero = async function() {
-      if (!confirm("کیا آپ واقعی تمام پرانا ریکارڈ، بلز، کیش اور اخراجات ختم کر کے بالکل نیا شروع کرنا چاہتے ہیں؟")) {
+      if (!confirm("کیا آپ واقعی تمام ریکارڈ، بلز، کیش اور اخراجات ختم کر کے بالکل نیا شروع کرنا چاہتے ہیں؟")) {
         return;
       }
 
       window.storeState = {
         branch1Cash: 0,
         branch2Cash: 0,
-        currentLang: 'ur',
         stockTransfers: [],
         cashTransfers: [],
         expenses: []
@@ -1025,14 +1063,13 @@
       return 'PKR ' + Number(num || 0).toLocaleString('en-US');
     }
 
-    function formatDate(isoStr) {
-      const d = new Date(isoStr);
-      return d.toLocaleDateString('ur-PK', {
-        day: 'numeric',
-        month: 'short',
-        hour: '2-digit',
-        minute: '2-digit'
-      });
+    function formatDateDisplay(isoDateStr) {
+      if (!isoDateStr) return '-';
+      const parts = isoDateStr.split('T')[0].split('-');
+      if (parts.length === 3) {
+        return `${parts[0]}/${parts[1]}/${parts[2]}`;
+      }
+      return isoDateStr;
     }
 
     function renderKPIs() {
@@ -1044,12 +1081,12 @@
       const totalCash = storeState.branch1Cash + storeState.branch2Cash;
       document.getElementById('combinedCashTotal').innerText = formatPKR(totalCash);
 
-      const today = new Date().toDateString();
+      const today = getTodayDateStr();
       let todayIn = 0;
       let todayOut = 0;
 
       storeState.cashTransfers.forEach(ct => {
-        const itemDate = new Date(ct.timestamp).toDateString();
+        const itemDate = (ct.date || ct.timestamp || '').split('T')[0];
         if (itemDate === today) {
           if (ct.type === 'petty_in') todayIn += Number(ct.amount);
           if (ct.type === 'petty_out') todayOut += Number(ct.amount);
@@ -1057,7 +1094,7 @@
       });
 
       storeState.expenses.forEach(ex => {
-        const itemDate = new Date(ex.timestamp).toDateString();
+        const itemDate = (ex.date || ex.timestamp || '').split('T')[0];
         if (itemDate === today) {
           todayOut += Number(ex.amount);
         }
@@ -1085,10 +1122,10 @@
         const tr = document.createElement('tr');
         tr.className = 'hover:bg-slate-50 transition border-b border-slate-100';
         tr.innerHTML = `
+          <td class="p-2.5 font-mono text-slate-500">${formatDateDisplay(b.date || b.timestamp)}</td>
           <td class="p-2.5 font-bold font-mono text-slate-800">${b.billNo}</td>
-          <td class="p-2.5 text-slate-600">${BRANCHES[b.fromBranch].shortUr}</td>
-          <td class="p-2.5 text-slate-600">${BRANCHES[b.toBranch].shortUr}</td>
-          <td class="p-2.5 text-slate-500">${b.note || '-'}</td>
+          <td class="p-2.5 text-slate-600">${BRANCHES[b.fromBranch]?.shortUr || b.fromBranch}</td>
+          <td class="p-2.5 text-slate-600">${BRANCHES[b.toBranch]?.shortUr || b.toBranch}</td>
           <td class="p-2.5 text-center font-bold font-mono text-emerald-700">${formatPKR(b.totalAmount)}</td>
         `;
         tbody.appendChild(tr);
@@ -1103,22 +1140,22 @@
         ...storeState.stockTransfers.map(st => ({
           type: 'stock',
           title: `مال بل: ${st.billNo} (${formatPKR(st.totalAmount)})`,
-          sub: `${BRANCHES[st.fromBranch].shortUr} ➔ ${BRANCHES[st.toBranch].shortUr}`,
-          time: st.timestamp,
+          sub: `${BRANCHES[st.fromBranch]?.shortUr} ➔ ${BRANCHES[st.toBranch]?.shortUr}`,
+          time: st.date || st.timestamp,
           icon: 'file-text'
         })),
         ...storeState.cashTransfers.map(ct => ({
           type: 'cash',
           title: ct.type === 'inter_branch' ? `کیش منتقلی: ${formatPKR(ct.amount)}` : `پیٹی کیش: ${formatPKR(ct.amount)}`,
           sub: ct.note,
-          time: ct.timestamp,
+          time: ct.date || ct.timestamp,
           icon: 'banknote'
         })),
         ...storeState.expenses.map(ex => ({
           type: 'expense',
           title: `ادائیگی: ${ex.payee} (${formatPKR(ex.amount)})`,
-          sub: `${BRANCHES[ex.branch].shortUr} • ${ex.categoryLabel}`,
-          time: ex.timestamp,
+          sub: `${BRANCHES[ex.branch]?.shortUr} • ${ex.categoryLabel}`,
+          time: ex.date || ex.timestamp,
           icon: 'receipt'
         }))
       ];
@@ -1142,7 +1179,7 @@
             <div class="font-bold text-slate-800 truncate">${item.title}</div>
             <div class="text-[11px] text-slate-500 truncate">${item.sub}</div>
           </div>
-          <span class="text-[10px] text-slate-400 shrink-0 font-mono">${formatDate(item.time)}</span>
+          <span class="text-[10px] text-slate-400 shrink-0 font-mono">${formatDateDisplay(item.time)}</span>
         `;
         container.appendChild(div);
       });
@@ -1157,8 +1194,21 @@
       }
     }
 
+    // ==================== مال منتقلی لاجک (STOCK TRANSFER) ====================
+
+    function resetStockForm() {
+      document.getElementById('stockEditId').value = '';
+      document.getElementById('stockTransferForm').reset();
+      document.getElementById('transferDate').value = getTodayDateStr();
+      document.getElementById('stockFormHeading').innerText = 'مال ترسیل چالان / بل فارم';
+      document.getElementById('stockSubmitText').innerText = 'مال چالان درج کریں';
+      document.getElementById('stockCancelEditBtn').classList.add('hidden');
+    }
+
     function handleStockTransferSubmit(e) {
       e.preventDefault();
+      const editId = document.getElementById('stockEditId').value;
+      const date = document.getElementById('transferDate').value || getTodayDateStr();
       const fromBranch = document.getElementById('transferFromBranch').value;
       const toBranch = document.getElementById('transferToBranch').value;
       const billNo = document.getElementById('transferBillNo').value.trim();
@@ -1170,30 +1220,68 @@
         return;
       }
 
-      const fromName = BRANCHES[fromBranch].shortUr;
-      const toName = BRANCHES[toBranch].shortUr;
+      if (editId) {
+        const item = storeState.stockTransfers.find(s => s.id === editId);
+        if (item) {
+          item.date = date;
+          item.fromBranch = fromBranch;
+          item.toBranch = toBranch;
+          item.billNo = billNo;
+          item.totalAmount = totalAmount;
+          item.note = note;
+          showToast('بل چالان کامیابی سے اپ ڈیٹ ہو گیا', 'success');
+        }
+      } else {
+        const newTransfer = {
+          id: 'ST-' + Math.floor(1000 + Math.random() * 9000),
+          date: date,
+          timestamp: new Date().toISOString(),
+          billNo: billNo,
+          totalAmount: totalAmount,
+          fromBranch: fromBranch,
+          toBranch: toBranch,
+          note: note,
+          status: 'منتقل شدہ'
+        };
+        storeState.stockTransfers.unshift(newTransfer);
+        showToast('مال ترسیل بل کامیابی سے درج کر دیا گیا', 'success');
+      }
+
+      if (window.syncToCloud) window.syncToCloud();
+      refreshAllUI();
+      resetStockForm();
+    }
+
+    function editStockTransfer(id) {
+      const item = storeState.stockTransfers.find(s => s.id === id);
+      if (!item) return;
+
+      switchTab('stockTransfer');
+      document.getElementById('stockEditId').value = item.id;
+      document.getElementById('transferDate').value = item.date || item.timestamp.split('T')[0];
+      document.getElementById('transferFromBranch').value = item.fromBranch;
+      document.getElementById('transferToBranch').value = item.toBranch;
+      document.getElementById('transferBillNo').value = item.billNo;
+      document.getElementById('transferTotalAmount').value = item.totalAmount;
+      document.getElementById('transferNote').value = item.note || '';
+
+      document.getElementById('stockFormHeading').innerText = `بل چالان تبدیل کریں (${item.billNo})`;
+      document.getElementById('stockSubmitText').innerText = 'تبدیلی محفوظ کریں';
+      document.getElementById('stockCancelEditBtn').classList.remove('hidden');
+    }
+
+    function deleteStockTransfer(id) {
+      const item = storeState.stockTransfers.find(s => s.id === id);
+      if (!item) return;
 
       showConfirmModal(
-        'مال ترسیل چالان کی تصدیق',
-        `کیا آپ واقعی بل نمبر "${billNo}" مالیت ${formatPKR(totalAmount)} کو ${fromName} سے ${toName} منتقل کرنا چاہتے ہیں؟`,
+        'بل چالان ڈیلیٹ کریں',
+        `کیا آپ واقعی بل نمبر "${item.billNo}" مالیت ${formatPKR(item.totalAmount)} کو لاگ سے حذف کرنا چاہتے ہیں؟`,
         () => {
-          const newTransfer = {
-            id: 'ST-' + Math.floor(1000 + Math.random() * 9000),
-            timestamp: new Date().toISOString(),
-            billNo: billNo,
-            totalAmount: totalAmount,
-            fromBranch: fromBranch,
-            toBranch: toBranch,
-            note: note,
-            status: 'منتقل شدہ'
-          };
-
-          storeState.stockTransfers.unshift(newTransfer);
+          storeState.stockTransfers = storeState.stockTransfers.filter(s => s.id !== id);
           if (window.syncToCloud) window.syncToCloud();
-
           refreshAllUI();
-          document.getElementById('stockTransferForm').reset();
-          showToast('مال ترسیل بل کامیابی سے درج کر دیا گیا', 'success');
+          showToast('بل چالان کامیابی سے ڈیلیٹ کر دیا گیا', 'success');
         }
       );
     }
@@ -1216,16 +1304,24 @@
         const tr = document.createElement('tr');
         tr.className = 'hover:bg-slate-50 transition border-b border-slate-100';
         tr.innerHTML = `
-          <td class="p-2.5 font-mono text-[11px] text-slate-500">${formatDate(t.timestamp)}</td>
+          <td class="p-2.5 font-mono text-[11px] text-slate-500">${formatDateDisplay(t.date || t.timestamp)}</td>
           <td class="p-2.5 font-bold font-mono text-slate-800">${t.billNo}</td>
-          <td class="p-2.5 text-slate-600 font-semibold">${BRANCHES[t.fromBranch].shortUr}</td>
-          <td class="p-2.5 text-slate-600 font-semibold">${BRANCHES[t.toBranch].shortUr}</td>
+          <td class="p-2.5 text-slate-600 font-semibold">${BRANCHES[t.fromBranch]?.shortUr || t.fromBranch}</td>
+          <td class="p-2.5 text-slate-600 font-semibold">${BRANCHES[t.toBranch]?.shortUr || t.toBranch}</td>
           <td class="p-2.5 text-center font-bold font-mono text-emerald-700">${formatPKR(t.totalAmount)}</td>
           <td class="p-2.5 text-slate-500 text-[11px]">${t.note || '-'}</td>
           <td class="p-2.5 text-center">
-            <button onclick="printVoucher('stock', '${t.id}')" class="p-1 hover:bg-slate-200 rounded text-slate-600 transition" title="پرنٹ سلپ">
-              <i data-lucide="printer" class="w-3.5 h-3.5"></i>
-            </button>
+            <div class="flex items-center justify-center gap-1">
+              <button onclick="editStockTransfer('${t.id}')" class="p-1 hover:bg-slate-200 rounded text-slate-600 transition" title="ایڈٹ کریں">
+                <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+              </button>
+              <button onclick="deleteStockTransfer('${t.id}')" class="p-1 hover:bg-rose-100 rounded text-rose-600 transition" title="ڈیلیٹ کریں">
+                <i data-lucide="trash" class="w-3.5 h-3.5"></i>
+              </button>
+              <button onclick="printVoucher('stock', '${t.id}')" class="p-1 hover:bg-slate-200 rounded text-slate-600 transition" title="پرنٹ سلپ">
+                <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
           </td>
         `;
         tbody.appendChild(tr);
@@ -1233,8 +1329,21 @@
       lucide.createIcons();
     }
 
+    // ==================== کیش ٹرانسفر لاجک (CASH TRANSFER) ====================
+
+    function resetCashForm() {
+      document.getElementById('cashEditId').value = '';
+      document.getElementById('cashTransferForm').reset();
+      document.getElementById('cashDate').value = getTodayDateStr();
+      document.getElementById('cashFormHeading').innerText = 'برانچ کیش منتقلی (Inter-Branch Cash)';
+      document.getElementById('cashSubmitText').innerText = 'کیش ٹرانسفر کا اندراج کریں';
+      document.getElementById('cashCancelEditBtn').classList.add('hidden');
+    }
+
     function handleCashTransferSubmit(e) {
       e.preventDefault();
+      const editId = document.getElementById('cashEditId').value;
+      const date = document.getElementById('cashDate').value || getTodayDateStr();
       const fromBranch = document.getElementById('cashFromBranch').value;
       const toBranch = document.getElementById('cashToBranch').value;
       const amount = parseFloat(document.getElementById('cashTransferAmount').value);
@@ -1245,45 +1354,124 @@
         return;
       }
 
-      const fromName = BRANCHES[fromBranch].shortUr;
-      const toName = BRANCHES[toBranch].shortUr;
+      if (editId) {
+        const item = storeState.cashTransfers.find(c => c.id === editId);
+        if (item) {
+          // پرانی ٹرانزیکشن کا اثر واپس کریں
+          if (item.type === 'inter_branch') {
+            if (item.fromBranch === 'b1') { storeState.branch1Cash += item.amount; storeState.branch2Cash -= item.amount; }
+            else { storeState.branch2Cash += item.amount; storeState.branch1Cash -= item.amount; }
+          }
+          // نیا اثر لاگو کریں
+          if (fromBranch === 'b1') { storeState.branch1Cash -= amount; storeState.branch2Cash += amount; }
+          else { storeState.branch2Cash -= amount; storeState.branch1Cash += amount; }
+
+          item.date = date;
+          item.fromBranch = fromBranch;
+          item.toBranch = toBranch;
+          item.amount = amount;
+          item.note = note;
+          showToast('کیش منتقلی اپ ڈیٹ ہو گئی', 'success');
+        }
+      } else {
+        const availableCash = fromBranch === 'b1' ? storeState.branch1Cash : storeState.branch2Cash;
+        if (amount > availableCash) {
+          showToast(`ناکافی کاؤنٹر کیش! برانچ میں صرف ${formatPKR(availableCash)} موجود ہے`, 'error');
+          return;
+        }
+
+        if (fromBranch === 'b1') {
+          storeState.branch1Cash -= amount;
+          storeState.branch2Cash += amount;
+        } else {
+          storeState.branch2Cash -= amount;
+          storeState.branch1Cash += amount;
+        }
+
+        const newCashTx = {
+          id: 'CSH-' + Math.floor(1000 + Math.random() * 9000),
+          date: date,
+          timestamp: new Date().toISOString(),
+          type: 'inter_branch',
+          fromBranch: fromBranch,
+          toBranch: toBranch,
+          amount: amount,
+          note: note,
+          status: 'کامیاب'
+        };
+
+        storeState.cashTransfers.unshift(newCashTx);
+        showToast('برانچ کیش کامیابی سے منتقل ہو گیا', 'success');
+      }
+
+      if (window.syncToCloud) window.syncToCloud();
+      refreshAllUI();
+      resetCashForm();
+    }
+
+    function editCashTransfer(id) {
+      const item = storeState.cashTransfers.find(c => c.id === id);
+      if (!item) return;
+
+      if (item.type === 'inter_branch') {
+        switchTab('cashTransfer');
+        document.getElementById('cashEditId').value = item.id;
+        document.getElementById('cashDate').value = item.date || item.timestamp.split('T')[0];
+        document.getElementById('cashFromBranch').value = item.fromBranch;
+        document.getElementById('cashToBranch').value = item.toBranch;
+        document.getElementById('cashTransferAmount').value = item.amount;
+        document.getElementById('cashTransferNote').value = item.note;
+
+        document.getElementById('cashFormHeading').innerText = 'برانچ کیش منتقلی ایڈٹ کریں';
+        document.getElementById('cashSubmitText').innerText = 'تبدیلی محفوظ کریں';
+        document.getElementById('cashCancelEditBtn').classList.remove('hidden');
+      } else {
+        // Petty In / Out ایڈٹ کریں
+        document.getElementById('pettyEditId').value = item.id;
+        document.getElementById('pettyBranchTarget').value = item.branch;
+        document.getElementById('pettyActionType').value = item.type === 'petty_in' ? 'in' : 'out';
+        document.getElementById('pettyDate').value = item.date || item.timestamp.split('T')[0];
+        document.getElementById('pettyAmount').value = item.amount;
+        document.getElementById('pettyNote').value = item.note;
+        document.getElementById('pettyModalTitle').innerText = 'کاؤنٹر کیش ایڈٹ کریں';
+        openModal('pettyCashModal');
+      }
+    }
+
+    function deleteCashTransfer(id) {
+      const item = storeState.cashTransfers.find(c => c.id === id);
+      if (!item) return;
 
       showConfirmModal(
-        'برانچ کیش ٹرانسفر کی تصدیق',
-        `کیا آپ واقعی ${formatPKR(amount)} ${fromName} کے گلے سے نکال کر ${toName} کے گلے میں منتقل کرنا چاہتے ہیں؟`,
+        'کیش ٹرانزیکشن ڈیلیٹ کریں',
+        `کیا آپ واقعی ${formatPKR(item.amount)} کی ٹرانزیکشن کو ڈیلیٹ کرنا چاہتے ہیں؟ اس سے گلے کا کیش خودکار درست ہو جائے گا۔`,
         () => {
-          if (fromBranch === 'b1') {
-            storeState.branch1Cash -= amount;
-            storeState.branch2Cash += amount;
-          } else {
-            storeState.branch2Cash -= amount;
-            storeState.branch1Cash += amount;
+          if (item.type === 'inter_branch') {
+            if (item.fromBranch === 'b1') { storeState.branch1Cash += item.amount; storeState.branch2Cash -= item.amount; }
+            else { storeState.branch2Cash += item.amount; storeState.branch1Cash -= item.amount; }
+          } else if (item.type === 'petty_in') {
+            if (item.branch === 'b1') storeState.branch1Cash -= item.amount;
+            else storeState.branch2Cash -= item.amount;
+          } else if (item.type === 'petty_out') {
+            if (item.branch === 'b1') storeState.branch1Cash += item.amount;
+            else storeState.branch2Cash += item.amount;
           }
 
-          const newCashTx = {
-            id: 'CSH-' + Math.floor(1000 + Math.random() * 9000),
-            timestamp: new Date().toISOString(),
-            type: 'inter_branch',
-            fromBranch: fromBranch,
-            toBranch: toBranch,
-            amount: amount,
-            note: note,
-            status: 'کامیاب'
-          };
-
-          storeState.cashTransfers.unshift(newCashTx);
+          storeState.cashTransfers = storeState.cashTransfers.filter(c => c.id !== id);
           if (window.syncToCloud) window.syncToCloud();
-
           refreshAllUI();
-          document.getElementById('cashTransferForm').reset();
-          showToast('برانچ کیش کامیابی سے منتقل ہو گیا', 'success');
+          showToast('کیش ٹرانزیکشن ڈیلیٹ کر دی گئی', 'success');
         }
       );
     }
 
     function presetCashAction(branch, action) {
+      document.getElementById('pettyEditId').value = '';
       document.getElementById('pettyBranchTarget').value = branch;
       document.getElementById('pettyActionType').value = action;
+      document.getElementById('pettyDate').value = getTodayDateStr();
+      document.getElementById('pettyAmount').value = '';
+      document.getElementById('pettyNote').value = '';
       const branchName = BRANCHES[branch].shortUr;
       document.getElementById('pettyModalTitle').innerText = action === 'in' ? `${branchName} - کیش ان (آمد)` : `${branchName} - کیش آؤٹ (اخراج)`;
       openModal('pettyCashModal');
@@ -1291,36 +1479,74 @@
 
     function handlePettyCashSubmit(e) {
       e.preventDefault();
+      const editId = document.getElementById('pettyEditId').value;
       const branch = document.getElementById('pettyBranchTarget').value;
       const action = document.getElementById('pettyActionType').value;
+      const date = document.getElementById('pettyDate').value || getTodayDateStr();
       const amount = parseFloat(document.getElementById('pettyAmount').value);
       const note = document.getElementById('pettyNote').value.trim();
 
-      if (action === 'in') {
-        if (branch === 'b1') storeState.branch1Cash += amount;
-        else storeState.branch2Cash += amount;
+      if (editId) {
+        const item = storeState.cashTransfers.find(c => c.id === editId);
+        if (item) {
+          // سابقہ رقم ریورس کریں
+          if (item.type === 'petty_in') {
+            if (item.branch === 'b1') storeState.branch1Cash -= item.amount;
+            else storeState.branch2Cash -= item.amount;
+          } else {
+            if (item.branch === 'b1') storeState.branch1Cash += item.amount;
+            else storeState.branch2Cash += item.amount;
+          }
+          // نئی رقم اپلائی کریں
+          if (action === 'in') {
+            if (branch === 'b1') storeState.branch1Cash += amount;
+            else storeState.branch2Cash += amount;
+          } else {
+            if (branch === 'b1') storeState.branch1Cash -= amount;
+            else storeState.branch2Cash -= amount;
+          }
+
+          item.date = date;
+          item.amount = amount;
+          item.note = note;
+          showToast('کاؤنٹر کیش اندراج اپ ڈیٹ ہو گیا', 'success');
+        }
       } else {
-        if (branch === 'b1') storeState.branch1Cash -= amount;
-        else storeState.branch2Cash -= amount;
+        if (action === 'out') {
+          const currentBal = branch === 'b1' ? storeState.branch1Cash : storeState.branch2Cash;
+          if (amount > currentBal) {
+            showToast('ناکافی کیش! گلے میں مطلوبہ رقم نہیں ہے', 'error');
+            return;
+          }
+        }
+
+        if (action === 'in') {
+          if (branch === 'b1') storeState.branch1Cash += amount;
+          else storeState.branch2Cash += amount;
+        } else {
+          if (branch === 'b1') storeState.branch1Cash -= amount;
+          else storeState.branch2Cash -= amount;
+        }
+
+        const tx = {
+          id: 'PTY-' + Math.floor(1000 + Math.random() * 9000),
+          date: date,
+          timestamp: new Date().toISOString(),
+          type: action === 'in' ? 'petty_in' : 'petty_out',
+          branch: branch,
+          amount: amount,
+          note: note,
+          status: 'کامیاب'
+        };
+
+        storeState.cashTransfers.unshift(tx);
+        showToast('پیٹی کیش اندراج محفوظ ہو گیا', 'success');
       }
 
-      const tx = {
-        id: 'PTY-' + Math.floor(1000 + Math.random() * 9000),
-        timestamp: new Date().toISOString(),
-        type: action === 'in' ? 'petty_in' : 'petty_out',
-        branch: branch,
-        amount: amount,
-        note: note,
-        status: 'کامیاب'
-      };
-
-      storeState.cashTransfers.unshift(tx);
       if (window.syncToCloud) window.syncToCloud();
-
       closeModal('pettyCashModal');
       document.getElementById('pettyCashForm').reset();
       refreshAllUI();
-      showToast('پیٹی کیش اندراج محفوظ ہو گیا', 'success');
     }
 
     function renderCashTransfersTable() {
@@ -1347,25 +1573,33 @@
 
         if (c.type === 'inter_branch') {
           typeBadge = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-teal-100 text-teal-800">برانچ منتقلی</span>';
-          flowText = `${BRANCHES[c.fromBranch].shortUr} ➔ ${BRANCHES[c.toBranch].shortUr}`;
+          flowText = `${BRANCHES[c.fromBranch]?.shortUr} ➔ ${BRANCHES[c.toBranch]?.shortUr}`;
         } else if (c.type === 'petty_in') {
           typeBadge = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">کاؤنٹر کیش ان</span>';
-          flowText = BRANCHES[c.branch].shortUr;
+          flowText = BRANCHES[c.branch]?.shortUr;
         } else {
           typeBadge = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-100 text-rose-800">کاؤنٹر کیش آؤٹ</span>';
-          flowText = BRANCHES[c.branch].shortUr;
+          flowText = BRANCHES[c.branch]?.shortUr;
         }
 
         tr.innerHTML = `
-          <td class="p-2.5 font-mono text-[11px] text-slate-500">${formatDate(c.timestamp)}</td>
+          <td class="p-2.5 font-mono text-[11px] text-slate-500">${formatDateDisplay(c.date || c.timestamp)}</td>
           <td class="p-2.5">${typeBadge}</td>
           <td class="p-2.5 font-semibold text-slate-700">${flowText}</td>
           <td class="p-2.5 font-mono font-bold text-slate-800">${formatPKR(c.amount)}</td>
           <td class="p-2.5 text-slate-500 text-[11px]">${c.note}</td>
           <td class="p-2.5 text-center">
-            <button onclick="printVoucher('cash', '${c.id}')" class="p-1 hover:bg-slate-200 rounded text-slate-600 transition" title="پرنٹ سلپ">
-              <i data-lucide="printer" class="w-3.5 h-3.5"></i>
-            </button>
+            <div class="flex items-center justify-center gap-1">
+              <button onclick="editCashTransfer('${c.id}')" class="p-1 hover:bg-slate-200 rounded text-slate-600 transition" title="ایڈٹ کریں">
+                <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+              </button>
+              <button onclick="deleteCashTransfer('${c.id}')" class="p-1 hover:bg-rose-100 rounded text-rose-600 transition" title="ڈیلیٹ کریں">
+                <i data-lucide="trash" class="w-3.5 h-3.5"></i>
+              </button>
+              <button onclick="printVoucher('cash', '${c.id}')" class="p-1 hover:bg-slate-200 rounded text-slate-600 transition" title="پرنٹ سلپ">
+                <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
           </td>
         `;
         tbody.appendChild(tr);
@@ -1373,47 +1607,115 @@
       lucide.createIcons();
     }
 
+    // ==================== اخراجات و ادائیگی لاجک (EXPENSES) ====================
+
+    function resetExpenseForm() {
+      document.getElementById('expenseEditId').value = '';
+      document.getElementById('expenseForm').reset();
+      document.getElementById('expenseDate').value = getTodayDateStr();
+      document.getElementById('expenseFormHeading').innerText = 'ادائیگی یا خرچ درج کریں';
+      document.getElementById('expenseSubmitText').innerText = 'ادائیگی درج کریں اور کیش وضع کریں';
+      document.getElementById('expenseCancelEditBtn').classList.add('hidden');
+    }
+
     function handleExpenseSubmit(e) {
       e.preventDefault();
+      const editId = document.getElementById('expenseEditId').value;
+      const date = document.getElementById('expenseDate').value || getTodayDateStr();
       const branch = document.getElementById('expenseBranch').value;
       const category = document.getElementById('expenseCategory').value;
       const payee = document.getElementById('expensePayee').value.trim();
       const amount = parseFloat(document.getElementById('expenseAmount').value);
       const invoiceRef = document.getElementById('expenseInvoiceRef').value.trim() || 'بغیر رسید';
 
-      const branchName = BRANCHES[branch].shortUr;
+      const catSelect = document.getElementById('expenseCategory');
+      const catLabel = catSelect.options[catSelect.selectedIndex].text;
+
+      if (editId) {
+        const item = storeState.expenses.find(x => x.id === editId);
+        if (item) {
+          // سابقہ برانچ کے گلے میں رقم واپس
+          if (item.branch === 'b1') storeState.branch1Cash += item.amount;
+          else storeState.branch2Cash += item.amount;
+
+          // نئی برانچ کے گلے سے کٹوتی
+          if (branch === 'b1') storeState.branch1Cash -= amount;
+          else storeState.branch2Cash -= amount;
+
+          item.date = date;
+          item.branch = branch;
+          item.category = category;
+          item.categoryLabel = catLabel;
+          item.payee = payee;
+          item.amount = amount;
+          item.invoiceRef = invoiceRef;
+          showToast('ادائیگی کا واؤچر اپ ڈیٹ ہو گیا', 'success');
+        }
+      } else {
+        const branchCash = branch === 'b1' ? storeState.branch1Cash : storeState.branch2Cash;
+        if (amount > branchCash) {
+          showToast(`ناکافی گلا! منتخب برانچ میں صرف ${formatPKR(branchCash)} موجود ہے`, 'error');
+          return;
+        }
+
+        if (branch === 'b1') storeState.branch1Cash -= amount;
+        else storeState.branch2Cash -= amount;
+
+        const newExpense = {
+          id: 'EXP-' + Math.floor(1000 + Math.random() * 9000),
+          date: date,
+          timestamp: new Date().toISOString(),
+          branch: branch,
+          category: category,
+          categoryLabel: catLabel,
+          payee: payee,
+          amount: amount,
+          invoiceRef: invoiceRef,
+          note: 'نقد واؤچر جاری ہوا'
+        };
+
+        storeState.expenses.unshift(newExpense);
+        showToast('ادائیگی درج کر دی گئی', 'success');
+      }
+
+      if (window.syncToCloud) window.syncToCloud();
+      refreshAllUI();
+      resetExpenseForm();
+    }
+
+    function editExpense(id) {
+      const item = storeState.expenses.find(x => x.id === id);
+      if (!item) return;
+
+      switchTab('expenses');
+      document.getElementById('expenseEditId').value = item.id;
+      document.getElementById('expenseDate').value = item.date || item.timestamp.split('T')[0];
+      document.getElementById('expenseBranch').value = item.branch;
+      document.getElementById('expenseCategory').value = item.category;
+      document.getElementById('expensePayee').value = item.payee;
+      document.getElementById('expenseAmount').value = item.amount;
+      document.getElementById('expenseInvoiceRef').value = item.invoiceRef;
+
+      document.getElementById('expenseFormHeading').innerText = `ادائیگی واؤچر تبدیل کریں (${item.payee})`;
+      document.getElementById('expenseSubmitText').innerText = 'تبدیلی محفوظ کریں';
+      document.getElementById('expenseCancelEditBtn').classList.remove('hidden');
+    }
+
+    function deleteExpense(id) {
+      const item = storeState.expenses.find(x => x.id === id);
+      if (!item) return;
 
       showConfirmModal(
-        'ادائیگی کی تصدیق',
-        `کیا آپ واقعی ${formatPKR(amount)} کی رقم "${payee}" کو ${branchName} کے گلے سے ادا کرنا چاہتے ہیں؟`,
+        'ادائیگی واؤچر ڈیلیٹ کریں',
+        `کیا آپ واقعی ${formatPKR(item.amount)} کا واؤچر برائے "${item.payee}" ڈیلیٹ کرنا چاہتے ہیں؟ یہ رقم گلے میں واپس جمع ہو جائے گی۔`,
         () => {
-          if (branch === 'b1') {
-            storeState.branch1Cash -= amount;
-          } else {
-            storeState.branch2Cash -= amount;
-          }
+          if (item.branch === 'b1') storeState.branch1Cash += item.amount;
+          else storeState.branch2Cash += item.amount;
 
-          const catSelect = document.getElementById('expenseCategory');
-          const catLabel = catSelect.options[catSelect.selectedIndex].text;
-
-          const newExpense = {
-            id: 'EXP-' + Math.floor(1000 + Math.random() * 9000),
-            timestamp: new Date().toISOString(),
-            branch: branch,
-            category: category,
-            categoryLabel: catLabel,
-            payee: payee,
-            amount: amount,
-            invoiceRef: invoiceRef,
-            note: 'نقد واؤچر جاری ہوا'
-          };
-
-          storeState.expenses.unshift(newExpense);
+          storeState.expenses = storeState.expenses.filter(x => x.id !== id);
           if (window.syncToCloud) window.syncToCloud();
-
           refreshAllUI();
-          document.getElementById('expenseForm').reset();
-          showToast('ادائیگی درج کر دی گئی', 'success');
+          showToast('واؤچر ڈیلیٹ کر کے رقم گلے میں واپس کر دی گئی', 'success');
         }
       );
     }
@@ -1437,22 +1739,32 @@
         const tr = document.createElement('tr');
         tr.className = 'hover:bg-slate-50 transition border-b border-slate-100';
         tr.innerHTML = `
-          <td class="p-2.5 font-mono text-[11px] text-slate-500">${formatDate(ex.timestamp)}</td>
-          <td class="p-2.5 font-semibold text-slate-700">${BRANCHES[ex.branch].shortUr}</td>
+          <td class="p-2.5 font-mono text-[11px] text-slate-500">${formatDateDisplay(ex.date || ex.timestamp)}</td>
+          <td class="p-2.5 font-semibold text-slate-700">${BRANCHES[ex.branch]?.shortUr || ex.branch}</td>
           <td class="p-2.5 font-bold text-slate-800">${ex.payee}</td>
           <td class="p-2.5 text-slate-600 text-[11px]">${ex.categoryLabel}</td>
           <td class="p-2.5 font-mono text-[11px] text-slate-500">${ex.invoiceRef}</td>
           <td class="p-2.5 font-mono font-bold text-rose-600">${formatPKR(ex.amount)}</td>
           <td class="p-2.5 text-center">
-            <button onclick="printVoucher('expense', '${ex.id}')" class="p-1 hover:bg-slate-200 rounded text-slate-600 transition" title="پرنٹ واؤچر">
-              <i data-lucide="printer" class="w-3.5 h-3.5"></i>
-            </button>
+            <div class="flex items-center justify-center gap-1">
+              <button onclick="editExpense('${ex.id}')" class="p-1 hover:bg-slate-200 rounded text-slate-600 transition" title="ایڈٹ کریں">
+                <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+              </button>
+              <button onclick="deleteExpense('${ex.id}')" class="p-1 hover:bg-rose-100 rounded text-rose-600 transition" title="ڈیلیٹ کریں">
+                <i data-lucide="trash" class="w-3.5 h-3.5"></i>
+              </button>
+              <button onclick="printVoucher('expense', '${ex.id}')" class="p-1 hover:bg-slate-200 rounded text-slate-600 transition" title="پرنٹ واؤچر">
+                <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
           </td>
         `;
         tbody.appendChild(tr);
       });
       lucide.createIcons();
     }
+
+    // ==================== جنرل لیجر لاجک (LEDGER) ====================
 
     function renderConsolidatedLedger() {
       const typeFilter = document.getElementById('ledgerTypeFilter').value;
@@ -1466,11 +1778,11 @@
       storeState.stockTransfers.forEach(st => {
         unified.push({
           id: st.id,
-          date: st.timestamp,
+          date: st.date || st.timestamp,
           category: 'مال بل (Stock Bill)',
           type: 'stock',
           detail: `بل نمبر: ${st.billNo} (${st.note || '-'})`,
-          flow: `${BRANCHES[st.fromBranch].shortUr} ➔ ${BRANCHES[st.toBranch].shortUr}`,
+          flow: `${BRANCHES[st.fromBranch]?.shortUr} ➔ ${BRANCHES[st.toBranch]?.shortUr}`,
           impact: formatPKR(st.totalAmount),
           impactType: 'stock',
           branchA: st.fromBranch,
@@ -1483,11 +1795,11 @@
         const isInter = ct.type === 'inter_branch';
         unified.push({
           id: ct.id,
-          date: ct.timestamp,
+          date: ct.date || ct.timestamp,
           category: isInter ? 'کیش منتقلی (Inter Cash)' : (ct.type === 'petty_in' ? 'پیٹی کیش ان' : 'پیٹی کیش آؤٹ'),
           type: 'cash',
           detail: ct.note,
-          flow: isInter ? `${BRANCHES[ct.fromBranch].shortUr} ➔ ${BRANCHES[ct.toBranch].shortUr}` : BRANCHES[ct.branch].shortUr,
+          flow: isInter ? `${BRANCHES[ct.fromBranch]?.shortUr} ➔ ${BRANCHES[ct.toBranch]?.shortUr}` : BRANCHES[ct.branch]?.shortUr,
           impact: formatPKR(ct.amount),
           impactType: 'cash',
           branchA: isInter ? ct.fromBranch : ct.branch,
@@ -1499,11 +1811,11 @@
       storeState.expenses.forEach(ex => {
         unified.push({
           id: ex.id,
-          date: ex.timestamp,
+          date: ex.date || ex.timestamp,
           category: `ادائیگی: ${ex.categoryLabel}`,
           type: 'expense',
           detail: `${ex.payee} (${ex.invoiceRef})`,
-          flow: `${BRANCHES[ex.branch].shortUr} (گلا وضع)`,
+          flow: `${BRANCHES[ex.branch]?.shortUr} (گلا وضع)`,
           impact: `- ${formatPKR(ex.amount)}`,
           impactType: 'expense',
           branchA: ex.branch,
@@ -1547,7 +1859,7 @@
 
         tr.innerHTML = `
           <td class="p-3 font-mono font-bold text-slate-600 text-[11px]">${row.id}</td>
-          <td class="p-3 font-mono text-[11px] text-slate-500">${formatDate(row.date)}</td>
+          <td class="p-3 font-mono text-[11px] text-slate-500">${formatDateDisplay(row.date)}</td>
           <td class="p-3">
             <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-${badgeColor}-100 text-${badgeColor}-800">
               ${row.category}
@@ -1557,15 +1869,38 @@
           <td class="p-3 text-slate-600 text-xs">${row.flow}</td>
           <td class="p-3 text-center font-mono ${impactColor}">${row.impact}</td>
           <td class="p-3 text-center no-print">
-            <button onclick="printVoucher('${row.type}', '${row.id}')" class="p-1 hover:bg-slate-200 rounded text-slate-600 transition" title="پرنٹ">
-              <i data-lucide="printer" class="w-3.5 h-3.5"></i>
-            </button>
+            <div class="flex items-center justify-center gap-1">
+              <button onclick="handleLedgerAction('${row.type}', '${row.id}', 'edit')" class="p-1 hover:bg-slate-200 rounded text-slate-600 transition" title="ایڈٹ">
+                <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+              </button>
+              <button onclick="handleLedgerAction('${row.type}', '${row.id}', 'delete')" class="p-1 hover:bg-rose-100 rounded text-rose-600 transition" title="ڈیلیٹ">
+                <i data-lucide="trash" class="w-3.5 h-3.5"></i>
+              </button>
+              <button onclick="printVoucher('${row.type}', '${row.id}')" class="p-1 hover:bg-slate-200 rounded text-slate-600 transition" title="پرنٹ">
+                <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
           </td>
         `;
         tbody.appendChild(tr);
       });
       lucide.createIcons();
     }
+
+    function handleLedgerAction(type, id, action) {
+      if (type === 'stock') {
+        if (action === 'edit') editStockTransfer(id);
+        else deleteStockTransfer(id);
+      } else if (type === 'cash') {
+        if (action === 'edit') editCashTransfer(id);
+        else deleteCashTransfer(id);
+      } else if (type === 'expense') {
+        if (action === 'edit') editExpense(id);
+        else deleteExpense(id);
+      }
+    }
+
+    // ==================== واؤچر پرنٹنگ ====================
 
     function printVoucher(type, id) {
       const slipTitle = document.getElementById('slipTitle');
@@ -1578,9 +1913,9 @@
         slipContent.innerHTML = `
           <div class="flex justify-between border-b pb-1"><span>واؤچر نمبر:</span><strong>${found.id}</strong></div>
           <div class="flex justify-between border-b pb-1"><span>بل / چالان نمبر:</span><strong>${found.billNo}</strong></div>
-          <div class="flex justify-between border-b pb-1"><span>تاریخ و وقت:</span><strong>${formatDate(found.timestamp)}</strong></div>
-          <div class="flex justify-between border-b pb-1"><span>ماخذ (بھیجنے والی برانچ):</span><strong>${BRANCHES[found.fromBranch].nameUr}</strong></div>
-          <div class="flex justify-between border-b pb-1"><span>منزل (وصول کنندہ برانچ):</span><strong>${BRANCHES[found.toBranch].nameUr}</strong></div>
+          <div class="flex justify-between border-b pb-1"><span>تاریخ:</span><strong>${formatDateDisplay(found.date || found.timestamp)}</strong></div>
+          <div class="flex justify-between border-b pb-1"><span>ماخذ (بھیجنے والی برانچ):</span><strong>${BRANCHES[found.fromBranch]?.nameUr}</strong></div>
+          <div class="flex justify-between border-b pb-1"><span>منزل (وصول کنندہ برانچ):</span><strong>${BRANCHES[found.toBranch]?.nameUr}</strong></div>
           <div class="flex justify-between border-b pb-1"><span>کل مالیت بل:</span><strong class="text-base text-emerald-800">${formatPKR(found.totalAmount)}</strong></div>
           <div class="flex justify-between border-b pb-1"><span>ڈرائیور / حوالہ:</span><strong>${found.note}</strong></div>
         `;
@@ -1588,11 +1923,11 @@
         const found = storeState.cashTransfers.find(c => c.id === id);
         if (!found) return;
         slipTitle.innerText = 'نقد کیش ٹرانسفر رسید';
-        const fromTxt = found.fromBranch ? BRANCHES[found.fromBranch].nameUr : BRANCHES[found.branch].nameUr;
-        const toTxt = found.toBranch ? BRANCHES[found.toBranch].nameUr : 'کاؤنٹر گلا';
+        const fromTxt = found.fromBranch ? BRANCHES[found.fromBranch]?.nameUr : BRANCHES[found.branch]?.nameUr;
+        const toTxt = found.toBranch ? BRANCHES[found.toBranch]?.nameUr : 'کاؤنٹر گلا';
         slipContent.innerHTML = `
           <div class="flex justify-between border-b pb-1"><span>رسید نمبر:</span><strong>${found.id}</strong></div>
-          <div class="flex justify-between border-b pb-1"><span>تاریخ و وقت:</span><strong>${formatDate(found.timestamp)}</strong></div>
+          <div class="flex justify-between border-b pb-1"><span>تاریخ:</span><strong>${formatDateDisplay(found.date || found.timestamp)}</strong></div>
           <div class="flex justify-between border-b pb-1"><span>ماخذ:</span><strong>${fromTxt}</strong></div>
           <div class="flex justify-between border-b pb-1"><span>منزل / برانچ:</span><strong>${toTxt}</strong></div>
           <div class="flex justify-between border-b pb-1"><span>رقم (PKR):</span><strong class="text-base">${formatPKR(found.amount)}</strong></div>
@@ -1604,8 +1939,8 @@
         slipTitle.innerText = 'ادائیگی و خرچ واؤچر';
         slipContent.innerHTML = `
           <div class="flex justify-between border-b pb-1"><span>واؤچر نمبر:</span><strong>${found.id}</strong></div>
-          <div class="flex justify-between border-b pb-1"><span>تاریخ و وقت:</span><strong>${formatDate(found.timestamp)}</strong></div>
-          <div class="flex justify-between border-b pb-1"><span>ادائیگی کرنے والی برانچ:</span><strong>${BRANCHES[found.branch].nameUr}</strong></div>
+          <div class="flex justify-between border-b pb-1"><span>تاریخ:</span><strong>${formatDateDisplay(found.date || found.timestamp)}</strong></div>
+          <div class="flex justify-between border-b pb-1"><span>ادائیگی کرنے والی برانچ:</span><strong>${BRANCHES[found.branch]?.nameUr}</strong></div>
           <div class="flex justify-between border-b pb-1"><span>وصول کنندہ:</span><strong class="text-base">${found.payee}</strong></div>
           <div class="flex justify-between border-b pb-1"><span>کیٹیگری:</span><strong>${found.categoryLabel}</strong></div>
           <div class="flex justify-between border-b pb-1"><span>کل ادا شدہ رقم:</span><strong class="text-base">${formatPKR(found.amount)}</strong></div>
@@ -1619,23 +1954,23 @@
       let rows = [["Transaction ID", "Date", "Category", "Detail", "Branch Flow", "Amount"]];
 
       storeState.stockTransfers.forEach(st => {
-        rows.push([st.id, st.timestamp, "Stock Bill", `"${st.billNo} - ${st.note}"`, `"${BRANCHES[st.fromBranch].shortUr} -> ${BRANCHES[st.toBranch].shortUr}"`, st.totalAmount]);
+        rows.push([st.id, st.date || st.timestamp, "Stock Bill", `"${st.billNo} - ${st.note}"`, `"${BRANCHES[st.fromBranch]?.shortUr} -> ${BRANCHES[st.toBranch]?.shortUr}"`, st.totalAmount]);
       });
 
       storeState.cashTransfers.forEach(ct => {
-        const flow = ct.fromBranch ? `${BRANCHES[ct.fromBranch].shortUr} -> ${BRANCHES[ct.toBranch].shortUr}` : BRANCHES[ct.branch].shortUr;
-        rows.push([ct.id, ct.timestamp, ct.type, `"${ct.note}"`, `"${flow}"`, ct.amount]);
+        const flow = ct.fromBranch ? `${BRANCHES[ct.fromBranch]?.shortUr} -> ${BRANCHES[ct.toBranch]?.shortUr}` : BRANCHES[ct.branch]?.shortUr;
+        rows.push([ct.id, ct.date || ct.timestamp, ct.type, `"${ct.note}"`, `"${flow}"`, ct.amount]);
       });
 
       storeState.expenses.forEach(ex => {
-        rows.push([ex.id, ex.timestamp, `Expense: ${ex.category}`, `"${ex.payee}"`, `"${BRANCHES[ex.branch].shortUr}"`, `-${ex.amount}`]);
+        rows.push([ex.id, ex.date || ex.timestamp, `Expense: ${ex.category}`, `"${ex.payee}"`, `"${BRANCHES[ex.branch]?.shortUr}"`, `-${ex.amount}`]);
       });
 
       let csvContent = "data:text/csv;charset=utf-8,\uFEFF" + rows.map(e => e.join(",")).join("\n");
       const encodedUri = encodeURI(csvContent);
       const link = document.createElement("a");
       link.setAttribute("href", encodedUri);
-      link.setAttribute("download", `NewQariHosiery_Ledger_${new Date().toISOString().slice(0,10)}.csv`);
+      link.setAttribute("download", `NewQariHosiery_Ledger_${getTodayDateStr()}.csv`);
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -1653,7 +1988,7 @@
         if (typeof pendingConfirmAction === 'function') {
           pendingConfirmAction();
         }
-        closeConfirmModal(true);
+        closeConfirmModal();
       };
     }
 
@@ -1697,24 +2032,6 @@
       }, 3500);
     }
 
-    function toggleLanguage() {
-      const html = document.documentElement;
-      const isUrdu = storeState.currentLang === 'ur';
-
-      if (isUrdu) {
-        storeState.currentLang = 'en';
-        html.setAttribute('lang', 'en');
-        html.setAttribute('dir', 'ltr');
-        document.getElementById('langLabel').innerText = 'اردو';
-      } else {
-        storeState.currentLang = 'ur';
-        html.setAttribute('lang', 'ur');
-        html.setAttribute('dir', 'rtl');
-        document.getElementById('langLabel').innerText = 'English';
-      }
-      refreshAllUI();
-    }
-
     window.refreshAllUI = function() {
       renderKPIs();
       renderDashboardBillsTable();
@@ -1723,11 +2040,12 @@
       renderCashTransfersTable();
       renderExpensesTable();
       renderConsolidatedLedger();
+      initFormDates();
       lucide.createIcons();
     };
 
     window.addEventListener('DOMContentLoaded', () => {
-      lucide.createIcons();
+      initFormDates();
       refreshAllUI();
     });
   </script>
