@@ -5,15 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>نیو قاری ہوزری سٹور | فیصل آباد ERP</title>
   
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Google Fonts: Noto Sans Arabic & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <script>
@@ -68,17 +65,17 @@
         </div>
 
         <div class="flex items-center gap-2 sm:gap-3">
-          <!-- Reset All Data Button -->
+          <!-- Reset Button -->
           <button onclick="resetAllDataToZero()" class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-bold bg-rose-600/80 hover:bg-rose-600 text-white transition border border-rose-500/50 shadow-sm" title="تمام پرانا ڈیٹا صاف کریں">
             <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
             <span class="hidden sm:inline">ڈیٹا صاف کریں</span>
           </button>
 
-          <!-- Firebase Cloud Status -->
-          <button onclick="openModal('firebaseModal')" id="cloudStatusBadge" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-medium bg-slate-800 hover:bg-slate-700 text-emerald-400 border border-slate-700 transition cursor-pointer" title="کلاؤڈ تفصیلات">
-            <span id="cloudStatusDot" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span id="cloudStatusText" class="hidden md:inline">Firebase (branches-c2b6c) منسلک ہے</span>
-            <i data-lucide="cloud-check" class="w-3.5 h-3.5 opacity-80"></i>
+          <!-- Firebase Cloud Status Badge -->
+          <button onclick="triggerCloudSyncNow()" id="cloudStatusBadge" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-medium bg-slate-800 hover:bg-slate-700 text-amber-400 border border-slate-700 transition cursor-pointer" title="کلاؤڈ سے تازہ کریں">
+            <span id="cloudStatusDot" class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+            <span id="cloudStatusText" class="hidden md:inline">رابطہ قائم کیا جا رہا ہے...</span>
+            <i data-lucide="refresh-cw" class="w-3.5 h-3.5 opacity-80"></i>
           </button>
         </div>
       </div>
@@ -114,7 +111,7 @@
 
         <button onclick="switchTab('stockTransfer')" id="tabBtn-stockTransfer" class="tab-btn flex items-center gap-2 px-3 py-2 text-xs sm:text-sm font-semibold rounded-lg transition text-slate-600 hover:bg-slate-100 border border-transparent">
           <i data-lucide="truck" class="w-4 h-4 text-emerald-600"></i>
-          <span>مال منتقلی بذریعہ بل (Stock Transfer)</span>
+          <span>مال منتقلی بذریعہ بل (Stock)</span>
         </button>
 
         <button onclick="switchTab('cashTransfer')" id="tabBtn-cashTransfer" class="tab-btn flex items-center gap-2 px-3 py-2 text-xs sm:text-sm font-semibold rounded-lg transition text-slate-600 hover:bg-slate-100 border border-transparent">
@@ -151,22 +148,22 @@
               </span>
               <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-400/20 text-emerald-200 border border-emerald-400/30">
                 <i data-lucide="cloud" class="w-3 h-3"></i>
-                کلاؤڈ پراجیکٹ: branches-c2b6c
+                کلاؤڈ لائیو کنکشن فعال
               </span>
             </div>
             <h2 class="text-xl sm:text-2xl font-bold">خوش آمدید - نیو قاری ہوزری فیصل آباد</h2>
             <p class="text-emerald-100/80 text-xs sm:text-sm mt-1 max-w-xl">
-              دونوں برانچوں کے درمیان بل پر مال کی ترسیل، کاؤنٹر کیش اور اخراجات کا خودکار توازن (تاریخ کے انتخاب اور ایڈٹ/ڈیلیٹ کے ساتھ)۔
+              دونوں برانچوں کے درمیان بل پر مال کی ترسیل، کاؤنٹر کیش اور اخراجات کا خودکار کلاؤڈ سنک۔
             </p>
           </div>
           <div class="flex flex-wrap gap-2">
             <button onclick="switchTab('stockTransfer')" class="px-3 py-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-1.5 shadow-sm transition active:scale-95">
               <i data-lucide="file-plus" class="w-4 h-4"></i>
-              <span>نیا مال چالان / بل بھیجیں</span>
+              <span>نیا مال چالان بھیجیں</span>
             </button>
             <button onclick="switchTab('expenses')" class="px-3 py-2 bg-slate-800/80 hover:bg-slate-800 text-emerald-200 border border-emerald-500/40 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-1.5 transition active:scale-95">
               <i data-lucide="plus-circle" class="w-4 h-4"></i>
-              <span>خرچ / سپلائر ادائیگی</span>
+              <span>خرچ / ادائیگی</span>
             </button>
           </div>
         </div>
@@ -219,11 +216,11 @@
           </div>
           <div class="flex items-center justify-between">
             <div>
-              <span class="text-[10px] uppercase font-bold text-emerald-600 block">نقد آمد (Cash In)</span>
+              <span class="text-[10px] uppercase font-bold text-emerald-600 block">نقد آمد (In)</span>
               <span class="text-base font-bold text-slate-800 font-mono" id="kpi-today-cashin">PKR 0</span>
             </div>
             <div>
-              <span class="text-[10px] uppercase font-bold text-rose-600 block">نقد اخراج (Cash Out)</span>
+              <span class="text-[10px] uppercase font-bold text-rose-600 block">نقد اخراج (Out)</span>
               <span class="text-base font-bold text-slate-800 font-mono" id="kpi-today-cashout">PKR 0</span>
             </div>
           </div>
@@ -305,11 +302,10 @@
 
     </section>
 
-    <!-- ==================== VIEW 2: STOCK TRANSFER VIA BILL ==================== -->
+    <!-- ==================== VIEW 2: STOCK TRANSFER ==================== -->
     <section id="view-stockTransfer" class="hidden space-y-6">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
-        <!-- Transfer Form Card -->
         <div class="lg:col-span-1 bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6">
           <div class="flex items-center gap-2 pb-3 mb-4 border-b border-slate-100">
             <div class="p-2 bg-emerald-100 text-emerald-800 rounded-xl">
@@ -346,12 +342,12 @@
             </div>
 
             <div>
-              <label class="block text-xs font-bold text-slate-700 mb-1">بل نمبر / چالان نمبر (Bill / Challan No)</label>
+              <label class="block text-xs font-bold text-slate-700 mb-1">بل نمبر / چالان نمبر</label>
               <input type="text" id="transferBillNo" placeholder="مثلاً: Bill-1045 یا چالان نمبر" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs font-mono font-bold focus:ring-2 focus:ring-emerald-500 focus:outline-none" required>
             </div>
 
             <div>
-              <label class="block text-xs font-bold text-slate-700 mb-1">بل کی کل رقم (Total Bill Amount in PKR)</label>
+              <label class="block text-xs font-bold text-slate-700 mb-1">بل کی کل رقم (Total Amount in PKR)</label>
               <input type="number" min="1" step="any" id="transferTotalAmount" placeholder="مثلاً: 45000" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs font-mono font-bold focus:ring-2 focus:ring-emerald-500 focus:outline-none" required>
             </div>
 
@@ -372,7 +368,6 @@
           </form>
         </div>
 
-        <!-- Transfer History Table -->
         <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6 flex flex-col">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 mb-4 border-b border-slate-100 gap-2">
             <div>
@@ -397,8 +392,8 @@
                 <tr>
                   <th class="p-2.5">تاریخ</th>
                   <th class="p-2.5">بل / چالان نمبر</th>
-                  <th class="p-2.5">ماخذ (From)</th>
-                  <th class="p-2.5">منزل (To)</th>
+                  <th class="p-2.5">ماخذ</th>
+                  <th class="p-2.5">منزل</th>
                   <th class="p-2.5 text-center">کل رقم (PKR)</th>
                   <th class="p-2.5">نوٹ / ڈرائیور</th>
                   <th class="p-2.5 text-center">ایکشن</th>
@@ -463,7 +458,6 @@
         </div>
       </div>
 
-      <!-- Inter-Branch Cash Movement Form & Daily Log -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
         <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6">
@@ -472,7 +466,7 @@
               <i data-lucide="repeat" class="w-5 h-5"></i>
             </div>
             <div>
-              <h3 class="font-bold text-base text-slate-800" id="cashFormHeading">برانچ کیش منتقلی (Inter-Branch Cash)</h3>
+              <h3 class="font-bold text-base text-slate-800" id="cashFormHeading">برانچ کیش منتقلی</h3>
               <p class="text-xs text-slate-500">ایک برانچ کے گلے سے دوسری برانچ رقوم کی ترسیل</p>
             </div>
           </div>
@@ -507,14 +501,14 @@
             </div>
 
             <div>
-              <label class="block text-xs font-bold text-slate-700 mb-1">حوالہ / لے جانے والے کا نام (Receiver/Courier)</label>
+              <label class="block text-xs font-bold text-slate-700 mb-1">حوالہ / لے جانے والے کا نام</label>
               <input type="text" id="cashTransferNote" placeholder="مثلاً: احمد (سیلز بوائے) کے ہاتھ بھجوائے" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-teal-500 focus:outline-none" required>
             </div>
 
             <div class="flex gap-2 pt-1">
               <button type="submit" id="cashSubmitBtn" class="flex-1 py-2.5 px-4 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-sm transition active:scale-[0.98]">
                 <i data-lucide="check-circle-2" class="w-4 h-4"></i>
-                <span id="cashSubmitText">کیش ٹرانسفر کا اندراج کریں</span>
+                <span id="cashSubmitText">کیش ٹرانسفر درج کریں</span>
               </button>
               <button type="button" id="cashCancelEditBtn" onclick="resetCashForm()" class="hidden py-2.5 px-3 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-xl text-xs font-bold transition">
                 منسوخ کریں
@@ -530,7 +524,7 @@
                 <i data-lucide="file-text" class="w-4 h-4 text-teal-600"></i>
                 <span>کیش ٹرانسفر و پیٹی کیش ہسٹری</span>
               </h3>
-              <p class="text-xs text-slate-500">روزانہ کاؤنٹر کیش ان اور آؤٹ ریکارڈ (ایڈٹ / ڈیلیٹ کے ساتھ)</p>
+              <p class="text-xs text-slate-500">روزانہ کاؤنٹر کیش ان اور آؤٹ ریکارڈ</p>
             </div>
             <div>
               <select id="cashHistoryFilter" onchange="renderCashTransfersTable()" class="bg-slate-50 border border-slate-300 text-xs rounded-xl px-2.5 py-1.5 focus:outline-none">
@@ -547,7 +541,7 @@
               <thead class="bg-slate-50 text-slate-600 font-bold border-b border-slate-200">
                 <tr>
                   <th class="p-2.5">تاریخ</th>
-                  <th class="p-2.5">قسم (Type)</th>
+                  <th class="p-2.5">قسم</th>
                   <th class="p-2.5">برانچ / ماخذ</th>
                   <th class="p-2.5">رقم (PKR)</th>
                   <th class="p-2.5">حوالہ و تفصیل</th>
@@ -563,7 +557,7 @@
 
     </section>
 
-    <!-- ==================== VIEW 4: EXPENSES & SUPPLIERS ==================== -->
+    <!-- ==================== VIEW 4: EXPENSES ==================== -->
     <section id="view-expenses" class="hidden space-y-6">
       
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -596,21 +590,21 @@
             </div>
 
             <div>
-              <label class="block text-xs font-bold text-slate-700 mb-1">خرچ / ادائیگی کی نوعیت (Category)</label>
+              <label class="block text-xs font-bold text-slate-700 mb-1">خرچ / ادائیگی کی نوعیت</label>
               <select id="expenseCategory" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none" required>
-                <option value="Supplier" selected>سپلائر کو مال کی ادائیگی (Raw Material / Goods)</option>
+                <option value="Supplier" selected>سپلائر کو مال کی ادائیگی (Goods / Yarn)</option>
                 <option value="Freight">کرایہ و بلٹی اخراجات (Freight / Transport)</option>
-                <option value="Labor">مزدوری و پلے داری (Labor / Loading)</option>
-                <option value="Utility">دکان بجلی بل و یوٹیلٹی (Electricity / Utilities)</option>
-                <option value="Tea_Refreshment">چائے پانی و مہمان نوازی (Tea / Mess)</option>
-                <option value="Salary">ملازمین ایڈوانس / تنخواہ (Staff Salary/Advance)</option>
-                <option value="Other">دیگر متفرق اخراجات (Misc Expenses)</option>
+                <option value="Labor">مزدوری و پلے داری (Labor)</option>
+                <option value="Utility">دکان بجلی بل و یوٹیلٹی</option>
+                <option value="Tea_Refreshment">چائے پانی و مہمان نوازی</option>
+                <option value="Salary">ملازمین ایڈوانس / تنخواہ</option>
+                <option value="Other">دیگر متفرق اخراجات</option>
               </select>
             </div>
 
             <div>
-              <label class="block text-xs font-bold text-slate-700 mb-1">وصول کنندہ کا نام (Payee / Supplier Name)</label>
-              <input type="text" id="expensePayee" list="supplierSuggestions" placeholder="مثلاً: گلزار یارن / شاہین پیکجنگ / چوہدری ٹرانسپورٹ" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none" required>
+              <label class="block text-xs font-bold text-slate-700 mb-1">وصول کنندہ کا نام (Payee Name)</label>
+              <input type="text" id="expensePayee" list="supplierSuggestions" placeholder="مثلاً: گلزار یارن / شاہین پیکجنگ" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none" required>
               <datalist id="supplierSuggestions">
                 <option value="گلزار یارن و دھاگہ ملز"></option>
                 <option value="شاہین ہوزری باکسز و پیکجنگ"></option>
@@ -627,7 +621,7 @@
 
             <div>
               <label class="block text-xs font-bold text-slate-700 mb-1">انوائس نمبر / بلٹی یا بل حوالہ</label>
-              <input type="text" id="expenseInvoiceRef" placeholder="مثلاً: Bill # 882 / Challan 12" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none">
+              <input type="text" id="expenseInvoiceRef" placeholder="مثلاً: Bill # 882" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none">
             </div>
 
             <div class="flex gap-2 pt-1">
@@ -682,7 +676,7 @@
 
     </section>
 
-    <!-- ==================== VIEW 5: GENERAL LEDGER & REPORTS ==================== -->
+    <!-- ==================== VIEW 5: LEDGER ==================== -->
     <section id="view-ledger" class="hidden space-y-6">
       
       <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-5">
@@ -757,78 +751,6 @@
 
   <!-- ==================== MODALS ==================== -->
 
-  <!-- Firebase Modal -->
-  <div id="firebaseModal" class="no-print fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-100 text-right">
-      <div class="flex justify-between items-center pb-3 border-b border-slate-100 mb-4">
-        <h3 class="font-bold text-base text-slate-800 flex items-center gap-2">
-          <i data-lucide="cloud" class="w-5 h-5 text-emerald-600"></i>
-          <span>فائیر بیس کلاؤڈ لائیو کنکشن (Firebase Cloud)</span>
-        </h3>
-        <button onclick="closeModal('firebaseModal')" class="p-1 rounded-lg text-slate-400 hover:text-slate-600">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
-      </div>
-
-      <div class="space-y-4 text-xs text-slate-600">
-        <div class="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-between">
-          <div class="flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span class="font-bold text-emerald-900">منسلک شدہ پراجیکٹ:</span>
-          </div>
-          <span class="font-mono font-bold text-emerald-700 bg-white px-2 py-0.5 rounded border border-emerald-300">branches-c2b6c</span>
-        </div>
-
-        <p class="leading-relaxed text-slate-700">
-          دونوں برانچوں کے درمیان مال کے بل اور کیش اندراجات ریئل ٹائم میں کلاؤڈ پر سنک ہو رہے ہیں۔
-        </p>
-
-        <div class="flex items-center gap-2 pt-2">
-          <button onclick="triggerCloudSyncNow()" class="flex-1 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold flex items-center justify-center gap-1.5 shadow-sm transition">
-            <i data-lucide="refresh-cw" class="w-4 h-4"></i>
-            <span>ابھی کلاؤڈ سنک کریں</span>
-          </button>
-          <button onclick="closeModal('firebaseModal')" class="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-bold transition">
-            بند کریں
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Print Slip Overlay -->
-  <div id="printSlipArea" class="hidden print-only p-8 max-w-lg mx-auto bg-white text-black font-sans">
-    <div class="text-center border-b pb-4 mb-4">
-      <h2 class="text-2xl font-bold">نیو قاری ہوزری سٹور</h2>
-      <p class="text-sm">فیصل آباد ہول سیل نیٹ ورک (قائد اعظم مارکیٹ / مومن آباد چوک)</p>
-      <h3 class="text-lg font-semibold mt-2 border border-black inline-block px-3 py-0.5 rounded" id="slipTitle">آفیشل ٹرانزیکشن واؤچر</h3>
-    </div>
-    <div class="text-xs space-y-2 mb-6" id="slipContent"></div>
-    <div class="border-t pt-6 flex justify-between text-xs mt-8">
-      <div><p>دستخط بھیجنے والا: ____________</p></div>
-      <div><p>دستخط وصول کنندہ / منیجر: ____________</p></div>
-    </div>
-  </div>
-
-  <!-- Confirm Modal -->
-  <div id="confirmModal" class="no-print fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-100 text-right">
-      <div class="w-12 h-12 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center mb-4 mx-auto">
-        <i data-lucide="alert-triangle" class="w-6 h-6"></i>
-      </div>
-      <h3 class="text-lg font-bold text-slate-800 text-center" id="confirmModalTitle">کیا آپ کو یقین ہے؟</h3>
-      <p class="text-xs text-slate-600 text-center mt-2 leading-relaxed" id="confirmModalMessage"></p>
-      <div class="flex items-center gap-3 mt-6">
-        <button onclick="closeConfirmModal(false)" class="flex-1 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition">
-          منسوخ کریں
-        </button>
-        <button id="confirmProceedBtn" class="flex-1 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition">
-          ہاں، تصدیق کریں
-        </button>
-      </div>
-    </div>
-  </div>
-
   <!-- Petty In/Out Modal -->
   <div id="pettyCashModal" class="no-print fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-100 text-right">
@@ -865,9 +787,42 @@
     </div>
   </div>
 
+  <!-- Print Slip Area -->
+  <div id="printSlipArea" class="hidden print-only p-8 max-w-lg mx-auto bg-white text-black font-sans">
+    <div class="text-center border-b pb-4 mb-4">
+      <h2 class="text-2xl font-bold">نیو قاری ہوزری سٹور</h2>
+      <p class="text-sm">فیصل آباد ہول سیل نیٹ ورک (قائد اعظم مارکیٹ / مومن آباد چوک)</p>
+      <h3 class="text-lg font-semibold mt-2 border border-black inline-block px-3 py-0.5 rounded" id="slipTitle">آفیشل ٹرانزیکشن واؤچر</h3>
+    </div>
+    <div class="text-xs space-y-2 mb-6" id="slipContent"></div>
+    <div class="border-t pt-6 flex justify-between text-xs mt-8">
+      <div><p>دستخط بھیجنے والا: ____________</p></div>
+      <div><p>دستخط وصول کنندہ / منیجر: ____________</p></div>
+    </div>
+  </div>
+
+  <!-- Confirm Modal -->
+  <div id="confirmModal" class="no-print fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-100 text-right">
+      <div class="w-12 h-12 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center mb-4 mx-auto">
+        <i data-lucide="alert-triangle" class="w-6 h-6"></i>
+      </div>
+      <h3 class="text-lg font-bold text-slate-800 text-center" id="confirmModalTitle">کیا آپ کو یقین ہے؟</h3>
+      <p class="text-xs text-slate-600 text-center mt-2 leading-relaxed" id="confirmModalMessage"></p>
+      <div class="flex items-center gap-3 mt-6">
+        <button onclick="closeConfirmModal()" class="flex-1 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition">
+          منسوخ کریں
+        </button>
+        <button id="confirmProceedBtn" class="flex-1 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition">
+          ہاں، تصدیق کریں
+        </button>
+      </div>
+    </div>
+  </div>
+
   <div id="toastContainer" class="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-4 z-50 flex flex-col gap-2 max-w-sm pointer-events-none"></div>
 
-  <!-- ==================== FIREBASE V11 MODULAR SCRIPT ==================== -->
+  <!-- ==================== FIREBASE V11 DIRECT REALTIME ==================== -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
     import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
@@ -890,7 +845,9 @@
     window.db = null;
     window.auth = null;
     window.isCloudActive = false;
-    window.appId = 'new-qari-hosiery-branches';
+
+    // صاف اور سادہ کلیکشن پاتھ جو بلاک نہیں ہوتا
+    const DOC_REF_PATH = ['store_data', 'branches_state'];
 
     window.initFirebaseCloud = async function() {
       const statusBadge = document.getElementById('cloudStatusBadge');
@@ -907,33 +864,35 @@
         window.isCloudActive = true;
         statusBadge.className = "flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-medium bg-slate-800 hover:bg-slate-700 text-emerald-400 border border-slate-700 transition cursor-pointer";
         statusDot.className = "w-2 h-2 rounded-full bg-emerald-400 animate-pulse";
-        statusText.innerText = "Firebase لائیو (branches-c2b6c)";
+        statusText.innerText = "Firebase لائیو منسلک ہے";
 
-        const stateDocRef = doc(window.db, 'artifacts', window.appId, 'public', 'data', 'store_state');
+        const stateDocRef = doc(window.db, DOC_REF_PATH[0], DOC_REF_PATH[1]);
         
         onSnapshot(stateDocRef, (snap) => {
           if (snap.exists()) {
             const remoteData = snap.data();
             if (remoteData) {
-              window.storeState.branch1Cash = remoteData.branch1Cash ?? 0;
-              window.storeState.branch2Cash = remoteData.branch2Cash ?? 0;
-              window.storeState.stockTransfers = remoteData.stockTransfers || [];
-              window.storeState.cashTransfers = remoteData.cashTransfers || [];
-              window.storeState.expenses = remoteData.expenses || [];
+              window.storeState.branch1Cash = Number(remoteData.branch1Cash) || 0;
+              window.storeState.branch2Cash = Number(remoteData.branch2Cash) || 0;
+              window.storeState.stockTransfers = Array.isArray(remoteData.stockTransfers) ? remoteData.stockTransfers : [];
+              window.storeState.cashTransfers = Array.isArray(remoteData.cashTransfers) ? remoteData.cashTransfers : [];
+              window.storeState.expenses = Array.isArray(remoteData.expenses) ? remoteData.expenses : [];
               window.saveStateToLocalStorage();
               window.refreshAllUI();
             }
           } else {
             window.syncToCloud();
           }
+        }, (err) => {
+          console.error("Firestore Snapshot Error:", err);
         });
 
       } catch (err) {
-        console.warn("Firebase offline mode:", err);
+        console.warn("Firebase Connection Warning:", err);
         window.isCloudActive = false;
         statusBadge.className = "flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-medium bg-slate-800 hover:bg-slate-700 text-amber-400 border border-slate-700 transition cursor-pointer";
         statusDot.className = "w-2 h-2 rounded-full bg-amber-400";
-        statusText.innerText = "مقامی موڈ (آف لائن تیار)";
+        statusText.innerText = "آف لائن موڈ";
       }
     };
 
@@ -941,24 +900,23 @@
       window.saveStateToLocalStorage();
       if (!window.isCloudActive || !window.db) return;
       try {
-        const stateDocRef = doc(window.db, 'artifacts', window.appId, 'public', 'data', 'store_state');
+        const stateDocRef = doc(window.db, DOC_REF_PATH[0], DOC_REF_PATH[1]);
         await setDoc(stateDocRef, {
-          branch1Cash: window.storeState.branch1Cash,
-          branch2Cash: window.storeState.branch2Cash,
-          stockTransfers: window.storeState.stockTransfers,
-          cashTransfers: window.storeState.cashTransfers,
-          expenses: window.storeState.expenses,
+          branch1Cash: Number(window.storeState.branch1Cash) || 0,
+          branch2Cash: Number(window.storeState.branch2Cash) || 0,
+          stockTransfers: window.storeState.stockTransfers || [],
+          cashTransfers: window.storeState.cashTransfers || [],
+          expenses: window.storeState.expenses || [],
           lastUpdated: new Date().toISOString()
         });
       } catch (e) {
-        console.error("Cloud sync error:", e);
+        console.error("Cloud push failed:", e);
       }
     };
 
     window.triggerCloudSyncNow = async function() {
       await window.syncToCloud();
-      showToast('ڈیٹا کلاؤڈ پر لائیو سنک کر دیا گیا ہے', 'success');
-      closeModal('firebaseModal');
+      showToast('کلاؤڈ سے سنک مکمل ہو گیا ہے', 'success');
     };
 
     window.addEventListener('load', () => {
@@ -990,7 +948,7 @@
     };
 
     function loadInitialState() {
-      const saved = localStorage.getItem('qari_store_state');
+      const saved = localStorage.getItem('qari_store_state_v2');
       if (saved) {
         try { return JSON.parse(saved); } catch (e) {}
       }
@@ -1000,7 +958,7 @@
     window.storeState = loadInitialState();
 
     window.saveStateToLocalStorage = function() {
-      localStorage.setItem('qari_store_state', JSON.stringify(window.storeState));
+      localStorage.setItem('qari_store_state_v2', JSON.stringify(window.storeState));
     };
 
     function getTodayDateStr() {
@@ -1028,7 +986,7 @@
         expenses: []
       };
 
-      localStorage.removeItem('qari_store_state');
+      localStorage.removeItem('qari_store_state_v2');
       window.saveStateToLocalStorage();
 
       if (window.syncToCloud) {
@@ -1036,7 +994,7 @@
       }
 
       window.refreshAllUI();
-      showToast('تمام پرانا ڈیٹا مکمل طور پر صاف کر دیا گیا ہے', 'success');
+      showToast('تمام ڈیٹا صاف ہو گیا ہے', 'success');
     };
 
     let pendingConfirmAction = null;
@@ -1078,7 +1036,7 @@
       document.getElementById('cash-b1-balance').innerText = formatPKR(storeState.branch1Cash);
       document.getElementById('cash-b2-balance').innerText = formatPKR(storeState.branch2Cash);
 
-      const totalCash = storeState.branch1Cash + storeState.branch2Cash;
+      const totalCash = Number(storeState.branch1Cash) + Number(storeState.branch2Cash);
       document.getElementById('combinedCashTotal').innerText = formatPKR(totalCash);
 
       const today = getTodayDateStr();
@@ -1164,7 +1122,7 @@
       const top5 = feed.slice(0, 5);
 
       if (top5.length === 0) {
-        container.innerHTML = `<p class="text-xs text-slate-400 text-center py-4">کوئی حالیہ سرگرمی ریکارڈ میں نہیں ہے</p>`;
+        container.innerHTML = `<p class="text-xs text-slate-400 text-center py-4">کوئی سرگرمی موجود نہیں ہے</p>`;
         return;
       }
 
@@ -1194,8 +1152,7 @@
       }
     }
 
-    // ==================== مال منتقلی لاجک (STOCK TRANSFER) ====================
-
+    // ==================== مال منتقلی لاجک ====================
     function resetStockForm() {
       document.getElementById('stockEditId').value = '';
       document.getElementById('stockTransferForm').reset();
@@ -1205,7 +1162,7 @@
       document.getElementById('stockCancelEditBtn').classList.add('hidden');
     }
 
-    function handleStockTransferSubmit(e) {
+    async function handleStockTransferSubmit(e) {
       e.preventDefault();
       const editId = document.getElementById('stockEditId').value;
       const date = document.getElementById('transferDate').value || getTodayDateStr();
@@ -1229,7 +1186,7 @@
           item.billNo = billNo;
           item.totalAmount = totalAmount;
           item.note = note;
-          showToast('بل چالان کامیابی سے اپ ڈیٹ ہو گیا', 'success');
+          showToast('بل چالان اپ ڈیٹ ہو گیا', 'success');
         }
       } else {
         const newTransfer = {
@@ -1244,10 +1201,10 @@
           status: 'منتقل شدہ'
         };
         storeState.stockTransfers.unshift(newTransfer);
-        showToast('مال ترسیل بل کامیابی سے درج کر دیا گیا', 'success');
+        showToast('مال ترسیل بل محفوظ ہو گیا', 'success');
       }
 
-      if (window.syncToCloud) window.syncToCloud();
+      if (window.syncToCloud) await window.syncToCloud();
       refreshAllUI();
       resetStockForm();
     }
@@ -1276,12 +1233,12 @@
 
       showConfirmModal(
         'بل چالان ڈیلیٹ کریں',
-        `کیا آپ واقعی بل نمبر "${item.billNo}" مالیت ${formatPKR(item.totalAmount)} کو لاگ سے حذف کرنا چاہتے ہیں؟`,
-        () => {
+        `کیا آپ واقعی بل نمبر "${item.billNo}" مالیت ${formatPKR(item.totalAmount)} کو ڈیلیٹ کرنا چاہتے ہیں؟`,
+        async () => {
           storeState.stockTransfers = storeState.stockTransfers.filter(s => s.id !== id);
-          if (window.syncToCloud) window.syncToCloud();
+          if (window.syncToCloud) await window.syncToCloud();
           refreshAllUI();
-          showToast('بل چالان کامیابی سے ڈیلیٹ کر دیا گیا', 'success');
+          showToast('بل چالان ڈیلیٹ کر دیا گیا', 'success');
         }
       );
     }
@@ -1329,18 +1286,17 @@
       lucide.createIcons();
     }
 
-    // ==================== کیش ٹرانسفر لاجک (CASH TRANSFER) ====================
-
+    // ==================== کیش ٹرانسفر لاجک ====================
     function resetCashForm() {
       document.getElementById('cashEditId').value = '';
       document.getElementById('cashTransferForm').reset();
       document.getElementById('cashDate').value = getTodayDateStr();
-      document.getElementById('cashFormHeading').innerText = 'برانچ کیش منتقلی (Inter-Branch Cash)';
-      document.getElementById('cashSubmitText').innerText = 'کیش ٹرانسفر کا اندراج کریں';
+      document.getElementById('cashFormHeading').innerText = 'برانچ کیش منتقلی';
+      document.getElementById('cashSubmitText').innerText = 'کیش ٹرانسفر درج کریں';
       document.getElementById('cashCancelEditBtn').classList.add('hidden');
     }
 
-    function handleCashTransferSubmit(e) {
+    async function handleCashTransferSubmit(e) {
       e.preventDefault();
       const editId = document.getElementById('cashEditId').value;
       const date = document.getElementById('cashDate').value || getTodayDateStr();
@@ -1357,12 +1313,10 @@
       if (editId) {
         const item = storeState.cashTransfers.find(c => c.id === editId);
         if (item) {
-          // پرانی ٹرانزیکشن کا اثر واپس کریں
           if (item.type === 'inter_branch') {
             if (item.fromBranch === 'b1') { storeState.branch1Cash += item.amount; storeState.branch2Cash -= item.amount; }
             else { storeState.branch2Cash += item.amount; storeState.branch1Cash -= item.amount; }
           }
-          // نیا اثر لاگو کریں
           if (fromBranch === 'b1') { storeState.branch1Cash -= amount; storeState.branch2Cash += amount; }
           else { storeState.branch2Cash -= amount; storeState.branch1Cash += amount; }
 
@@ -1401,10 +1355,10 @@
         };
 
         storeState.cashTransfers.unshift(newCashTx);
-        showToast('برانچ کیش کامیابی سے منتقل ہو گیا', 'success');
+        showToast('برانچ کیش منتقل ہو گیا', 'success');
       }
 
-      if (window.syncToCloud) window.syncToCloud();
+      if (window.syncToCloud) await window.syncToCloud();
       refreshAllUI();
       resetCashForm();
     }
@@ -1426,7 +1380,6 @@
         document.getElementById('cashSubmitText').innerText = 'تبدیلی محفوظ کریں';
         document.getElementById('cashCancelEditBtn').classList.remove('hidden');
       } else {
-        // Petty In / Out ایڈٹ کریں
         document.getElementById('pettyEditId').value = item.id;
         document.getElementById('pettyBranchTarget').value = item.branch;
         document.getElementById('pettyActionType').value = item.type === 'petty_in' ? 'in' : 'out';
@@ -1444,8 +1397,8 @@
 
       showConfirmModal(
         'کیش ٹرانزیکشن ڈیلیٹ کریں',
-        `کیا آپ واقعی ${formatPKR(item.amount)} کی ٹرانزیکشن کو ڈیلیٹ کرنا چاہتے ہیں؟ اس سے گلے کا کیش خودکار درست ہو جائے گا۔`,
-        () => {
+        `کیا آپ واقعی ${formatPKR(item.amount)} کی ٹرانزیکشن کو ڈیلیٹ کرنا چاہتے ہیں؟`,
+        async () => {
           if (item.type === 'inter_branch') {
             if (item.fromBranch === 'b1') { storeState.branch1Cash += item.amount; storeState.branch2Cash -= item.amount; }
             else { storeState.branch2Cash += item.amount; storeState.branch1Cash -= item.amount; }
@@ -1458,9 +1411,9 @@
           }
 
           storeState.cashTransfers = storeState.cashTransfers.filter(c => c.id !== id);
-          if (window.syncToCloud) window.syncToCloud();
+          if (window.syncToCloud) await window.syncToCloud();
           refreshAllUI();
-          showToast('کیش ٹرانزیکشن ڈیلیٹ کر دی گئی', 'success');
+          showToast('کیش ٹرانزیکشن ڈیلیٹ ہو گئی', 'success');
         }
       );
     }
@@ -1477,7 +1430,7 @@
       openModal('pettyCashModal');
     }
 
-    function handlePettyCashSubmit(e) {
+    async function handlePettyCashSubmit(e) {
       e.preventDefault();
       const editId = document.getElementById('pettyEditId').value;
       const branch = document.getElementById('pettyBranchTarget').value;
@@ -1489,7 +1442,6 @@
       if (editId) {
         const item = storeState.cashTransfers.find(c => c.id === editId);
         if (item) {
-          // سابقہ رقم ریورس کریں
           if (item.type === 'petty_in') {
             if (item.branch === 'b1') storeState.branch1Cash -= item.amount;
             else storeState.branch2Cash -= item.amount;
@@ -1497,7 +1449,6 @@
             if (item.branch === 'b1') storeState.branch1Cash += item.amount;
             else storeState.branch2Cash += item.amount;
           }
-          // نئی رقم اپلائی کریں
           if (action === 'in') {
             if (branch === 'b1') storeState.branch1Cash += amount;
             else storeState.branch2Cash += amount;
@@ -1509,13 +1460,13 @@
           item.date = date;
           item.amount = amount;
           item.note = note;
-          showToast('کاؤنٹر کیش اندراج اپ ڈیٹ ہو گیا', 'success');
+          showToast('کاؤنٹر کیش اپ ڈیٹ ہو گیا', 'success');
         }
       } else {
         if (action === 'out') {
           const currentBal = branch === 'b1' ? storeState.branch1Cash : storeState.branch2Cash;
           if (amount > currentBal) {
-            showToast('ناکافی کیش! گلے میں مطلوبہ رقم نہیں ہے', 'error');
+            showToast('ناکافی کیش!', 'error');
             return;
           }
         }
@@ -1540,10 +1491,10 @@
         };
 
         storeState.cashTransfers.unshift(tx);
-        showToast('پیٹی کیش اندراج محفوظ ہو گیا', 'success');
+        showToast('پیٹی کیش محفوظ ہو گیا', 'success');
       }
 
-      if (window.syncToCloud) window.syncToCloud();
+      if (window.syncToCloud) await window.syncToCloud();
       closeModal('pettyCashModal');
       document.getElementById('pettyCashForm').reset();
       refreshAllUI();
@@ -1607,8 +1558,7 @@
       lucide.createIcons();
     }
 
-    // ==================== اخراجات و ادائیگی لاجک (EXPENSES) ====================
-
+    // ==================== اخراجات لاجک ====================
     function resetExpenseForm() {
       document.getElementById('expenseEditId').value = '';
       document.getElementById('expenseForm').reset();
@@ -1618,7 +1568,7 @@
       document.getElementById('expenseCancelEditBtn').classList.add('hidden');
     }
 
-    function handleExpenseSubmit(e) {
+    async function handleExpenseSubmit(e) {
       e.preventDefault();
       const editId = document.getElementById('expenseEditId').value;
       const date = document.getElementById('expenseDate').value || getTodayDateStr();
@@ -1634,11 +1584,9 @@
       if (editId) {
         const item = storeState.expenses.find(x => x.id === editId);
         if (item) {
-          // سابقہ برانچ کے گلے میں رقم واپس
           if (item.branch === 'b1') storeState.branch1Cash += item.amount;
           else storeState.branch2Cash += item.amount;
 
-          // نئی برانچ کے گلے سے کٹوتی
           if (branch === 'b1') storeState.branch1Cash -= amount;
           else storeState.branch2Cash -= amount;
 
@@ -1678,7 +1626,7 @@
         showToast('ادائیگی درج کر دی گئی', 'success');
       }
 
-      if (window.syncToCloud) window.syncToCloud();
+      if (window.syncToCloud) await window.syncToCloud();
       refreshAllUI();
       resetExpenseForm();
     }
@@ -1696,7 +1644,7 @@
       document.getElementById('expenseAmount').value = item.amount;
       document.getElementById('expenseInvoiceRef').value = item.invoiceRef;
 
-      document.getElementById('expenseFormHeading').innerText = `ادائیگی واؤچر تبدیل کریں (${item.payee})`;
+      document.getElementById('expenseFormHeading').innerText = `ادائیگی تبدیل کریں (${item.payee})`;
       document.getElementById('expenseSubmitText').innerText = 'تبدیلی محفوظ کریں';
       document.getElementById('expenseCancelEditBtn').classList.remove('hidden');
     }
@@ -1707,15 +1655,15 @@
 
       showConfirmModal(
         'ادائیگی واؤچر ڈیلیٹ کریں',
-        `کیا آپ واقعی ${formatPKR(item.amount)} کا واؤچر برائے "${item.payee}" ڈیلیٹ کرنا چاہتے ہیں؟ یہ رقم گلے میں واپس جمع ہو جائے گی۔`,
-        () => {
+        `کیا آپ واقعی ${formatPKR(item.amount)} کا واؤچر برائے "${item.payee}" ڈیلیٹ کرنا چاہتے ہیں؟`,
+        async () => {
           if (item.branch === 'b1') storeState.branch1Cash += item.amount;
           else storeState.branch2Cash += item.amount;
 
           storeState.expenses = storeState.expenses.filter(x => x.id !== id);
-          if (window.syncToCloud) window.syncToCloud();
+          if (window.syncToCloud) await window.syncToCloud();
           refreshAllUI();
-          showToast('واؤچر ڈیلیٹ کر کے رقم گلے میں واپس کر دی گئی', 'success');
+          showToast('واؤچر ڈیلیٹ ہو گیا', 'success');
         }
       );
     }
@@ -1764,8 +1712,7 @@
       lucide.createIcons();
     }
 
-    // ==================== جنرل لیجر لاجک (LEDGER) ====================
-
+    // ==================== لیجر لاجک ====================
     function renderConsolidatedLedger() {
       const typeFilter = document.getElementById('ledgerTypeFilter').value;
       const branchFilter = document.getElementById('ledgerBranchFilter').value;
@@ -1900,8 +1847,7 @@
       }
     }
 
-    // ==================== واؤچر پرنٹنگ ====================
-
+    // ==================== پرنٹ واؤچر ====================
     function printVoucher(type, id) {
       const slipTitle = document.getElementById('slipTitle');
       const slipContent = document.getElementById('slipContent');
@@ -1914,8 +1860,8 @@
           <div class="flex justify-between border-b pb-1"><span>واؤچر نمبر:</span><strong>${found.id}</strong></div>
           <div class="flex justify-between border-b pb-1"><span>بل / چالان نمبر:</span><strong>${found.billNo}</strong></div>
           <div class="flex justify-between border-b pb-1"><span>تاریخ:</span><strong>${formatDateDisplay(found.date || found.timestamp)}</strong></div>
-          <div class="flex justify-between border-b pb-1"><span>ماخذ (بھیجنے والی برانچ):</span><strong>${BRANCHES[found.fromBranch]?.nameUr}</strong></div>
-          <div class="flex justify-between border-b pb-1"><span>منزل (وصول کنندہ برانچ):</span><strong>${BRANCHES[found.toBranch]?.nameUr}</strong></div>
+          <div class="flex justify-between border-b pb-1"><span>ماخذ:</span><strong>${BRANCHES[found.fromBranch]?.nameUr}</strong></div>
+          <div class="flex justify-between border-b pb-1"><span>منزل:</span><strong>${BRANCHES[found.toBranch]?.nameUr}</strong></div>
           <div class="flex justify-between border-b pb-1"><span>کل مالیت بل:</span><strong class="text-base text-emerald-800">${formatPKR(found.totalAmount)}</strong></div>
           <div class="flex justify-between border-b pb-1"><span>ڈرائیور / حوالہ:</span><strong>${found.note}</strong></div>
         `;
@@ -1929,7 +1875,7 @@
           <div class="flex justify-between border-b pb-1"><span>رسید نمبر:</span><strong>${found.id}</strong></div>
           <div class="flex justify-between border-b pb-1"><span>تاریخ:</span><strong>${formatDateDisplay(found.date || found.timestamp)}</strong></div>
           <div class="flex justify-between border-b pb-1"><span>ماخذ:</span><strong>${fromTxt}</strong></div>
-          <div class="flex justify-between border-b pb-1"><span>منزل / برانچ:</span><strong>${toTxt}</strong></div>
+          <div class="flex justify-between border-b pb-1"><span>منزل:</span><strong>${toTxt}</strong></div>
           <div class="flex justify-between border-b pb-1"><span>رقم (PKR):</span><strong class="text-base">${formatPKR(found.amount)}</strong></div>
           <div class="flex justify-between border-b pb-1"><span>حوالہ:</span><strong>${found.note}</strong></div>
         `;
@@ -1940,10 +1886,10 @@
         slipContent.innerHTML = `
           <div class="flex justify-between border-b pb-1"><span>واؤچر نمبر:</span><strong>${found.id}</strong></div>
           <div class="flex justify-between border-b pb-1"><span>تاریخ:</span><strong>${formatDateDisplay(found.date || found.timestamp)}</strong></div>
-          <div class="flex justify-between border-b pb-1"><span>ادائیگی کرنے والی برانچ:</span><strong>${BRANCHES[found.branch]?.nameUr}</strong></div>
+          <div class="flex justify-between border-b pb-1"><span>ادائیگی والی برانچ:</span><strong>${BRANCHES[found.branch]?.nameUr}</strong></div>
           <div class="flex justify-between border-b pb-1"><span>وصول کنندہ:</span><strong class="text-base">${found.payee}</strong></div>
           <div class="flex justify-between border-b pb-1"><span>کیٹیگری:</span><strong>${found.categoryLabel}</strong></div>
-          <div class="flex justify-between border-b pb-1"><span>کل ادا شدہ رقم:</span><strong class="text-base">${formatPKR(found.amount)}</strong></div>
+          <div class="flex justify-between border-b pb-1"><span>کل رقم:</span><strong class="text-base">${formatPKR(found.amount)}</strong></div>
         `;
       }
 
@@ -1974,7 +1920,7 @@
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      showToast('CSV لیجر فائل ڈاؤنلوڈ ہو گئی', 'success');
+      showToast('CSV فائل ڈاؤنلوڈ ہو گئی', 'success');
     }
 
     function showConfirmModal(title, msg, onProceed) {
